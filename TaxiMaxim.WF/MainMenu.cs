@@ -20,42 +20,47 @@ namespace TaxiMaxim.WF
         public MainMenu()
         {
             InitializeComponent();
-            SqlConnection con = new SqlConnection($"Data Source=NOOTELLA\\SQLEXPRESS;Initial Catalog=TaxiMaxim;Integrated Security=True");
-            sda = new SqlDataAdapter("SELECT ORDER_ID, ORDER_PHONE_NUMBER, ORDER_ADRESS_START, ORDER_ADRESS_FINISH, ORDER_PRICE, ORDER_DATE, ORDER_PHONE_TYPE, DRIVER_ID FROM ORDERS", con);
+            sda = new SqlDataAdapter("SELECT ORDER_ID, ORDER_PHONE_NUMBER, ORDER_ADRESS_START, ORDER_ADRESS_FINISH, ORDER_PRICE, ORDER_DATE, ORDER_PHONE_TYPE, DRIVER_ID FROM ORDERS", db.getConnection());
             dt = new DataTable();
             sda.Fill(dt);
             dataGridView1.DataSource = dt;
-            //db.openConnection();
-            //try
-            //{
-            //    MessageBox.Show("DataBase is  CONNECT");
-            //    SqlDataAdapter adapter = new SqlDataAdapter();
-            //    SqlCommand command = new SqlCommand("SELECT ORDER_PHONE_NUMBER, ORDER_ADRESS_START, ORDER_ADRESS_FINISH, ORDER_PRICE, ORDER_DATE, ORDER_PHONE_TYPE, DRIVER_ID FROM ORDERS", db.getConnection());
-            //    DataTable table = new DataTable();
+            try
+            {
+                db.openConnection();
+                //MessageBox.Show("DataBase is  CONNECT");
 
-            //    adapter.SelectCommand = command;
-            //    adapter.Fill(table);
-            //    string StrQuery;
-            //    for (int i = 0; i < dataGridView1.Rows.Count; i++)
-            //    {
-            //        StrQuery = @"INSERT INTO ORDERS (ORDER_PHONE_NUMBER, ORDER_ADRESS_START, ORDER_ADRESS_FINISH, ORDER_PRICE, ORDER_DATE, ORDER_PHONE_TYPE, DRIVER_ID) VALUES (" + dataGridView1.Rows[i].Cells["ORDER_PHONE_NUMBER"].Value + ", " + dataGridView1.Rows[i].Cells["ORDER_ADRESS_START"].Value + ", " + dataGridView1.Rows[i].Cells["ORDER_ADRESS_FINISH"].Value + ", " + dataGridView1.Rows[i].Cells["ORDER_PRICE"].Value + ", " + dataGridView1.Rows[i].Cells["ORDER_PRICE"].Value + ", " + dataGridView1.Rows[i].Cells["DRIVER_ID"].Value + ");";
-            //        //comand.CommandText = StrQuery;
-            //        //comand.ExecuteNonQuery();
-            //    }
-            //    db.closeConnection();
+                dataBaseCheck_SLabel.Text = "Подключено";
+                dataBaseCheck_SLabel.ForeColor = Color.FromArgb(0, 181, 36);
+                SqlDataAdapter adapter = new SqlDataAdapter();
+                SqlCommand command = new SqlCommand("SELECT ORDER_PHONE_NUMBER, ORDER_ADRESS_START, ORDER_ADRESS_FINISH, ORDER_PRICE, ORDER_DATE, ORDER_PHONE_TYPE, DRIVER_ID FROM ORDERS", db.getConnection());
+                DataTable table = new DataTable();
 
-            //    //DataGridView dgv = new DataGridView();
-            //    //dgv.Height = 200;
-            //    //dgv.Width = 800;
-            //    //this.Controls.Add(dgv);
+                adapter.SelectCommand = command;
+                adapter.Fill(table);
+                string StrQuery;
+                for (int i = 0; i < dataGridView1.Rows.Count; i++)
+                {
+                    StrQuery = @"INSERT INTO ORDERS (ORDER_PHONE_NUMBER, ORDER_ADRESS_START, ORDER_ADRESS_FINISH, ORDER_PRICE, ORDER_DATE, ORDER_PHONE_TYPE, DRIVER_ID) VALUES (" + dataGridView1.Rows[i].Cells["ORDER_PHONE_NUMBER"].Value + ", " + dataGridView1.Rows[i].Cells["ORDER_ADRESS_START"].Value + ", " + dataGridView1.Rows[i].Cells["ORDER_ADRESS_FINISH"].Value + ", " + dataGridView1.Rows[i].Cells["ORDER_PRICE"].Value + ", " + dataGridView1.Rows[i].Cells["ORDER_PRICE"].Value + ", " + dataGridView1.Rows[i].Cells["DRIVER_ID"].Value + ");";
+                    //comand.CommandText = StrQuery;
+                    //comand.ExecuteNonQuery();
+                }
+                db.closeConnection();
 
-            //    dataGridView1.DataSource = table;
-            //}
-            //catch (Exception)
-            //{
-            //    MessageBox.Show("DB NOT CONNECT");
-            //    throw;
-            //}
+                //DataGridView dgv = new DataGridView();
+                //dgv.Height = 200;
+                //dgv.Width = 800;
+                //this.Controls.Add(dgv);
+
+                dataGridView1.DataSource = table;
+            }
+            catch (Exception)
+            {
+                dataBaseCheck_SLabel.Text = "Не подключено";
+                dataBaseCheck_SLabel.ForeColor = Color.FromArgb(204, 0, 0);
+                MessageBox.Show("DB NOT CONNECT");
+                throw;
+            }
+
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -77,9 +82,20 @@ namespace TaxiMaxim.WF
             form2.Show();
         }
 
-        private void водителиИАвтоToolStripMenuItem_Click(object sender, EventArgs e)
+        private void toolStripComboBox1_Click(object sender, EventArgs e)
         {
 
         }
+
+        private void выходToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void tabPage1_Click(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }
