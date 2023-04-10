@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using TaxiMaxim.BL.Model;
 using System.Data.SqlClient;
+using TaxiMaxim.BL.Controller;
+
 namespace TaxiMaxim.WF
 {
     public partial class MainMenu : Form
@@ -17,16 +19,22 @@ namespace TaxiMaxim.WF
         SqlDataAdapter sda;
         SqlCommandBuilder scb;
         DataTable dt;
+
+        // Tests
+        List<Order> Orders = new List<Order>();
+        //
+
+
         public MainMenu()
         {
             InitializeComponent();
-            sda = new SqlDataAdapter("SELECT ORDER_ID, ORDER_PHONE_NUMBER, ORDER_ADRESS_START, ORDER_ADRESS_FINISH, ORDER_PRICE, ORDER_DATE, ORDER_PHONE_TYPE, DRIVER_ID FROM ORDERS", db.getConnection());
-            dt = new DataTable();
-            sda.Fill(dt);
-            dataGridView1.DataSource = dt;
             try
             {
                 db.openConnection();
+                sda = new SqlDataAdapter("SELECT ORDER_ID, ORDER_PHONE_NUMBER, ORDER_ADRESS_START, ORDER_ADRESS_FINISH, ORDER_PRICE, ORDER_DATE, ORDER_PHONE_TYPE, DRIVER_ID FROM ORDERS", db.getConnection());
+                dt = new DataTable();
+                sda.Fill(dt);
+                dataGridView1.DataSource = dt;
                 //MessageBox.Show("DataBase is  CONNECT");
 
                 dataBaseCheck_SLabel.Text = "Подключено";
@@ -46,11 +54,6 @@ namespace TaxiMaxim.WF
                 }
                 db.closeConnection();
 
-                //DataGridView dgv = new DataGridView();
-                //dgv.Height = 200;
-                //dgv.Width = 800;
-                //this.Controls.Add(dgv);
-
                 dataGridView1.DataSource = table;
             }
             catch (Exception)
@@ -58,15 +61,41 @@ namespace TaxiMaxim.WF
                 dataBaseCheck_SLabel.Text = "Не подключено";
                 dataBaseCheck_SLabel.ForeColor = Color.FromArgb(204, 0, 0);
                 MessageBox.Show("DB NOT CONNECT");
-                throw;
             }
+            Orders = FillOrders();
+        }
 
+        private List<Order> FillOrders()
+        {
+            List<Order> matchingOrder = new List<Order>();
+            string oString = "SELECT * FROM ORDERS";
+            SqlCommand oCmd = new SqlCommand(oString, db.getConnection());
+            db.openConnection();
+            using(SqlDataReader oReader = oCmd.ExecuteReader())
+            {
+                while (oReader.Read())
+                {
+                    Order mOrder = new Order();
+                    mOrder.Id = Convert.ToInt32(oReader["ORDER_ID"]);
+                    mOrder.PhoneNumber = oReader["ORDER_PHONE_NUMBER"].ToString();
+                    mOrder.AdressStart = oReader["ORDER_ADRESS_START"].ToString();
+                    mOrder.AdressFinish = oReader["ORDER_ADRESS_FINISH"].ToString();
+                    mOrder.Price = Convert.ToInt32(oReader["ORDER_PRICE"]);
+                    mOrder.Date = (DateTime)oReader["ORDER_DATE"];
+                    mOrder.PhoneType = (bool)oReader["ORDER_PHONE_TYPE"];
+                    mOrder.Driver_Id = Convert.ToInt32(oReader["DRIVER_ID"]);
+                    matchingOrder.Add(mOrder);
+
+                }
+                db.closeConnection();
+            }
+            return matchingOrder;
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
            // MessageBox.Show("Activate");
-
+           
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -97,5 +126,24 @@ namespace TaxiMaxim.WF
 
         }
 
+        private void textBox4_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox3_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonOrderTaxi_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dataGridView3_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

@@ -37,23 +37,58 @@ namespace TaxiMaxim.WF
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.Manager = new System.Windows.Forms.TabPage();
+            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
+            this.button6 = new System.Windows.Forms.Button();
+            this.button7 = new System.Windows.Forms.Button();
+            this.button8 = new System.Windows.Forms.Button();
+            this.button9 = new System.Windows.Forms.Button();
+            this.button10 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.textBox_activeDrivers = new System.Windows.Forms.TextBox();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.textBox_activeOrders = new System.Windows.Forms.TextBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
+            this.button11 = new System.Windows.Forms.Button();
+            this.button12 = new System.Windows.Forms.Button();
+            this.flowLayoutPanel3 = new System.Windows.Forms.FlowLayoutPanel();
+            this.button13 = new System.Windows.Forms.Button();
+            this.button14 = new System.Windows.Forms.Button();
+            this.button15 = new System.Windows.Forms.Button();
+            this.button16 = new System.Windows.Forms.Button();
+            this.button17 = new System.Windows.Forms.Button();
+            this.button18 = new System.Windows.Forms.Button();
+            this.button19 = new System.Windows.Forms.Button();
+            this.button20 = new System.Windows.Forms.Button();
+            this.AutoPark = new System.Windows.Forms.TabPage();
+            this.HouseBooking = new System.Windows.Forms.TabPage();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.button21 = new System.Windows.Forms.Button();
+            this.dataGridView3 = new System.Windows.Forms.DataGridView();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripSplitButton1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.dataBaseCheck_SLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripComboBox1 = new System.Windows.Forms.ToolStripDropDownButton();
             this.чтотоToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.выходToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.dataBaseCheck_SLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.buttonOrderTaxi = new System.Windows.Forms.ToolStripButton();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tabControl1.SuspendLayout();
-            this.tabPage1.SuspendLayout();
+            this.Manager.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            this.flowLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.flowLayoutPanel2.SuspendLayout();
+            this.flowLayoutPanel3.SuspendLayout();
+            this.HouseBooking.SuspendLayout();
+            this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
             this.statusStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -67,6 +102,7 @@ namespace TaxiMaxim.WF
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(536, 134);
             this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.Size = new System.Drawing.Size(702, 522);
             this.dataGridView1.TabIndex = 0;
@@ -111,8 +147,9 @@ namespace TaxiMaxim.WF
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl1.Appearance = System.Windows.Forms.TabAppearance.FlatButtons;
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Controls.Add(this.Manager);
+            this.tabControl1.Controls.Add(this.AutoPark);
+            this.tabControl1.Controls.Add(this.HouseBooking);
             this.tabControl1.Location = new System.Drawing.Point(0, 25);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -120,39 +157,350 @@ namespace TaxiMaxim.WF
             this.tabControl1.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.tabControl1.TabIndex = 6;
             // 
-            // tabPage1
+            // Manager
             // 
-            this.tabPage1.Controls.Add(this.panel1);
-            this.tabPage1.Controls.Add(this.dataGridView1);
-            this.tabPage1.Location = new System.Drawing.Point(4, 25);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1256, 685);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "Диспетчер";
-            this.tabPage1.UseVisualStyleBackColor = true;
-            this.tabPage1.Click += new System.EventHandler(this.tabPage1_Click);
+            this.Manager.Controls.Add(this.dataGridView2);
+            this.Manager.Controls.Add(this.flowLayoutPanel1);
+            this.Manager.Controls.Add(this.panel1);
+            this.Manager.Controls.Add(this.dataGridView1);
+            this.Manager.Controls.Add(this.flowLayoutPanel2);
+            this.Manager.Controls.Add(this.flowLayoutPanel3);
+            this.Manager.Location = new System.Drawing.Point(4, 25);
+            this.Manager.Name = "Manager";
+            this.Manager.Padding = new System.Windows.Forms.Padding(3);
+            this.Manager.Size = new System.Drawing.Size(1256, 685);
+            this.Manager.TabIndex = 0;
+            this.Manager.Text = "Диспетчер";
+            this.Manager.UseVisualStyleBackColor = true;
+            this.Manager.Click += new System.EventHandler(this.tabPage1_Click);
+            // 
+            // dataGridView2
+            // 
+            this.dataGridView2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.dataGridView2.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
+            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView2.Location = new System.Drawing.Point(23, 134);
+            this.dataGridView2.Name = "dataGridView2";
+            this.dataGridView2.ReadOnly = true;
+            this.dataGridView2.RowHeadersWidth = 51;
+            this.dataGridView2.Size = new System.Drawing.Size(473, 522);
+            this.dataGridView2.TabIndex = 3;
+            // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.Controls.Add(this.button3);
+            this.flowLayoutPanel1.Controls.Add(this.button4);
+            this.flowLayoutPanel1.Controls.Add(this.button5);
+            this.flowLayoutPanel1.Controls.Add(this.button6);
+            this.flowLayoutPanel1.Controls.Add(this.button7);
+            this.flowLayoutPanel1.Controls.Add(this.button8);
+            this.flowLayoutPanel1.Controls.Add(this.button9);
+            this.flowLayoutPanel1.Controls.Add(this.button10);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(8, 82);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(522, 46);
+            this.flowLayoutPanel1.TabIndex = 2;
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(3, 3);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(38, 40);
+            this.button3.TabIndex = 0;
+            this.button3.Text = "button3";
+            this.button3.UseVisualStyleBackColor = true;
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(47, 3);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(38, 40);
+            this.button4.TabIndex = 1;
+            this.button4.Text = "button4";
+            this.button4.UseVisualStyleBackColor = true;
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(91, 3);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(38, 40);
+            this.button5.TabIndex = 2;
+            this.button5.Text = "button5";
+            this.button5.UseVisualStyleBackColor = true;
+            // 
+            // button6
+            // 
+            this.button6.Location = new System.Drawing.Point(135, 3);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(38, 40);
+            this.button6.TabIndex = 3;
+            this.button6.Text = "button6";
+            this.button6.UseVisualStyleBackColor = true;
+            // 
+            // button7
+            // 
+            this.button7.Location = new System.Drawing.Point(179, 3);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(38, 40);
+            this.button7.TabIndex = 4;
+            this.button7.Text = "button7";
+            this.button7.UseVisualStyleBackColor = true;
+            // 
+            // button8
+            // 
+            this.button8.Location = new System.Drawing.Point(223, 3);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(38, 40);
+            this.button8.TabIndex = 5;
+            this.button8.Text = "button8";
+            this.button8.UseVisualStyleBackColor = true;
+            // 
+            // button9
+            // 
+            this.button9.Location = new System.Drawing.Point(267, 3);
+            this.button9.Name = "button9";
+            this.button9.Size = new System.Drawing.Size(38, 40);
+            this.button9.TabIndex = 6;
+            this.button9.Text = "button9";
+            this.button9.UseVisualStyleBackColor = true;
+            // 
+            // button10
+            // 
+            this.button10.Location = new System.Drawing.Point(311, 3);
+            this.button10.Name = "button10";
+            this.button10.Size = new System.Drawing.Size(38, 40);
+            this.button10.TabIndex = 7;
+            this.button10.Text = "button10";
+            this.button10.UseVisualStyleBackColor = true;
             // 
             // panel1
             // 
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel1.Controls.Add(this.textBox2);
+            this.panel1.Controls.Add(this.textBox_activeDrivers);
+            this.panel1.Controls.Add(this.textBox4);
+            this.panel1.Controls.Add(this.textBox_activeOrders);
             this.panel1.Controls.Add(this.textBox1);
             this.panel1.Location = new System.Drawing.Point(536, 6);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(702, 122);
+            this.panel1.Size = new System.Drawing.Size(702, 74);
             this.panel1.TabIndex = 1;
             // 
-            // tabPage2
+            // textBox_activeDrivers
             // 
-            this.tabPage2.Location = new System.Drawing.Point(4, 25);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1256, 685);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Автопарк";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            this.textBox_activeDrivers.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBox_activeDrivers.Font = new System.Drawing.Font("Arial", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBox_activeDrivers.Location = new System.Drawing.Point(532, 38);
+            this.textBox_activeDrivers.Name = "textBox_activeDrivers";
+            this.textBox_activeDrivers.Size = new System.Drawing.Size(170, 32);
+            this.textBox_activeDrivers.TabIndex = 3;
+            this.textBox_activeDrivers.Text = "NULL";
+            this.textBox_activeDrivers.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
+            // 
+            // textBox4
+            // 
+            this.textBox4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBox4.Font = new System.Drawing.Font("Arial", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBox4.Location = new System.Drawing.Point(0, 38);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.ReadOnly = true;
+            this.textBox4.Size = new System.Drawing.Size(533, 32);
+            this.textBox4.TabIndex = 2;
+            this.textBox4.Text = "Количество активных водителей";
+            this.textBox4.TextChanged += new System.EventHandler(this.textBox4_TextChanged);
+            // 
+            // textBox_activeOrders
+            // 
+            this.textBox_activeOrders.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBox_activeOrders.Font = new System.Drawing.Font("Arial", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBox_activeOrders.Location = new System.Drawing.Point(532, 0);
+            this.textBox_activeOrders.Name = "textBox_activeOrders";
+            this.textBox_activeOrders.Size = new System.Drawing.Size(170, 32);
+            this.textBox_activeOrders.TabIndex = 1;
+            this.textBox_activeOrders.Text = "NULL";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBox1.Enabled = false;
+            this.textBox1.Font = new System.Drawing.Font("Arial", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBox1.Location = new System.Drawing.Point(0, 0);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
+            this.textBox1.Size = new System.Drawing.Size(533, 32);
+            this.textBox1.TabIndex = 0;
+            this.textBox1.Text = "Количество активных заказов:";
+            // 
+            // flowLayoutPanel2
+            // 
+            this.flowLayoutPanel2.Controls.Add(this.button11);
+            this.flowLayoutPanel2.Controls.Add(this.button12);
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(502, 341);
+            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(30, 76);
+            this.flowLayoutPanel2.TabIndex = 8;
+            // 
+            // button11
+            // 
+            this.button11.Location = new System.Drawing.Point(3, 3);
+            this.button11.Name = "button11";
+            this.button11.Size = new System.Drawing.Size(25, 29);
+            this.button11.TabIndex = 0;
+            this.button11.Text = "button11";
+            this.button11.UseVisualStyleBackColor = true;
+            // 
+            // button12
+            // 
+            this.button12.Location = new System.Drawing.Point(3, 38);
+            this.button12.Name = "button12";
+            this.button12.Size = new System.Drawing.Size(25, 30);
+            this.button12.TabIndex = 1;
+            this.button12.Text = "button12";
+            this.button12.UseVisualStyleBackColor = true;
+            // 
+            // flowLayoutPanel3
+            // 
+            this.flowLayoutPanel3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.flowLayoutPanel3.Controls.Add(this.button13);
+            this.flowLayoutPanel3.Controls.Add(this.button14);
+            this.flowLayoutPanel3.Controls.Add(this.button15);
+            this.flowLayoutPanel3.Controls.Add(this.button16);
+            this.flowLayoutPanel3.Controls.Add(this.button17);
+            this.flowLayoutPanel3.Controls.Add(this.button18);
+            this.flowLayoutPanel3.Controls.Add(this.button19);
+            this.flowLayoutPanel3.Controls.Add(this.button20);
+            this.flowLayoutPanel3.Location = new System.Drawing.Point(536, 82);
+            this.flowLayoutPanel3.Name = "flowLayoutPanel3";
+            this.flowLayoutPanel3.Size = new System.Drawing.Size(352, 46);
+            this.flowLayoutPanel3.TabIndex = 8;
+            this.flowLayoutPanel3.WrapContents = false;
+            // 
+            // button13
+            // 
+            this.button13.Location = new System.Drawing.Point(3, 3);
+            this.button13.Name = "button13";
+            this.button13.Size = new System.Drawing.Size(38, 40);
+            this.button13.TabIndex = 0;
+            this.button13.Text = "button13";
+            this.button13.UseVisualStyleBackColor = true;
+            // 
+            // button14
+            // 
+            this.button14.Location = new System.Drawing.Point(47, 3);
+            this.button14.Name = "button14";
+            this.button14.Size = new System.Drawing.Size(38, 40);
+            this.button14.TabIndex = 1;
+            this.button14.Text = "button14";
+            this.button14.UseVisualStyleBackColor = true;
+            // 
+            // button15
+            // 
+            this.button15.Location = new System.Drawing.Point(91, 3);
+            this.button15.Name = "button15";
+            this.button15.Size = new System.Drawing.Size(38, 40);
+            this.button15.TabIndex = 2;
+            this.button15.Text = "button15";
+            this.button15.UseVisualStyleBackColor = true;
+            // 
+            // button16
+            // 
+            this.button16.Location = new System.Drawing.Point(135, 3);
+            this.button16.Name = "button16";
+            this.button16.Size = new System.Drawing.Size(38, 40);
+            this.button16.TabIndex = 3;
+            this.button16.Text = "button16";
+            this.button16.UseVisualStyleBackColor = true;
+            // 
+            // button17
+            // 
+            this.button17.Location = new System.Drawing.Point(179, 3);
+            this.button17.Name = "button17";
+            this.button17.Size = new System.Drawing.Size(38, 40);
+            this.button17.TabIndex = 4;
+            this.button17.Text = "button17";
+            this.button17.UseVisualStyleBackColor = true;
+            // 
+            // button18
+            // 
+            this.button18.Location = new System.Drawing.Point(223, 3);
+            this.button18.Name = "button18";
+            this.button18.Size = new System.Drawing.Size(38, 40);
+            this.button18.TabIndex = 5;
+            this.button18.Text = "button18";
+            this.button18.UseVisualStyleBackColor = true;
+            // 
+            // button19
+            // 
+            this.button19.Location = new System.Drawing.Point(267, 3);
+            this.button19.Name = "button19";
+            this.button19.Size = new System.Drawing.Size(38, 40);
+            this.button19.TabIndex = 6;
+            this.button19.Text = "button19";
+            this.button19.UseVisualStyleBackColor = true;
+            // 
+            // button20
+            // 
+            this.button20.Location = new System.Drawing.Point(311, 3);
+            this.button20.Name = "button20";
+            this.button20.Size = new System.Drawing.Size(38, 40);
+            this.button20.TabIndex = 7;
+            this.button20.Text = "button20";
+            this.button20.UseVisualStyleBackColor = true;
+            // 
+            // AutoPark
+            // 
+            this.AutoPark.Location = new System.Drawing.Point(4, 25);
+            this.AutoPark.Name = "AutoPark";
+            this.AutoPark.Padding = new System.Windows.Forms.Padding(3);
+            this.AutoPark.Size = new System.Drawing.Size(1256, 685);
+            this.AutoPark.TabIndex = 1;
+            this.AutoPark.Text = "Автопарк";
+            this.AutoPark.UseVisualStyleBackColor = true;
+            // 
+            // HouseBooking
+            // 
+            this.HouseBooking.Controls.Add(this.panel2);
+            this.HouseBooking.Controls.Add(this.dataGridView3);
+            this.HouseBooking.Location = new System.Drawing.Point(4, 25);
+            this.HouseBooking.Name = "HouseBooking";
+            this.HouseBooking.Size = new System.Drawing.Size(1256, 685);
+            this.HouseBooking.TabIndex = 2;
+            this.HouseBooking.Text = "Домовая книжка";
+            this.HouseBooking.UseVisualStyleBackColor = true;
+            // 
+            // panel2
+            // 
+            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel2.Controls.Add(this.button21);
+            this.panel2.Location = new System.Drawing.Point(437, 109);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(816, 573);
+            this.panel2.TabIndex = 2;
+            // 
+            // button21
+            // 
+            this.button21.Location = new System.Drawing.Point(738, 547);
+            this.button21.Name = "button21";
+            this.button21.Size = new System.Drawing.Size(75, 23);
+            this.button21.TabIndex = 0;
+            this.button21.Text = "button21";
+            this.button21.UseVisualStyleBackColor = true;
+            // 
+            // dataGridView3
+            // 
+            this.dataGridView3.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
+            this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView3.Location = new System.Drawing.Point(8, 109);
+            this.dataGridView3.Name = "dataGridView3";
+            this.dataGridView3.ReadOnly = true;
+            this.dataGridView3.RowHeadersWidth = 51;
+            this.dataGridView3.Size = new System.Drawing.Size(423, 573);
+            this.dataGridView3.TabIndex = 1;
+            this.dataGridView3.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView3_CellContentClick);
             // 
             // statusStrip1
             // 
@@ -175,11 +523,19 @@ namespace TaxiMaxim.WF
             this.toolStripSplitButton1.Size = new System.Drawing.Size(78, 17);
             this.toolStripSplitButton1.Text = "База данных:";
             // 
+            // dataBaseCheck_SLabel
+            // 
+            this.dataBaseCheck_SLabel.BackColor = System.Drawing.SystemColors.Control;
+            this.dataBaseCheck_SLabel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.dataBaseCheck_SLabel.Name = "dataBaseCheck_SLabel";
+            this.dataBaseCheck_SLabel.Size = new System.Drawing.Size(127, 17);
+            this.dataBaseCheck_SLabel.Text = "toolStripStatusLabel1";
+            // 
             // toolStrip1
             // 
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripComboBox1,
-            this.toolStripButton1});
+            this.buttonOrderTaxi});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(1264, 25);
@@ -210,42 +566,15 @@ namespace TaxiMaxim.WF
             this.выходToolStripMenuItem.Text = "Выход";
             this.выходToolStripMenuItem.Click += new System.EventHandler(this.выходToolStripMenuItem_Click);
             // 
-            // toolStripButton1
+            // buttonOrderTaxi
             // 
-            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(91, 22);
-            this.toolStripButton1.Text = "Заказать такси";
-            // 
-            // textBox1
-            // 
-            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox1.Font = new System.Drawing.Font("Arial", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBox1.Location = new System.Drawing.Point(0, 0);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(533, 32);
-            this.textBox1.TabIndex = 0;
-            this.textBox1.Text = "Количество активных заказов:";
-            // 
-            // textBox2
-            // 
-            this.textBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox2.Font = new System.Drawing.Font("Arial", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBox2.Location = new System.Drawing.Point(532, 0);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(170, 32);
-            this.textBox2.TabIndex = 1;
-            this.textBox2.Text = "NULL";
-            // 
-            // dataBaseCheck_SLabel
-            // 
-            this.dataBaseCheck_SLabel.BackColor = System.Drawing.SystemColors.Control;
-            this.dataBaseCheck_SLabel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
-            this.dataBaseCheck_SLabel.Name = "dataBaseCheck_SLabel";
-            this.dataBaseCheck_SLabel.Size = new System.Drawing.Size(127, 17);
-            this.dataBaseCheck_SLabel.Text = "toolStripStatusLabel1";
+            this.buttonOrderTaxi.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.buttonOrderTaxi.Image = ((System.Drawing.Image)(resources.GetObject("buttonOrderTaxi.Image")));
+            this.buttonOrderTaxi.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.buttonOrderTaxi.Name = "buttonOrderTaxi";
+            this.buttonOrderTaxi.Size = new System.Drawing.Size(91, 22);
+            this.buttonOrderTaxi.Text = "Заказать такси";
+            this.buttonOrderTaxi.Click += new System.EventHandler(this.buttonOrderTaxi_Click);
             // 
             // MainMenu
             // 
@@ -265,9 +594,16 @@ namespace TaxiMaxim.WF
             this.Text = "ТаксиМаксим";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.tabControl1.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
+            this.Manager.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            this.flowLayoutPanel1.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.flowLayoutPanel2.ResumeLayout(false);
+            this.flowLayoutPanel3.ResumeLayout(false);
+            this.HouseBooking.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
@@ -285,19 +621,47 @@ namespace TaxiMaxim.WF
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip2;
         private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.TabPage Manager;
+        private System.Windows.Forms.TabPage AutoPark;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripSplitButton1;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripDropDownButton toolStripComboBox1;
         private System.Windows.Forms.ToolStripMenuItem чтотоToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem выходToolStripMenuItem;
-        private System.Windows.Forms.ToolStripButton toolStripButton1;
+        private System.Windows.Forms.ToolStripButton buttonOrderTaxi;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox textBox_activeOrders;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.ToolStripStatusLabel dataBaseCheck_SLabel;
+        private System.Windows.Forms.TextBox textBox_activeDrivers;
+        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.Button button9;
+        private System.Windows.Forms.Button button10;
+        private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
+        private System.Windows.Forms.Button button11;
+        private System.Windows.Forms.Button button12;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel3;
+        private System.Windows.Forms.Button button13;
+        private System.Windows.Forms.Button button14;
+        private System.Windows.Forms.Button button15;
+        private System.Windows.Forms.Button button16;
+        private System.Windows.Forms.Button button17;
+        private System.Windows.Forms.Button button18;
+        private System.Windows.Forms.Button button19;
+        private System.Windows.Forms.Button button20;
+        private System.Windows.Forms.TabPage HouseBooking;
+        private System.Windows.Forms.DataGridView dataGridView3;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Button button21;
     }
 }
 
