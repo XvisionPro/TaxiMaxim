@@ -14,7 +14,8 @@ namespace TaxiMaxim.BL.Model
         public string AdressFinish { get; set; }
         public int Price { get; set; }
         public DateTime Date { get; set; }
-        public bool PhoneType { get; set; }
-        public int Driver_Id { get; set; }
+        public bool? PhoneType { get; set; }
+        public int? Driver_Id { get; set; }
+
     }
 }

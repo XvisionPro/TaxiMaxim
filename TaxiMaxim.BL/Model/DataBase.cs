@@ -5,7 +5,7 @@ namespace TaxiMaxim.BL.Model
     public class DataBase
     {
 
-        private const string SERVER_NAME = "DESKTOP-VPOMAI1\\SQL44";
+        private const string SERVER_NAME = "DUBOV_ILYA\\SQLEXPRESS";
         private const string DATABASE_NAME = "TaxiMaximalnaya";
         /// <summary>
         /// Подключение к базе данных

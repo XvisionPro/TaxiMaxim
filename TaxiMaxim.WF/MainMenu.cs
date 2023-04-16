@@ -35,10 +35,10 @@ namespace TaxiMaxim.WF
                 dt = new DataTable();
                 sda.Fill(dt);
                 dataGridView1.DataSource = dt;
-                //MessageBox.Show("DataBase is  CONNECT");
 
                 dataBaseCheck_SLabel.Text = "Подключено";
                 dataBaseCheck_SLabel.ForeColor = Color.FromArgb(0, 181, 36);
+
                 SqlDataAdapter adapter = new SqlDataAdapter();
                 SqlCommand command = new SqlCommand("SELECT ORDER_PHONE_NUMBER, ORDER_ADRESS_START, ORDER_ADRESS_FINISH, ORDER_PRICE, ORDER_DATE, ORDER_PHONE_TYPE, DRIVER_ID FROM ORDERS", db.getConnection());
                 DataTable table = new DataTable();
@@ -60,6 +60,7 @@ namespace TaxiMaxim.WF
             {
                 dataBaseCheck_SLabel.Text = "Не подключено";
                 dataBaseCheck_SLabel.ForeColor = Color.FromArgb(204, 0, 0);
+
                 MessageBox.Show("DB NOT CONNECT");
             }
             Orders = FillOrders();
@@ -82,7 +83,9 @@ namespace TaxiMaxim.WF
                     mOrder.AdressFinish = oReader["ORDER_ADRESS_FINISH"].ToString();
                     mOrder.Price = Convert.ToInt32(oReader["ORDER_PRICE"]);
                     mOrder.Date = (DateTime)oReader["ORDER_DATE"];
-                    mOrder.PhoneType = (bool)oReader["ORDER_PHONE_TYPE"];
+                    if(oReader["ORDER_PHONE_TYPE"] != DBNull.Value) 
+                    mOrder.PhoneType = (bool)oReader["ORDER_PHONE_TYPE"] ;
+                    if(oReader["DRIVER_ID"] != DBNull.Value)
                     mOrder.Driver_Id = Convert.ToInt32(oReader["DRIVER_ID"]);
                     matchingOrder.Add(mOrder);
 
@@ -91,7 +94,6 @@ namespace TaxiMaxim.WF
             }
             return matchingOrder;
         }
-
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
            // MessageBox.Show("Activate");
