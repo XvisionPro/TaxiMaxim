@@ -77,6 +77,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -96,6 +97,30 @@
       <Project>{f02eec40-8065-446e-a876-32ea735a0f99}</Project>
       <Name>TaxiMaxim.BL</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\free-icon-plus-1828819.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\free-icon-minus-1828779.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\free-icon-reload-1828841.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\free-icon-search-1828855.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\free-icon-filter-1828699.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\free-icon-signal-1828881.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\free-icon-clipboard-1828661.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\free-icon-info-1828752.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

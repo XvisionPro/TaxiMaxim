@@ -15,13 +15,14 @@ namespace TaxiMaxim.WF
 {
     public partial class MainMenu : Form
     {
-        DataBase db = new DataBase();
-        SqlDataAdapter sda;
+        DataBase db = new DataBase("DESKTOP-VPOMAI1\\SQL44", "TaxiMaximalnaya");
+        
         SqlCommandBuilder scb;
         DataTable dt;
 
         // Tests
         List<Order> Orders = new List<Order>();
+        List<Driver> Drivers = new List<Driver>();
         //
 
 
@@ -30,31 +31,9 @@ namespace TaxiMaxim.WF
             InitializeComponent();
             try
             {
-                db.openConnection();
-                sda = new SqlDataAdapter("SELECT ORDER_ID, ORDER_PHONE_NUMBER, ORDER_ADRESS_START, ORDER_ADRESS_FINISH, ORDER_PRICE, ORDER_DATE, ORDER_PHONE_TYPE, DRIVER_ID FROM ORDERS", db.getConnection());
-                dt = new DataTable();
-                sda.Fill(dt);
-                dataGridView1.DataSource = dt;
-
+                loadGridOrders();
                 dataBaseCheck_SLabel.Text = "Подключено";
-                dataBaseCheck_SLabel.ForeColor = Color.FromArgb(0, 181, 36);
-
-                SqlDataAdapter adapter = new SqlDataAdapter();
-                SqlCommand command = new SqlCommand("SELECT ORDER_PHONE_NUMBER, ORDER_ADRESS_START, ORDER_ADRESS_FINISH, ORDER_PRICE, ORDER_DATE, ORDER_PHONE_TYPE, DRIVER_ID FROM ORDERS", db.getConnection());
-                DataTable table = new DataTable();
-
-                adapter.SelectCommand = command;
-                adapter.Fill(table);
-                string StrQuery;
-                for (int i = 0; i < dataGridView1.Rows.Count; i++)
-                {
-                    StrQuery = @"INSERT INTO ORDERS (ORDER_PHONE_NUMBER, ORDER_ADRESS_START, ORDER_ADRESS_FINISH, ORDER_PRICE, ORDER_DATE, ORDER_PHONE_TYPE, DRIVER_ID) VALUES (" + dataGridView1.Rows[i].Cells["ORDER_PHONE_NUMBER"].Value + ", " + dataGridView1.Rows[i].Cells["ORDER_ADRESS_START"].Value + ", " + dataGridView1.Rows[i].Cells["ORDER_ADRESS_FINISH"].Value + ", " + dataGridView1.Rows[i].Cells["ORDER_PRICE"].Value + ", " + dataGridView1.Rows[i].Cells["ORDER_PRICE"].Value + ", " + dataGridView1.Rows[i].Cells["DRIVER_ID"].Value + ");";
-                    //comand.CommandText = StrQuery;
-                    //comand.ExecuteNonQuery();
-                }
-                db.closeConnection();
-
-                dataGridView1.DataSource = table;
+                dataBaseCheck_SLabel.ForeColor = Color.FromArgb(0, 181, 36);               
             }
             catch (Exception)
             {
@@ -64,6 +43,43 @@ namespace TaxiMaxim.WF
                 MessageBox.Show("DB NOT CONNECT");
             }
             Orders = FillOrders();
+            loadGridDrivers();
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridView2.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
+        }
+        private void loadGridOrders()
+        {
+            using (SqlConnection con = new SqlConnection(db.getConnection().ConnectionString))
+            {
+
+                SqlDataAdapter sda = new SqlDataAdapter("SELECT ORDER_ID, ORDER_PHONE_NUMBER, ORDER_ADRESS_START, ORDER_ADRESS_FINISH, ORDER_PRICE, ORDER_DATE, ORDER_PHONE_TYPE, DRIVER_ID FROM ORDERS", db.getConnection());
+                dt = new DataTable();
+                sda.Fill(dt);
+                dataGridView1.DataSource = dt;
+                SqlDataAdapter adapter = new SqlDataAdapter();
+                SqlCommand command = new SqlCommand("SELECT ORDER_PHONE_NUMBER, ORDER_ADRESS_START, ORDER_ADRESS_FINISH, ORDER_PRICE, ORDER_DATE, ORDER_PHONE_TYPE, DRIVER_ID FROM ORDERS", db.getConnection());
+                DataTable table = new DataTable();
+                adapter.SelectCommand = command;
+                adapter.Fill(table);
+
+                dataGridView1.DataSource = table;
+
+            }
+        }
+        private void loadGridDrivers()
+        {
+            db.openConnection();
+            SqlDataAdapter adapter = new SqlDataAdapter();
+            SqlCommand command = new SqlCommand("SELECT * FROM DRIVER", db.getConnection());
+            SqlDataReader oReader = command.ExecuteReader();
+            Drivers = FillDrivers(oReader);
+            DataTable table = new DataTable();
+            adapter.SelectCommand = command;
+            adapter.Fill(table);
+            db.closeConnection();
+            dataGridView2.DataSource = table;
+            
         }
 
         private List<Order> FillOrders()
@@ -94,6 +110,23 @@ namespace TaxiMaxim.WF
             }
             return matchingOrder;
         }
+        private List<Driver> FillDrivers(SqlDataReader oCmd)
+        {
+            List<Driver> matchingDriver = new List<Driver>();
+            using(SqlDataReader oReader = oCmd)
+            {
+                while(oReader.Read())
+                {
+                    Driver mDriver = new Driver();
+                    mDriver.Id = Convert.ToInt32(oReader["DRIVER_ID"]);
+                    mDriver.Name = oReader["DRIVER_NAME"].ToString();
+                    mDriver.Pass = oReader["DRIVER_PASSPORT"].ToString();
+                    mDriver.Phone = oReader["DRIVER_TELEPHONE"].ToString();
+                    matchingDriver.Add(mDriver);
+                }
+            }
+            return matchingDriver;
+        }
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
            // MessageBox.Show("Activate");
@@ -102,8 +135,8 @@ namespace TaxiMaxim.WF
 
         private void button1_Click(object sender, EventArgs e)
         {
-            scb = new SqlCommandBuilder(sda);
-            sda.Update(dt);
+            //scb = new SqlCommandBuilder(sda);
+            //sda.Update(dt);
 
         }
 
