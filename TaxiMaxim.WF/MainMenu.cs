@@ -15,7 +15,7 @@ namespace TaxiMaxim.WF
 {
     public partial class MainMenu : Form
     {
-        DataBase db = new DataBase("DESKTOP-VPOMAI1\\SQL44", "TaxiMaximalnaya");
+        DataBase db = new DataBase("DUBOV_ILYA\\SQLEXPRESS", "TaxiMaximalnaya");
         
         SqlCommandBuilder scb;
         DataTable dt;
@@ -23,8 +23,13 @@ namespace TaxiMaxim.WF
         // Tests
         List<Order> Orders = new List<Order>();
         List<Driver> Drivers = new List<Driver>();
+        // Events
+        event ButtonHandler Apply;
+        event ButtonHandler Cancel;
+        // Handlers 
+        delegate void ButtonHandler();
         //
-
+        
 
         public MainMenu()
         {
@@ -44,8 +49,9 @@ namespace TaxiMaxim.WF
             }
             Orders = FillOrders();
             loadGridDrivers();
-            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridView2.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dGV_Orders.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            //dataGridView2.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
 
         }
         private void loadGridOrders()
@@ -56,14 +62,14 @@ namespace TaxiMaxim.WF
                 SqlDataAdapter sda = new SqlDataAdapter("SELECT ORDER_ID, ORDER_PHONE_NUMBER, ORDER_ADRESS_START, ORDER_ADRESS_FINISH, ORDER_PRICE, ORDER_DATE, ORDER_PHONE_TYPE, DRIVER_ID FROM ORDERS", db.getConnection());
                 dt = new DataTable();
                 sda.Fill(dt);
-                dataGridView1.DataSource = dt;
+                dGV_Orders.DataSource = dt;
                 SqlDataAdapter adapter = new SqlDataAdapter();
                 SqlCommand command = new SqlCommand("SELECT ORDER_PHONE_NUMBER, ORDER_ADRESS_START, ORDER_ADRESS_FINISH, ORDER_PRICE, ORDER_DATE, ORDER_PHONE_TYPE, DRIVER_ID FROM ORDERS", db.getConnection());
                 DataTable table = new DataTable();
                 adapter.SelectCommand = command;
                 adapter.Fill(table);
 
-                dataGridView1.DataSource = table;
+                dGV_Orders.DataSource = table;
 
             }
         }
@@ -78,10 +84,9 @@ namespace TaxiMaxim.WF
             adapter.SelectCommand = command;
             adapter.Fill(table);
             db.closeConnection();
-            dataGridView2.DataSource = table;
+            dGV_drivers.DataSource = table;
             
         }
-
         private List<Order> FillOrders()
         {
             List<Order> matchingOrder = new List<Order>();
@@ -132,45 +137,37 @@ namespace TaxiMaxim.WF
            // MessageBox.Show("Activate");
            
         }
-
         private void button1_Click(object sender, EventArgs e)
         {
             //scb = new SqlCommandBuilder(sda);
             //sda.Update(dt);
 
         }
-
         private void button2_Click(object sender, EventArgs e)
         {
             OrderMenu form2 = new OrderMenu();
             form2.Show();
         }
-
         private void toolStripComboBox1_Click(object sender, EventArgs e)
         {
 
         }
-
         private void выходToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
-
         private void tabPage1_Click(object sender, EventArgs e)
         {
 
         }
-
         private void textBox4_TextChanged(object sender, EventArgs e)
         {
 
         }
-
         private void textBox3_TextChanged(object sender, EventArgs e)
         {
 
         }
-
         private void buttonOrderTaxi_Click(object sender, EventArgs e)
         {
 
@@ -179,6 +176,93 @@ namespace TaxiMaxim.WF
         private void dataGridView3_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            DataTable dt = this.dGV_drivers.DataSource as DataTable;
+            fLP_driversIO.Visible = true;
+            dGV_drivers.ClearSelection(); //снять выделение всех выбранных ячеек
+            int index = 0; // индекс последней строки
+            dGV_drivers.Rows[index].Selected = true; // выделить нужную строку
+            dGV_drivers.FirstDisplayedScrollingRowIndex = index; // фокус в нужную строку
+            dGV_drivers.AllowUserToAddRows = false;
+            dGV_drivers.ReadOnly = false;
+            dGV_drivers.Columns[0].ReadOnly = true;
+            DisableInFlow(fLP_driversTools);
+
+            Apply += ApplyChanges;
+            void ApplyChanges()
+            {
+                dGV_drivers.ClearSelection();
+                dGV_drivers.ReadOnly = true;
+                fLP_driversIO.Visible = false;
+                EnableInFlow(fLP_driversTools);
+                Apply -= ApplyChanges;
+            }
+            
+            Cancel += DiscardChanges;
+            void DiscardChanges()
+            {
+                dt.RejectChanges();
+                dGV_drivers.CancelEdit();
+                dGV_drivers.ClearSelection();
+                dGV_drivers.ReadOnly = true;
+                fLP_driversIO.Visible = false;
+                EnableInFlow(fLP_driversTools);
+                Cancel -= DiscardChanges;
+            }
+
+        }
+
+        
+        private void DisableInFlow(FlowLayoutPanel fLP)//Делает неактивными все кнопки в Flow
+        {
+            foreach (var tb in fLP.Controls.OfType<Button>())
+            {
+                tb.Enabled = false;
+            }
+        }
+        private void EnableInFlow(FlowLayoutPanel fLP)//Делает кативными все кнопки в flow
+        {
+            foreach (var tb in fLP.Controls.OfType<Button>())
+            {
+                tb.Enabled = true;
+            }
+        }
+
+        private void button19_Click(object sender, EventArgs e)
+        {
+            Apply?.Invoke();
+        }
+
+        private void button20_Click(object sender, EventArgs e)
+        {
+            Cancel?.Invoke();
+        }
+
+        private void dGV_drivers_CurrentCellChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            switch (dGV_drivers.CurrentCell?.ColumnIndex)
+            {
+                case 0:
+                    break;
+                case 1:
+                    if (string.IsNullOrWhiteSpace(dGV_drivers.CurrentCell.Value.ToString()))
+                    {
+                        //TODO: Сделать восстановление на прежнее место, пока не будет норм
+                        MessageBox.Show("Поле не может быть пустым или содержать только символы пробела");
+                        dGV_drivers.BeginEdit(true);
+                    }
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }

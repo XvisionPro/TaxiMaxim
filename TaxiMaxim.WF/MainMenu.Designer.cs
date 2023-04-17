@@ -37,33 +37,42 @@ namespace TaxiMaxim.WF
             this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.Manager = new System.Windows.Forms.TabPage();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
-            this.flowLayoutPanel3 = new System.Windows.Forms.FlowLayoutPanel();
-            this.button10 = new System.Windows.Forms.Button();
-            this.button13 = new System.Windows.Forms.Button();
-            this.button14 = new System.Windows.Forms.Button();
-            this.button15 = new System.Windows.Forms.Button();
-            this.button16 = new System.Windows.Forms.Button();
-            this.button17 = new System.Windows.Forms.Button();
-            this.button18 = new System.Windows.Forms.Button();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
-            this.button7 = new System.Windows.Forms.Button();
-            this.button8 = new System.Windows.Forms.Button();
-            this.button9 = new System.Windows.Forms.Button();
+            this.fLP_OrdersIO = new System.Windows.Forms.FlowLayoutPanel();
+            this.oBtn_Apply = new System.Windows.Forms.Button();
+            this.oBtn_Cancel = new System.Windows.Forms.Button();
+            this.fLP_driversIO = new System.Windows.Forms.FlowLayoutPanel();
+            this.dBtn_Apply = new System.Windows.Forms.Button();
+            this.dBtn_Cancel = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.dGV_drivers = new System.Windows.Forms.DataGridView();
+            this.fLP_OrdersTools = new System.Windows.Forms.FlowLayoutPanel();
+            this.oBtn_Add = new System.Windows.Forms.Button();
+            this.oBtnRemove = new System.Windows.Forms.Button();
+            this.oBtn_Refresh = new System.Windows.Forms.Button();
+            this.oBtn_Find = new System.Windows.Forms.Button();
+            this.oBtn_Sorting = new System.Windows.Forms.Button();
+            this.oBtn_Edit = new System.Windows.Forms.Button();
+            this.oBtn_Insert = new System.Windows.Forms.Button();
+            this.fLP_driversTools = new System.Windows.Forms.FlowLayoutPanel();
+            this.dBtn_Add = new System.Windows.Forms.Button();
+            this.dBtn_Remove = new System.Windows.Forms.Button();
+            this.dBtn_Refresh = new System.Windows.Forms.Button();
+            this.dBtn_Find = new System.Windows.Forms.Button();
+            this.dBtn_Sorting = new System.Windows.Forms.Button();
+            this.dBtn_Edit = new System.Windows.Forms.Button();
+            this.dBtn_Insert = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.textBox_activeDrivers = new System.Windows.Forms.TextBox();
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.textBox_activeOrders = new System.Windows.Forms.TextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dGV_Orders = new System.Windows.Forms.DataGridView();
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.button11 = new System.Windows.Forms.Button();
             this.button12 = new System.Windows.Forms.Button();
             this.AutoPark = new System.Windows.Forms.TabPage();
+            this.tableTest = new System.Windows.Forms.TableLayoutPanel();
             this.HouseBooking = new System.Windows.Forms.TabPage();
             this.panel2 = new System.Windows.Forms.Panel();
             this.button21 = new System.Windows.Forms.Button();
@@ -76,16 +85,17 @@ namespace TaxiMaxim.WF
             this.чтотоToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.выходToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.buttonOrderTaxi = new System.Windows.Forms.ToolStripButton();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.Manager.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
-            this.flowLayoutPanel3.SuspendLayout();
-            this.flowLayoutPanel1.SuspendLayout();
+            this.fLP_OrdersIO.SuspendLayout();
+            this.fLP_driversIO.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dGV_drivers)).BeginInit();
+            this.fLP_OrdersTools.SuspendLayout();
+            this.fLP_driversTools.SuspendLayout();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dGV_Orders)).BeginInit();
             this.flowLayoutPanel2.SuspendLayout();
+            this.AutoPark.SuspendLayout();
             this.HouseBooking.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
@@ -144,13 +154,15 @@ namespace TaxiMaxim.WF
             // 
             // Manager
             // 
+            this.Manager.Controls.Add(this.fLP_OrdersIO);
+            this.Manager.Controls.Add(this.fLP_driversIO);
             this.Manager.Controls.Add(this.label2);
             this.Manager.Controls.Add(this.label1);
-            this.Manager.Controls.Add(this.dataGridView2);
-            this.Manager.Controls.Add(this.flowLayoutPanel3);
-            this.Manager.Controls.Add(this.flowLayoutPanel1);
+            this.Manager.Controls.Add(this.dGV_drivers);
+            this.Manager.Controls.Add(this.fLP_OrdersTools);
+            this.Manager.Controls.Add(this.fLP_driversTools);
             this.Manager.Controls.Add(this.panel1);
-            this.Manager.Controls.Add(this.dataGridView1);
+            this.Manager.Controls.Add(this.dGV_Orders);
             this.Manager.Controls.Add(this.flowLayoutPanel2);
             this.Manager.Location = new System.Drawing.Point(4, 25);
             this.Manager.Name = "Manager";
@@ -161,188 +173,277 @@ namespace TaxiMaxim.WF
             this.Manager.UseVisualStyleBackColor = true;
             this.Manager.Click += new System.EventHandler(this.tabPage1_Click);
             // 
-            // dataGridView2
+            // fLP_OrdersIO
             // 
-            this.dataGridView2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.fLP_OrdersIO.Controls.Add(this.oBtn_Apply);
+            this.fLP_OrdersIO.Controls.Add(this.oBtn_Cancel);
+            this.fLP_OrdersIO.Location = new System.Drawing.Point(890, 115);
+            this.fLP_OrdersIO.Name = "fLP_OrdersIO";
+            this.fLP_OrdersIO.Size = new System.Drawing.Size(131, 46);
+            this.fLP_OrdersIO.TabIndex = 10;
+            this.fLP_OrdersIO.Visible = false;
+            // 
+            // oBtn_Apply
+            // 
+            this.oBtn_Apply.BackgroundImage = global::TaxiMaxim.WF.Properties.Resources.approved;
+            this.oBtn_Apply.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.oBtn_Apply.Location = new System.Drawing.Point(3, 3);
+            this.oBtn_Apply.Name = "oBtn_Apply";
+            this.oBtn_Apply.Size = new System.Drawing.Size(38, 40);
+            this.oBtn_Apply.TabIndex = 6;
+            this.oBtn_Apply.UseVisualStyleBackColor = true;
+            this.oBtn_Apply.Click += new System.EventHandler(this.button19_Click);
+            // 
+            // oBtn_Cancel
+            // 
+            this.oBtn_Cancel.BackgroundImage = global::TaxiMaxim.WF.Properties.Resources.close;
+            this.oBtn_Cancel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.oBtn_Cancel.Location = new System.Drawing.Point(47, 3);
+            this.oBtn_Cancel.Name = "oBtn_Cancel";
+            this.oBtn_Cancel.Size = new System.Drawing.Size(38, 40);
+            this.oBtn_Cancel.TabIndex = 6;
+            this.oBtn_Cancel.UseVisualStyleBackColor = true;
+            this.oBtn_Cancel.Click += new System.EventHandler(this.button20_Click);
+            // 
+            // fLP_driversIO
+            // 
+            this.fLP_driversIO.Controls.Add(this.dBtn_Apply);
+            this.fLP_driversIO.Controls.Add(this.dBtn_Cancel);
+            this.fLP_driversIO.Location = new System.Drawing.Point(365, 118);
+            this.fLP_driversIO.Name = "fLP_driversIO";
+            this.fLP_driversIO.Size = new System.Drawing.Size(131, 46);
+            this.fLP_driversIO.TabIndex = 10;
+            this.fLP_driversIO.Visible = false;
+            // 
+            // dBtn_Apply
+            // 
+            this.dBtn_Apply.BackgroundImage = global::TaxiMaxim.WF.Properties.Resources.approved;
+            this.dBtn_Apply.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.dBtn_Apply.Location = new System.Drawing.Point(3, 3);
+            this.dBtn_Apply.Name = "dBtn_Apply";
+            this.dBtn_Apply.Size = new System.Drawing.Size(38, 40);
+            this.dBtn_Apply.TabIndex = 6;
+            this.dBtn_Apply.UseVisualStyleBackColor = true;
+            this.dBtn_Apply.Click += new System.EventHandler(this.button19_Click);
+            // 
+            // dBtn_Cancel
+            // 
+            this.dBtn_Cancel.BackgroundImage = global::TaxiMaxim.WF.Properties.Resources.close;
+            this.dBtn_Cancel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.dBtn_Cancel.Location = new System.Drawing.Point(47, 3);
+            this.dBtn_Cancel.Name = "dBtn_Cancel";
+            this.dBtn_Cancel.Size = new System.Drawing.Size(38, 40);
+            this.dBtn_Cancel.TabIndex = 6;
+            this.dBtn_Cancel.UseVisualStyleBackColor = true;
+            this.dBtn_Cancel.Click += new System.EventHandler(this.button20_Click);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Arial", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label2.Location = new System.Drawing.Point(550, 90);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(85, 25);
+            this.label2.TabIndex = 9;
+            this.label2.Text = "Заказы";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Arial", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label1.Location = new System.Drawing.Point(29, 90);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(111, 25);
+            this.label1.TabIndex = 9;
+            this.label1.Text = "Водители";
+            // 
+            // dGV_drivers
+            // 
+            this.dGV_drivers.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.dataGridView2.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(11, 170);
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.ReadOnly = true;
-            this.dataGridView2.RowHeadersWidth = 51;
-            this.dataGridView2.Size = new System.Drawing.Size(485, 486);
-            this.dataGridView2.TabIndex = 3;
+            this.dGV_drivers.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
+            this.dGV_drivers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dGV_drivers.Location = new System.Drawing.Point(11, 170);
+            this.dGV_drivers.Name = "dGV_drivers";
+            this.dGV_drivers.ReadOnly = true;
+            this.dGV_drivers.RowHeadersWidth = 51;
+            this.dGV_drivers.Size = new System.Drawing.Size(485, 486);
+            this.dGV_drivers.TabIndex = 3;
+            this.dGV_drivers.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dGV_drivers_CurrentCellChanged);
             // 
-            // flowLayoutPanel3
+            // fLP_OrdersTools
             // 
-            this.flowLayoutPanel3.Controls.Add(this.button10);
-            this.flowLayoutPanel3.Controls.Add(this.button13);
-            this.flowLayoutPanel3.Controls.Add(this.button14);
-            this.flowLayoutPanel3.Controls.Add(this.button15);
-            this.flowLayoutPanel3.Controls.Add(this.button16);
-            this.flowLayoutPanel3.Controls.Add(this.button17);
-            this.flowLayoutPanel3.Controls.Add(this.button18);
-            this.flowLayoutPanel3.Location = new System.Drawing.Point(536, 118);
-            this.flowLayoutPanel3.Name = "flowLayoutPanel3";
-            this.flowLayoutPanel3.Size = new System.Drawing.Size(352, 46);
-            this.flowLayoutPanel3.TabIndex = 2;
+            this.fLP_OrdersTools.Controls.Add(this.oBtn_Add);
+            this.fLP_OrdersTools.Controls.Add(this.oBtnRemove);
+            this.fLP_OrdersTools.Controls.Add(this.oBtn_Refresh);
+            this.fLP_OrdersTools.Controls.Add(this.oBtn_Find);
+            this.fLP_OrdersTools.Controls.Add(this.oBtn_Sorting);
+            this.fLP_OrdersTools.Controls.Add(this.oBtn_Edit);
+            this.fLP_OrdersTools.Controls.Add(this.oBtn_Insert);
+            this.fLP_OrdersTools.Location = new System.Drawing.Point(536, 115);
+            this.fLP_OrdersTools.Name = "fLP_OrdersTools";
+            this.fLP_OrdersTools.Size = new System.Drawing.Size(347, 46);
+            this.fLP_OrdersTools.TabIndex = 2;
             // 
-            // button10
+            // oBtn_Add
             // 
-            this.button10.BackgroundImage = global::TaxiMaxim.WF.Properties.Resources.free_icon_plus_1828819;
-            this.button10.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button10.Location = new System.Drawing.Point(3, 3);
-            this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(38, 40);
-            this.button10.TabIndex = 0;
-            this.button10.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button10.UseVisualStyleBackColor = true;
+            this.oBtn_Add.BackgroundImage = global::TaxiMaxim.WF.Properties.Resources.free_icon_plus_1828819;
+            this.oBtn_Add.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.oBtn_Add.Location = new System.Drawing.Point(3, 3);
+            this.oBtn_Add.Name = "oBtn_Add";
+            this.oBtn_Add.Size = new System.Drawing.Size(38, 40);
+            this.oBtn_Add.TabIndex = 0;
+            this.oBtn_Add.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.oBtn_Add.UseVisualStyleBackColor = true;
+            this.oBtn_Add.Click += new System.EventHandler(this.button3_Click);
             // 
-            // button13
+            // oBtnRemove
             // 
-            this.button13.BackgroundImage = global::TaxiMaxim.WF.Properties.Resources.free_icon_minus_1828779;
-            this.button13.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button13.Location = new System.Drawing.Point(47, 3);
-            this.button13.Name = "button13";
-            this.button13.Size = new System.Drawing.Size(38, 40);
-            this.button13.TabIndex = 1;
-            this.button13.UseVisualStyleBackColor = true;
+            this.oBtnRemove.BackgroundImage = global::TaxiMaxim.WF.Properties.Resources.free_icon_minus_1828779;
+            this.oBtnRemove.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.oBtnRemove.Location = new System.Drawing.Point(47, 3);
+            this.oBtnRemove.Name = "oBtnRemove";
+            this.oBtnRemove.Size = new System.Drawing.Size(38, 40);
+            this.oBtnRemove.TabIndex = 1;
+            this.oBtnRemove.UseVisualStyleBackColor = true;
             // 
-            // button14
+            // oBtn_Refresh
             // 
-            this.button14.BackgroundImage = global::TaxiMaxim.WF.Properties.Resources.free_icon_reload_1828841;
-            this.button14.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button14.Location = new System.Drawing.Point(91, 3);
-            this.button14.Name = "button14";
-            this.button14.Size = new System.Drawing.Size(38, 40);
-            this.button14.TabIndex = 2;
-            this.button14.UseVisualStyleBackColor = true;
+            this.oBtn_Refresh.BackgroundImage = global::TaxiMaxim.WF.Properties.Resources.free_icon_reload_1828841;
+            this.oBtn_Refresh.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.oBtn_Refresh.Location = new System.Drawing.Point(91, 3);
+            this.oBtn_Refresh.Name = "oBtn_Refresh";
+            this.oBtn_Refresh.Size = new System.Drawing.Size(38, 40);
+            this.oBtn_Refresh.TabIndex = 2;
+            this.oBtn_Refresh.UseVisualStyleBackColor = true;
             // 
-            // button15
+            // oBtn_Find
             // 
-            this.button15.BackgroundImage = global::TaxiMaxim.WF.Properties.Resources.free_icon_search_1828855;
-            this.button15.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button15.Location = new System.Drawing.Point(135, 3);
-            this.button15.Name = "button15";
-            this.button15.Size = new System.Drawing.Size(38, 40);
-            this.button15.TabIndex = 3;
-            this.button15.UseVisualStyleBackColor = true;
+            this.oBtn_Find.BackgroundImage = global::TaxiMaxim.WF.Properties.Resources.free_icon_search_1828855;
+            this.oBtn_Find.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.oBtn_Find.Location = new System.Drawing.Point(135, 3);
+            this.oBtn_Find.Name = "oBtn_Find";
+            this.oBtn_Find.Size = new System.Drawing.Size(38, 40);
+            this.oBtn_Find.TabIndex = 3;
+            this.oBtn_Find.UseVisualStyleBackColor = true;
             // 
-            // button16
+            // oBtn_Sorting
             // 
-            this.button16.BackgroundImage = global::TaxiMaxim.WF.Properties.Resources.free_icon_filter_1828699;
-            this.button16.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button16.Location = new System.Drawing.Point(179, 3);
-            this.button16.Name = "button16";
-            this.button16.Size = new System.Drawing.Size(38, 40);
-            this.button16.TabIndex = 4;
-            this.button16.UseVisualStyleBackColor = true;
+            this.oBtn_Sorting.BackgroundImage = global::TaxiMaxim.WF.Properties.Resources.free_icon_filter_1828699;
+            this.oBtn_Sorting.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.oBtn_Sorting.Location = new System.Drawing.Point(179, 3);
+            this.oBtn_Sorting.Name = "oBtn_Sorting";
+            this.oBtn_Sorting.Size = new System.Drawing.Size(38, 40);
+            this.oBtn_Sorting.TabIndex = 4;
+            this.oBtn_Sorting.UseVisualStyleBackColor = true;
             // 
-            // button17
+            // oBtn_Edit
             // 
-            this.button17.BackgroundImage = global::TaxiMaxim.WF.Properties.Resources.free_icon_signal_1828881;
-            this.button17.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button17.Location = new System.Drawing.Point(223, 3);
-            this.button17.Name = "button17";
-            this.button17.Size = new System.Drawing.Size(38, 40);
-            this.button17.TabIndex = 5;
-            this.button17.UseVisualStyleBackColor = true;
+            this.oBtn_Edit.BackgroundImage = global::TaxiMaxim.WF.Properties.Resources.pencil;
+            this.oBtn_Edit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.oBtn_Edit.Location = new System.Drawing.Point(223, 3);
+            this.oBtn_Edit.Name = "oBtn_Edit";
+            this.oBtn_Edit.Size = new System.Drawing.Size(38, 40);
+            this.oBtn_Edit.TabIndex = 5;
+            this.oBtn_Edit.UseVisualStyleBackColor = true;
+            this.oBtn_Edit.Click += new System.EventHandler(this.button8_Click);
             // 
-            // button18
+            // oBtn_Insert
             // 
-            this.button18.BackgroundImage = global::TaxiMaxim.WF.Properties.Resources.free_icon_clipboard_1828661;
-            this.button18.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button18.Location = new System.Drawing.Point(267, 3);
-            this.button18.Name = "button18";
-            this.button18.Size = new System.Drawing.Size(38, 40);
-            this.button18.TabIndex = 6;
-            this.button18.UseVisualStyleBackColor = true;
+            this.oBtn_Insert.BackgroundImage = global::TaxiMaxim.WF.Properties.Resources.free_icon_clipboard_1828661;
+            this.oBtn_Insert.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.oBtn_Insert.Location = new System.Drawing.Point(267, 3);
+            this.oBtn_Insert.Name = "oBtn_Insert";
+            this.oBtn_Insert.Size = new System.Drawing.Size(38, 40);
+            this.oBtn_Insert.TabIndex = 6;
+            this.oBtn_Insert.UseVisualStyleBackColor = true;
             // 
-            // flowLayoutPanel1
+            // fLP_driversTools
             // 
-            this.flowLayoutPanel1.Controls.Add(this.button3);
-            this.flowLayoutPanel1.Controls.Add(this.button4);
-            this.flowLayoutPanel1.Controls.Add(this.button5);
-            this.flowLayoutPanel1.Controls.Add(this.button6);
-            this.flowLayoutPanel1.Controls.Add(this.button7);
-            this.flowLayoutPanel1.Controls.Add(this.button8);
-            this.flowLayoutPanel1.Controls.Add(this.button9);
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(11, 118);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(485, 46);
-            this.flowLayoutPanel1.TabIndex = 2;
+            this.fLP_driversTools.Controls.Add(this.dBtn_Add);
+            this.fLP_driversTools.Controls.Add(this.dBtn_Remove);
+            this.fLP_driversTools.Controls.Add(this.dBtn_Refresh);
+            this.fLP_driversTools.Controls.Add(this.dBtn_Find);
+            this.fLP_driversTools.Controls.Add(this.dBtn_Sorting);
+            this.fLP_driversTools.Controls.Add(this.dBtn_Edit);
+            this.fLP_driversTools.Controls.Add(this.dBtn_Insert);
+            this.fLP_driversTools.Location = new System.Drawing.Point(11, 118);
+            this.fLP_driversTools.Name = "fLP_driversTools";
+            this.fLP_driversTools.Size = new System.Drawing.Size(347, 46);
+            this.fLP_driversTools.TabIndex = 2;
             // 
-            // button3
+            // dBtn_Add
             // 
-            this.button3.BackgroundImage = global::TaxiMaxim.WF.Properties.Resources.free_icon_plus_1828819;
-            this.button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button3.Location = new System.Drawing.Point(3, 3);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(38, 40);
-            this.button3.TabIndex = 0;
-            this.button3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button3.UseVisualStyleBackColor = true;
+            this.dBtn_Add.BackgroundImage = global::TaxiMaxim.WF.Properties.Resources.free_icon_plus_1828819;
+            this.dBtn_Add.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.dBtn_Add.Location = new System.Drawing.Point(3, 3);
+            this.dBtn_Add.Name = "dBtn_Add";
+            this.dBtn_Add.Size = new System.Drawing.Size(38, 40);
+            this.dBtn_Add.TabIndex = 0;
+            this.dBtn_Add.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.dBtn_Add.UseVisualStyleBackColor = true;
+            this.dBtn_Add.Click += new System.EventHandler(this.button3_Click);
             // 
-            // button4
+            // dBtn_Remove
             // 
-            this.button4.BackgroundImage = global::TaxiMaxim.WF.Properties.Resources.free_icon_minus_1828779;
-            this.button4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button4.Location = new System.Drawing.Point(47, 3);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(38, 40);
-            this.button4.TabIndex = 1;
-            this.button4.UseVisualStyleBackColor = true;
+            this.dBtn_Remove.BackgroundImage = global::TaxiMaxim.WF.Properties.Resources.free_icon_minus_1828779;
+            this.dBtn_Remove.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.dBtn_Remove.Location = new System.Drawing.Point(47, 3);
+            this.dBtn_Remove.Name = "dBtn_Remove";
+            this.dBtn_Remove.Size = new System.Drawing.Size(38, 40);
+            this.dBtn_Remove.TabIndex = 1;
+            this.dBtn_Remove.UseVisualStyleBackColor = true;
             // 
-            // button5
+            // dBtn_Refresh
             // 
-            this.button5.BackgroundImage = global::TaxiMaxim.WF.Properties.Resources.free_icon_reload_1828841;
-            this.button5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button5.Location = new System.Drawing.Point(91, 3);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(38, 40);
-            this.button5.TabIndex = 2;
-            this.button5.UseVisualStyleBackColor = true;
+            this.dBtn_Refresh.BackgroundImage = global::TaxiMaxim.WF.Properties.Resources.free_icon_reload_1828841;
+            this.dBtn_Refresh.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.dBtn_Refresh.Location = new System.Drawing.Point(91, 3);
+            this.dBtn_Refresh.Name = "dBtn_Refresh";
+            this.dBtn_Refresh.Size = new System.Drawing.Size(38, 40);
+            this.dBtn_Refresh.TabIndex = 2;
+            this.dBtn_Refresh.UseVisualStyleBackColor = true;
             // 
-            // button6
+            // dBtn_Find
             // 
-            this.button6.BackgroundImage = global::TaxiMaxim.WF.Properties.Resources.free_icon_search_1828855;
-            this.button6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button6.Location = new System.Drawing.Point(135, 3);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(38, 40);
-            this.button6.TabIndex = 3;
-            this.button6.UseVisualStyleBackColor = true;
+            this.dBtn_Find.BackgroundImage = global::TaxiMaxim.WF.Properties.Resources.free_icon_search_1828855;
+            this.dBtn_Find.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.dBtn_Find.Location = new System.Drawing.Point(135, 3);
+            this.dBtn_Find.Name = "dBtn_Find";
+            this.dBtn_Find.Size = new System.Drawing.Size(38, 40);
+            this.dBtn_Find.TabIndex = 3;
+            this.dBtn_Find.UseVisualStyleBackColor = true;
             // 
-            // button7
+            // dBtn_Sorting
             // 
-            this.button7.BackgroundImage = global::TaxiMaxim.WF.Properties.Resources.free_icon_filter_1828699;
-            this.button7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button7.Location = new System.Drawing.Point(179, 3);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(38, 40);
-            this.button7.TabIndex = 4;
-            this.button7.UseVisualStyleBackColor = true;
+            this.dBtn_Sorting.BackgroundImage = global::TaxiMaxim.WF.Properties.Resources.free_icon_filter_1828699;
+            this.dBtn_Sorting.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.dBtn_Sorting.Location = new System.Drawing.Point(179, 3);
+            this.dBtn_Sorting.Name = "dBtn_Sorting";
+            this.dBtn_Sorting.Size = new System.Drawing.Size(38, 40);
+            this.dBtn_Sorting.TabIndex = 4;
+            this.dBtn_Sorting.UseVisualStyleBackColor = true;
             // 
-            // button8
+            // dBtn_Edit
             // 
-            this.button8.BackgroundImage = global::TaxiMaxim.WF.Properties.Resources.free_icon_signal_1828881;
-            this.button8.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button8.Location = new System.Drawing.Point(223, 3);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(38, 40);
-            this.button8.TabIndex = 5;
-            this.button8.UseVisualStyleBackColor = true;
+            this.dBtn_Edit.BackgroundImage = global::TaxiMaxim.WF.Properties.Resources.pencil;
+            this.dBtn_Edit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.dBtn_Edit.Location = new System.Drawing.Point(223, 3);
+            this.dBtn_Edit.Name = "dBtn_Edit";
+            this.dBtn_Edit.Size = new System.Drawing.Size(38, 40);
+            this.dBtn_Edit.TabIndex = 5;
+            this.dBtn_Edit.UseVisualStyleBackColor = true;
+            this.dBtn_Edit.Click += new System.EventHandler(this.button8_Click);
             // 
-            // button9
+            // dBtn_Insert
             // 
-            this.button9.BackgroundImage = global::TaxiMaxim.WF.Properties.Resources.free_icon_clipboard_1828661;
-            this.button9.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button9.Location = new System.Drawing.Point(267, 3);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(38, 40);
-            this.button9.TabIndex = 6;
-            this.button9.UseVisualStyleBackColor = true;
+            this.dBtn_Insert.BackgroundImage = global::TaxiMaxim.WF.Properties.Resources.free_icon_clipboard_1828661;
+            this.dBtn_Insert.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.dBtn_Insert.Location = new System.Drawing.Point(267, 3);
+            this.dBtn_Insert.Name = "dBtn_Insert";
+            this.dBtn_Insert.Size = new System.Drawing.Size(38, 40);
+            this.dBtn_Insert.TabIndex = 6;
+            this.dBtn_Insert.UseVisualStyleBackColor = true;
             // 
             // panel1
             // 
@@ -402,22 +503,22 @@ namespace TaxiMaxim.WF
             this.textBox1.TabIndex = 0;
             this.textBox1.Text = "Количество активных заказов:";
             // 
-            // dataGridView1
+            // dGV_Orders
             // 
-            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.dGV_Orders.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
-            this.dataGridView1.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(536, 170);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.Size = new System.Drawing.Size(702, 486);
-            this.dataGridView1.TabIndex = 0;
-            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            this.dGV_Orders.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
+            this.dGV_Orders.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            this.dGV_Orders.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dGV_Orders.Location = new System.Drawing.Point(536, 170);
+            this.dGV_Orders.Name = "dGV_Orders";
+            this.dGV_Orders.ReadOnly = true;
+            this.dGV_Orders.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.dGV_Orders.RowHeadersWidth = 51;
+            this.dGV_Orders.Size = new System.Drawing.Size(702, 486);
+            this.dGV_Orders.TabIndex = 0;
+            this.dGV_Orders.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // flowLayoutPanel2
             // 
@@ -450,6 +551,7 @@ namespace TaxiMaxim.WF
             // 
             // AutoPark
             // 
+            this.AutoPark.Controls.Add(this.tableTest);
             this.AutoPark.Location = new System.Drawing.Point(4, 25);
             this.AutoPark.Name = "AutoPark";
             this.AutoPark.Padding = new System.Windows.Forms.Padding(3);
@@ -457,6 +559,19 @@ namespace TaxiMaxim.WF
             this.AutoPark.TabIndex = 1;
             this.AutoPark.Text = "Автопарк";
             this.AutoPark.UseVisualStyleBackColor = true;
+            // 
+            // tableTest
+            // 
+            this.tableTest.ColumnCount = 2;
+            this.tableTest.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableTest.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableTest.Location = new System.Drawing.Point(185, 102);
+            this.tableTest.Name = "tableTest";
+            this.tableTest.RowCount = 2;
+            this.tableTest.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableTest.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableTest.Size = new System.Drawing.Size(388, 234);
+            this.tableTest.TabIndex = 0;
             // 
             // HouseBooking
             // 
@@ -575,26 +690,6 @@ namespace TaxiMaxim.WF
             this.buttonOrderTaxi.Text = "Заказать такси";
             this.buttonOrderTaxi.Click += new System.EventHandler(this.buttonOrderTaxi_Click);
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Arial", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(29, 90);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(111, 25);
-            this.label1.TabIndex = 9;
-            this.label1.Text = "Водители";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Arial", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label2.Location = new System.Drawing.Point(550, 90);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(85, 25);
-            this.label2.TabIndex = 9;
-            this.label2.Text = "Заказы";
-            // 
             // MainMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -614,13 +709,16 @@ namespace TaxiMaxim.WF
             this.tabControl1.ResumeLayout(false);
             this.Manager.ResumeLayout(false);
             this.Manager.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
-            this.flowLayoutPanel3.ResumeLayout(false);
-            this.flowLayoutPanel1.ResumeLayout(false);
+            this.fLP_OrdersIO.ResumeLayout(false);
+            this.fLP_driversIO.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dGV_drivers)).EndInit();
+            this.fLP_OrdersTools.ResumeLayout(false);
+            this.fLP_driversTools.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dGV_Orders)).EndInit();
             this.flowLayoutPanel2.ResumeLayout(false);
+            this.AutoPark.ResumeLayout(false);
             this.HouseBooking.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
@@ -635,7 +733,7 @@ namespace TaxiMaxim.WF
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dGV_Orders;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
@@ -656,15 +754,15 @@ namespace TaxiMaxim.WF
         private System.Windows.Forms.ToolStripStatusLabel dataBaseCheck_SLabel;
         private System.Windows.Forms.TextBox textBox_activeDrivers;
         private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.Button button7;
-        private System.Windows.Forms.Button button8;
-        private System.Windows.Forms.Button button9;
-        private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.FlowLayoutPanel fLP_driversTools;
+        private System.Windows.Forms.Button dBtn_Add;
+        private System.Windows.Forms.Button dBtn_Remove;
+        private System.Windows.Forms.Button dBtn_Refresh;
+        private System.Windows.Forms.Button dBtn_Find;
+        private System.Windows.Forms.Button dBtn_Sorting;
+        private System.Windows.Forms.Button dBtn_Edit;
+        private System.Windows.Forms.Button dBtn_Insert;
+        private System.Windows.Forms.DataGridView dGV_drivers;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
         private System.Windows.Forms.Button button11;
         private System.Windows.Forms.Button button12;
@@ -672,16 +770,23 @@ namespace TaxiMaxim.WF
         private System.Windows.Forms.DataGridView dataGridView3;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button button21;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel3;
-        private System.Windows.Forms.Button button10;
-        private System.Windows.Forms.Button button13;
-        private System.Windows.Forms.Button button14;
-        private System.Windows.Forms.Button button15;
-        private System.Windows.Forms.Button button16;
-        private System.Windows.Forms.Button button17;
-        private System.Windows.Forms.Button button18;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TableLayoutPanel tableTest;
+        private System.Windows.Forms.FlowLayoutPanel fLP_driversIO;
+        private System.Windows.Forms.Button dBtn_Apply;
+        private System.Windows.Forms.Button dBtn_Cancel;
+        private System.Windows.Forms.FlowLayoutPanel fLP_OrdersIO;
+        private System.Windows.Forms.Button oBtn_Apply;
+        private System.Windows.Forms.Button oBtn_Cancel;
+        private System.Windows.Forms.FlowLayoutPanel fLP_OrdersTools;
+        private System.Windows.Forms.Button oBtn_Add;
+        private System.Windows.Forms.Button oBtnRemove;
+        private System.Windows.Forms.Button oBtn_Refresh;
+        private System.Windows.Forms.Button oBtn_Find;
+        private System.Windows.Forms.Button oBtn_Sorting;
+        private System.Windows.Forms.Button oBtn_Edit;
+        private System.Windows.Forms.Button oBtn_Insert;
     }
 }
 
