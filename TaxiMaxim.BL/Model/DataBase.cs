@@ -5,13 +5,16 @@ namespace TaxiMaxim.BL.Model
     public class DataBase
     {
 
-        private const string SERVER_NAME = "NOOTELLA\\SQLEXPRESS";
-        private const string DATABASE_NAME = "TaxiMaxim";
+        //private string SERVER_NAME = "DESKTOP-VPOMAI1\\SQL44";
+        //private string DATABASE_NAME = "TaxiMaximalnaya";
+        public string ServerName { get; set; }
+        public string DatabaseName { get; set; }
+
         /// <summary>
         /// Подключение к базе данных
         /// </summary>
-        SqlConnection sqlConnection = new SqlConnection($"Data Source={SERVER_NAME};Initial Catalog={DATABASE_NAME};Integrated Security=True");
 
+        SqlConnection sqlConnection;
         public void openConnection()
         {
             if (sqlConnection.State == System.Data.ConnectionState.Closed)
@@ -27,6 +30,13 @@ namespace TaxiMaxim.BL.Model
         public SqlConnection getConnection()
         {
             return sqlConnection;
+        }
+
+        public DataBase(string serverName, string databaseName)
+        {
+            ServerName = serverName;
+            DatabaseName = databaseName;
+            sqlConnection = new SqlConnection($"Data Source={serverName};Initial Catalog={databaseName};Integrated Security=True");
         }
     }
 }
