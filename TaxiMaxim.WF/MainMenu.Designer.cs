@@ -586,6 +586,7 @@ namespace TaxiMaxim.WF
             this.oBtn_Edit.Size = new System.Drawing.Size(38, 40);
             this.oBtn_Edit.TabIndex = 5;
             this.oBtn_Edit.UseVisualStyleBackColor = true;
+            this.oBtn_Edit.Click += new System.EventHandler(this.oBtn_Edit_Click);
             // 
             // oBtn_Insert
             // 

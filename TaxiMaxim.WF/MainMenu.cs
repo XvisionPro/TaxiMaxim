@@ -368,12 +368,51 @@ namespace TaxiMaxim.WF
 
         private void oBtn_Apply_Click(object sender, EventArgs e)
         {
-
+            Apply?.Invoke();
         }
 
         private void oBtn_Cancel_Click(object sender, EventArgs e)
         {
+            Cancel?.Invoke();
+        }
 
+        private void oBtn_Edit_Click(object sender, EventArgs e)
+        {
+            DataTable dt = this.dGV_Orders.DataSource as DataTable;
+            fLP_OrdersIO.Visible = true;
+            dGV_Orders.ClearSelection(); //снять выделение всех выбранных ячеек
+            int index = 0; // индекс последней строки
+            dGV_Orders.Rows[index].Selected = true; // выделить нужную строку
+            dGV_Orders.FirstDisplayedScrollingRowIndex = index; // фокус в нужную строку
+            dGV_Orders.AllowUserToAddRows = false;
+            dGV_Orders.ReadOnly = false;
+            dGV_Orders.Columns[0].ReadOnly = true;
+            DisableInFlow(fLP_OrdersTools);
+
+            Apply += ApplyChanges;
+            void ApplyChanges()
+            {
+                dGV_Orders.ClearSelection();
+                dGV_Orders.ReadOnly = true;
+                fLP_OrdersIO.Visible = false;
+                SqlCommand command = new SqlCommand("UPDATE * FROM DRIVER", db.getConnection());
+                //TODO: Дописать запрос с передачей изменённых данных
+                // Надо сделать так, чтобы не обновлять всю таблицу, а только те строки, которые мы затронули.
+                EnableInFlow(fLP_OrdersTools);
+                Apply -= ApplyChanges;
+            }
+
+            Cancel += DiscardChanges;
+            void DiscardChanges()
+            {
+                dt.RejectChanges();
+                dGV_Orders.CancelEdit();
+                dGV_Orders.ClearSelection();
+                dGV_Orders.ReadOnly = true;
+                fLP_OrdersIO.Visible = false;
+                EnableInFlow(fLP_OrdersTools);
+                Cancel -= DiscardChanges;
+            }
         }
     }
 }
