@@ -10,12 +10,14 @@ using System.Windows.Forms;
 using TaxiMaxim.BL.Model;
 using System.Data.SqlClient;
 using TaxiMaxim.BL.Controller;
+using TaxiMaxim.WF.InputForms;
+using System.Reflection;
 
 namespace TaxiMaxim.WF
 {
     public partial class MainMenu : Form
     {
-        DataBase db = new DataBase("DUBOV_ILYA\\SQLEXPRESS", "TaxiMaximalnaya");
+        DataBase db = new DataBase("DESKTOP-VPOMAI1\\SQL44", "TaxiMaximalnaya");
         
         SqlCommandBuilder scb;
         DataTable dt;
@@ -178,12 +180,35 @@ namespace TaxiMaxim.WF
 
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private async void button3_Click(object sender, EventArgs e)
         {
-           
+            bool create = false;
+
+            foreach (Form form in Application.OpenForms)
+            {
+                if (form.Name.ToString() == "AddDriver")
+                {
+                    //this.Hide();
+                    form.Visible = true;
+                    create = true;
+                    break;
+                }
+            }
+            if (create == false)
+            {
+                AddDriver createC = new AddDriver(db);
+                //this.Hide();
+                createC.Show();
+
+                await GetTaskFromEvent(createC, "FormClosed");
+                MessageBox.Show("Добавлено успешно!");
+                loadGridDrivers();
+
+            }
+
         }
 
-        private void button8_Click(object sender, EventArgs e)
+        private void btn_editmode(object sender, EventArgs e)
         {
             DataTable dt = this.dGV_drivers.DataSource as DataTable;
             fLP_driversIO.Visible = true;
@@ -202,6 +227,8 @@ namespace TaxiMaxim.WF
                 dGV_drivers.ClearSelection();
                 dGV_drivers.ReadOnly = true;
                 fLP_driversIO.Visible = false;
+                SqlCommand command = new SqlCommand("UPDATE * FROM DRIVER", db.getConnection());
+                //TODO: Дописать запрос с передачей изменённых данных
                 EnableInFlow(fLP_driversTools);
                 Apply -= ApplyChanges;
             }
@@ -263,6 +290,43 @@ namespace TaxiMaxim.WF
                 default:
                     break;
             }
+        }
+
+        private void SendSQLRequest(SqlCommand command)
+        {
+            int count = command.ExecuteNonQuery();
+            MessageBox.Show("Успешно! Затронуто строк: {0}", count.ToString());
+            //TODO: Доделать функцию отправки запроса
+        }
+
+        public static Task<object> GetTaskFromEvent(object o, string evt)
+        {
+            if (o == null || evt == null) throw new ArgumentNullException("Arguments cannot be null");
+
+            EventInfo einfo = o.GetType().GetEvent(evt);
+            if (einfo == null)
+            {
+                throw new ArgumentException(String.Format("*{0}* has no *{1}* event", o, evt));
+            }
+
+            TaskCompletionSource<object> tcs = new TaskCompletionSource<object>();
+            MethodInfo mi = null;
+            Delegate deleg = null;
+            EventHandler handler = null;
+
+            //код обработчика события
+            handler = (s, e) =>
+            {
+                mi = handler.Method;
+                deleg = Delegate.CreateDelegate(einfo.EventHandlerType, handler.Target, mi);
+                einfo.RemoveEventHandler(s, deleg); //отцепляем обработчик события
+                tcs.TrySetResult(null); //сигнализируем о наступлении события
+            };
+
+            mi = handler.Method;
+            deleg = Delegate.CreateDelegate(einfo.EventHandlerType, handler.Target, mi); //получаем делегат нужного типа
+            einfo.AddEventHandler(o, deleg); //присоединяем обработчик события
+            return tcs.Task;
         }
     }
 }

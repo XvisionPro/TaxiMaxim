@@ -346,7 +346,7 @@ namespace TaxiMaxim.WF
             this.oBtn_Edit.Size = new System.Drawing.Size(38, 40);
             this.oBtn_Edit.TabIndex = 5;
             this.oBtn_Edit.UseVisualStyleBackColor = true;
-            this.oBtn_Edit.Click += new System.EventHandler(this.button8_Click);
+            this.oBtn_Edit.Click += new System.EventHandler(this.btn_editmode);
             // 
             // oBtn_Insert
             // 
@@ -433,7 +433,7 @@ namespace TaxiMaxim.WF
             this.dBtn_Edit.Size = new System.Drawing.Size(38, 40);
             this.dBtn_Edit.TabIndex = 5;
             this.dBtn_Edit.UseVisualStyleBackColor = true;
-            this.dBtn_Edit.Click += new System.EventHandler(this.button8_Click);
+            this.dBtn_Edit.Click += new System.EventHandler(this.btn_editmode);
             // 
             // dBtn_Insert
             // 
@@ -706,6 +706,7 @@ namespace TaxiMaxim.WF
             this.Name = "MainMenu";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ТаксиМаксим";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.tabControl1.ResumeLayout(false);
             this.Manager.ResumeLayout(false);
             this.Manager.PerformLayout();
