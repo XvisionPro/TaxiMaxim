@@ -201,7 +201,6 @@ namespace TaxiMaxim.WF
                 createC.Show();
 
                 await GetTaskFromEvent(createC, "FormClosed");
-                MessageBox.Show("Добавлено успешно!");
                 loadGridDrivers();
 
             }
@@ -229,6 +228,7 @@ namespace TaxiMaxim.WF
                 fLP_driversIO.Visible = false;
                 SqlCommand command = new SqlCommand("UPDATE * FROM DRIVER", db.getConnection());
                 //TODO: Дописать запрос с передачей изменённых данных
+                // Надо сделать так, чтобы не обновлять всю таблицу, а только те строки, которые мы затронули.
                 EnableInFlow(fLP_driversTools);
                 Apply -= ApplyChanges;
             }
@@ -297,6 +297,7 @@ namespace TaxiMaxim.WF
             int count = command.ExecuteNonQuery();
             MessageBox.Show("Успешно! Затронуто строк: {0}", count.ToString());
             //TODO: Доделать функцию отправки запроса
+            // Сделать универсальную функцию для отправки команд
         }
 
         public static Task<object> GetTaskFromEvent(object o, string evt)
@@ -327,6 +328,52 @@ namespace TaxiMaxim.WF
             deleg = Delegate.CreateDelegate(einfo.EventHandlerType, handler.Target, mi); //получаем делегат нужного типа
             einfo.AddEventHandler(o, deleg); //присоединяем обработчик события
             return tcs.Task;
+        }
+
+        private void dBtn_Refresh_Click(object sender, EventArgs e)
+        {
+            loadGridDrivers();
+        }
+
+        private async void oBtn_Click(object sender, EventArgs e)
+        {
+            bool create = false;
+
+            foreach (Form form in Application.OpenForms)
+            {
+                if (form.Name.ToString() == "AddOrder")
+                {
+                    //this.Hide();
+                    form.Visible = true;
+                    create = true;
+                    break;
+                }
+            }
+            if (create == false)
+            {
+                AddOrder createC = new AddOrder(Drivers, db);
+                //this.Hide();
+                createC.Show();
+
+                await GetTaskFromEvent(createC, "FormClosed");
+                loadGridOrders();
+
+            }
+        }
+
+        private void oBtn_Refresh_Click(object sender, EventArgs e)
+        {
+            loadGridOrders();
+        }
+
+        private void oBtn_Apply_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void oBtn_Cancel_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

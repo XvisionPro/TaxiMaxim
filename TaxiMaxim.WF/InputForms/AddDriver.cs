@@ -91,6 +91,7 @@ namespace TaxiMaxim.WF.InputForms
             dbCurr.openConnection();
             int count = command.ExecuteNonQuery();
             dbCurr.closeConnection();
+            MessageBox.Show("Добавлено успешно!");
             Close();
             Dispose();
         }

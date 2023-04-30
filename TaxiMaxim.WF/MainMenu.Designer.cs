@@ -38,30 +38,12 @@ namespace TaxiMaxim.WF
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.Manager = new System.Windows.Forms.TabPage();
             this.fLP_OrdersIO = new System.Windows.Forms.FlowLayoutPanel();
-            this.oBtn_Apply = new System.Windows.Forms.Button();
-            this.oBtn_Cancel = new System.Windows.Forms.Button();
             this.fLP_driversIO = new System.Windows.Forms.FlowLayoutPanel();
-            this.dBtn_Apply = new System.Windows.Forms.Button();
-            this.dBtn_Cancel = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.dGV_drivers = new System.Windows.Forms.DataGridView();
             this.fLP_OrdersTools = new System.Windows.Forms.FlowLayoutPanel();
-            this.oBtn_Add = new System.Windows.Forms.Button();
-            this.oBtnRemove = new System.Windows.Forms.Button();
-            this.oBtn_Refresh = new System.Windows.Forms.Button();
-            this.oBtn_Find = new System.Windows.Forms.Button();
-            this.oBtn_Sorting = new System.Windows.Forms.Button();
-            this.oBtn_Edit = new System.Windows.Forms.Button();
-            this.oBtn_Insert = new System.Windows.Forms.Button();
             this.fLP_driversTools = new System.Windows.Forms.FlowLayoutPanel();
-            this.dBtn_Add = new System.Windows.Forms.Button();
-            this.dBtn_Remove = new System.Windows.Forms.Button();
-            this.dBtn_Refresh = new System.Windows.Forms.Button();
-            this.dBtn_Find = new System.Windows.Forms.Button();
-            this.dBtn_Sorting = new System.Windows.Forms.Button();
-            this.dBtn_Edit = new System.Windows.Forms.Button();
-            this.dBtn_Insert = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.textBox_activeDrivers = new System.Windows.Forms.TextBox();
             this.textBox4 = new System.Windows.Forms.TextBox();
@@ -69,8 +51,6 @@ namespace TaxiMaxim.WF
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.dGV_Orders = new System.Windows.Forms.DataGridView();
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
-            this.button11 = new System.Windows.Forms.Button();
-            this.button12 = new System.Windows.Forms.Button();
             this.AutoPark = new System.Windows.Forms.TabPage();
             this.tableTest = new System.Windows.Forms.TableLayoutPanel();
             this.HouseBooking = new System.Windows.Forms.TabPage();
@@ -78,13 +58,33 @@ namespace TaxiMaxim.WF
             this.button21 = new System.Windows.Forms.Button();
             this.dataGridView3 = new System.Windows.Forms.DataGridView();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.toolStripSplitButton1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.dataBaseCheck_SLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripComboBox1 = new System.Windows.Forms.ToolStripDropDownButton();
             this.чтотоToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.выходToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.buttonOrderTaxi = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSplitButton1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.oBtn_Apply = new System.Windows.Forms.Button();
+            this.oBtn_Cancel = new System.Windows.Forms.Button();
+            this.dBtn_Apply = new System.Windows.Forms.Button();
+            this.dBtn_Cancel = new System.Windows.Forms.Button();
+            this.oBtn_Add = new System.Windows.Forms.Button();
+            this.oBtnRemove = new System.Windows.Forms.Button();
+            this.oBtn_Refresh = new System.Windows.Forms.Button();
+            this.oBtn_Find = new System.Windows.Forms.Button();
+            this.oBtn_Sorting = new System.Windows.Forms.Button();
+            this.oBtn_Edit = new System.Windows.Forms.Button();
+            this.oBtn_Insert = new System.Windows.Forms.Button();
+            this.dBtn_Add = new System.Windows.Forms.Button();
+            this.dBtn_Remove = new System.Windows.Forms.Button();
+            this.dBtn_Refresh = new System.Windows.Forms.Button();
+            this.dBtn_Find = new System.Windows.Forms.Button();
+            this.dBtn_Sorting = new System.Windows.Forms.Button();
+            this.dBtn_Edit = new System.Windows.Forms.Button();
+            this.dBtn_Insert = new System.Windows.Forms.Button();
+            this.button11 = new System.Windows.Forms.Button();
+            this.button12 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.Manager.SuspendLayout();
             this.fLP_OrdersIO.SuspendLayout();
@@ -183,28 +183,6 @@ namespace TaxiMaxim.WF
             this.fLP_OrdersIO.TabIndex = 10;
             this.fLP_OrdersIO.Visible = false;
             // 
-            // oBtn_Apply
-            // 
-            this.oBtn_Apply.BackgroundImage = global::TaxiMaxim.WF.Properties.Resources.approved;
-            this.oBtn_Apply.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.oBtn_Apply.Location = new System.Drawing.Point(3, 3);
-            this.oBtn_Apply.Name = "oBtn_Apply";
-            this.oBtn_Apply.Size = new System.Drawing.Size(38, 40);
-            this.oBtn_Apply.TabIndex = 6;
-            this.oBtn_Apply.UseVisualStyleBackColor = true;
-            this.oBtn_Apply.Click += new System.EventHandler(this.button19_Click);
-            // 
-            // oBtn_Cancel
-            // 
-            this.oBtn_Cancel.BackgroundImage = global::TaxiMaxim.WF.Properties.Resources.close;
-            this.oBtn_Cancel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.oBtn_Cancel.Location = new System.Drawing.Point(47, 3);
-            this.oBtn_Cancel.Name = "oBtn_Cancel";
-            this.oBtn_Cancel.Size = new System.Drawing.Size(38, 40);
-            this.oBtn_Cancel.TabIndex = 6;
-            this.oBtn_Cancel.UseVisualStyleBackColor = true;
-            this.oBtn_Cancel.Click += new System.EventHandler(this.button20_Click);
-            // 
             // fLP_driversIO
             // 
             this.fLP_driversIO.Controls.Add(this.dBtn_Apply);
@@ -214,28 +192,6 @@ namespace TaxiMaxim.WF
             this.fLP_driversIO.Size = new System.Drawing.Size(131, 46);
             this.fLP_driversIO.TabIndex = 10;
             this.fLP_driversIO.Visible = false;
-            // 
-            // dBtn_Apply
-            // 
-            this.dBtn_Apply.BackgroundImage = global::TaxiMaxim.WF.Properties.Resources.approved;
-            this.dBtn_Apply.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.dBtn_Apply.Location = new System.Drawing.Point(3, 3);
-            this.dBtn_Apply.Name = "dBtn_Apply";
-            this.dBtn_Apply.Size = new System.Drawing.Size(38, 40);
-            this.dBtn_Apply.TabIndex = 6;
-            this.dBtn_Apply.UseVisualStyleBackColor = true;
-            this.dBtn_Apply.Click += new System.EventHandler(this.button19_Click);
-            // 
-            // dBtn_Cancel
-            // 
-            this.dBtn_Cancel.BackgroundImage = global::TaxiMaxim.WF.Properties.Resources.close;
-            this.dBtn_Cancel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.dBtn_Cancel.Location = new System.Drawing.Point(47, 3);
-            this.dBtn_Cancel.Name = "dBtn_Cancel";
-            this.dBtn_Cancel.Size = new System.Drawing.Size(38, 40);
-            this.dBtn_Cancel.TabIndex = 6;
-            this.dBtn_Cancel.UseVisualStyleBackColor = true;
-            this.dBtn_Cancel.Click += new System.EventHandler(this.button20_Click);
             // 
             // label2
             // 
@@ -285,79 +241,6 @@ namespace TaxiMaxim.WF
             this.fLP_OrdersTools.Size = new System.Drawing.Size(347, 46);
             this.fLP_OrdersTools.TabIndex = 2;
             // 
-            // oBtn_Add
-            // 
-            this.oBtn_Add.BackgroundImage = global::TaxiMaxim.WF.Properties.Resources.free_icon_plus_1828819;
-            this.oBtn_Add.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.oBtn_Add.Location = new System.Drawing.Point(3, 3);
-            this.oBtn_Add.Name = "oBtn_Add";
-            this.oBtn_Add.Size = new System.Drawing.Size(38, 40);
-            this.oBtn_Add.TabIndex = 0;
-            this.oBtn_Add.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.oBtn_Add.UseVisualStyleBackColor = true;
-            this.oBtn_Add.Click += new System.EventHandler(this.button3_Click);
-            // 
-            // oBtnRemove
-            // 
-            this.oBtnRemove.BackgroundImage = global::TaxiMaxim.WF.Properties.Resources.free_icon_minus_1828779;
-            this.oBtnRemove.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.oBtnRemove.Location = new System.Drawing.Point(47, 3);
-            this.oBtnRemove.Name = "oBtnRemove";
-            this.oBtnRemove.Size = new System.Drawing.Size(38, 40);
-            this.oBtnRemove.TabIndex = 1;
-            this.oBtnRemove.UseVisualStyleBackColor = true;
-            // 
-            // oBtn_Refresh
-            // 
-            this.oBtn_Refresh.BackgroundImage = global::TaxiMaxim.WF.Properties.Resources.free_icon_reload_1828841;
-            this.oBtn_Refresh.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.oBtn_Refresh.Location = new System.Drawing.Point(91, 3);
-            this.oBtn_Refresh.Name = "oBtn_Refresh";
-            this.oBtn_Refresh.Size = new System.Drawing.Size(38, 40);
-            this.oBtn_Refresh.TabIndex = 2;
-            this.oBtn_Refresh.UseVisualStyleBackColor = true;
-            // 
-            // oBtn_Find
-            // 
-            this.oBtn_Find.BackgroundImage = global::TaxiMaxim.WF.Properties.Resources.free_icon_search_1828855;
-            this.oBtn_Find.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.oBtn_Find.Location = new System.Drawing.Point(135, 3);
-            this.oBtn_Find.Name = "oBtn_Find";
-            this.oBtn_Find.Size = new System.Drawing.Size(38, 40);
-            this.oBtn_Find.TabIndex = 3;
-            this.oBtn_Find.UseVisualStyleBackColor = true;
-            // 
-            // oBtn_Sorting
-            // 
-            this.oBtn_Sorting.BackgroundImage = global::TaxiMaxim.WF.Properties.Resources.free_icon_filter_1828699;
-            this.oBtn_Sorting.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.oBtn_Sorting.Location = new System.Drawing.Point(179, 3);
-            this.oBtn_Sorting.Name = "oBtn_Sorting";
-            this.oBtn_Sorting.Size = new System.Drawing.Size(38, 40);
-            this.oBtn_Sorting.TabIndex = 4;
-            this.oBtn_Sorting.UseVisualStyleBackColor = true;
-            // 
-            // oBtn_Edit
-            // 
-            this.oBtn_Edit.BackgroundImage = global::TaxiMaxim.WF.Properties.Resources.pencil;
-            this.oBtn_Edit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.oBtn_Edit.Location = new System.Drawing.Point(223, 3);
-            this.oBtn_Edit.Name = "oBtn_Edit";
-            this.oBtn_Edit.Size = new System.Drawing.Size(38, 40);
-            this.oBtn_Edit.TabIndex = 5;
-            this.oBtn_Edit.UseVisualStyleBackColor = true;
-            this.oBtn_Edit.Click += new System.EventHandler(this.btn_editmode);
-            // 
-            // oBtn_Insert
-            // 
-            this.oBtn_Insert.BackgroundImage = global::TaxiMaxim.WF.Properties.Resources.free_icon_clipboard_1828661;
-            this.oBtn_Insert.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.oBtn_Insert.Location = new System.Drawing.Point(267, 3);
-            this.oBtn_Insert.Name = "oBtn_Insert";
-            this.oBtn_Insert.Size = new System.Drawing.Size(38, 40);
-            this.oBtn_Insert.TabIndex = 6;
-            this.oBtn_Insert.UseVisualStyleBackColor = true;
-            // 
             // fLP_driversTools
             // 
             this.fLP_driversTools.Controls.Add(this.dBtn_Add);
@@ -371,79 +254,6 @@ namespace TaxiMaxim.WF
             this.fLP_driversTools.Name = "fLP_driversTools";
             this.fLP_driversTools.Size = new System.Drawing.Size(347, 46);
             this.fLP_driversTools.TabIndex = 2;
-            // 
-            // dBtn_Add
-            // 
-            this.dBtn_Add.BackgroundImage = global::TaxiMaxim.WF.Properties.Resources.free_icon_plus_1828819;
-            this.dBtn_Add.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.dBtn_Add.Location = new System.Drawing.Point(3, 3);
-            this.dBtn_Add.Name = "dBtn_Add";
-            this.dBtn_Add.Size = new System.Drawing.Size(38, 40);
-            this.dBtn_Add.TabIndex = 0;
-            this.dBtn_Add.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.dBtn_Add.UseVisualStyleBackColor = true;
-            this.dBtn_Add.Click += new System.EventHandler(this.button3_Click);
-            // 
-            // dBtn_Remove
-            // 
-            this.dBtn_Remove.BackgroundImage = global::TaxiMaxim.WF.Properties.Resources.free_icon_minus_1828779;
-            this.dBtn_Remove.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.dBtn_Remove.Location = new System.Drawing.Point(47, 3);
-            this.dBtn_Remove.Name = "dBtn_Remove";
-            this.dBtn_Remove.Size = new System.Drawing.Size(38, 40);
-            this.dBtn_Remove.TabIndex = 1;
-            this.dBtn_Remove.UseVisualStyleBackColor = true;
-            // 
-            // dBtn_Refresh
-            // 
-            this.dBtn_Refresh.BackgroundImage = global::TaxiMaxim.WF.Properties.Resources.free_icon_reload_1828841;
-            this.dBtn_Refresh.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.dBtn_Refresh.Location = new System.Drawing.Point(91, 3);
-            this.dBtn_Refresh.Name = "dBtn_Refresh";
-            this.dBtn_Refresh.Size = new System.Drawing.Size(38, 40);
-            this.dBtn_Refresh.TabIndex = 2;
-            this.dBtn_Refresh.UseVisualStyleBackColor = true;
-            // 
-            // dBtn_Find
-            // 
-            this.dBtn_Find.BackgroundImage = global::TaxiMaxim.WF.Properties.Resources.free_icon_search_1828855;
-            this.dBtn_Find.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.dBtn_Find.Location = new System.Drawing.Point(135, 3);
-            this.dBtn_Find.Name = "dBtn_Find";
-            this.dBtn_Find.Size = new System.Drawing.Size(38, 40);
-            this.dBtn_Find.TabIndex = 3;
-            this.dBtn_Find.UseVisualStyleBackColor = true;
-            // 
-            // dBtn_Sorting
-            // 
-            this.dBtn_Sorting.BackgroundImage = global::TaxiMaxim.WF.Properties.Resources.free_icon_filter_1828699;
-            this.dBtn_Sorting.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.dBtn_Sorting.Location = new System.Drawing.Point(179, 3);
-            this.dBtn_Sorting.Name = "dBtn_Sorting";
-            this.dBtn_Sorting.Size = new System.Drawing.Size(38, 40);
-            this.dBtn_Sorting.TabIndex = 4;
-            this.dBtn_Sorting.UseVisualStyleBackColor = true;
-            // 
-            // dBtn_Edit
-            // 
-            this.dBtn_Edit.BackgroundImage = global::TaxiMaxim.WF.Properties.Resources.pencil;
-            this.dBtn_Edit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.dBtn_Edit.Location = new System.Drawing.Point(223, 3);
-            this.dBtn_Edit.Name = "dBtn_Edit";
-            this.dBtn_Edit.Size = new System.Drawing.Size(38, 40);
-            this.dBtn_Edit.TabIndex = 5;
-            this.dBtn_Edit.UseVisualStyleBackColor = true;
-            this.dBtn_Edit.Click += new System.EventHandler(this.btn_editmode);
-            // 
-            // dBtn_Insert
-            // 
-            this.dBtn_Insert.BackgroundImage = global::TaxiMaxim.WF.Properties.Resources.free_icon_clipboard_1828661;
-            this.dBtn_Insert.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.dBtn_Insert.Location = new System.Drawing.Point(267, 3);
-            this.dBtn_Insert.Name = "dBtn_Insert";
-            this.dBtn_Insert.Size = new System.Drawing.Size(38, 40);
-            this.dBtn_Insert.TabIndex = 6;
-            this.dBtn_Insert.UseVisualStyleBackColor = true;
             // 
             // panel1
             // 
@@ -529,26 +339,6 @@ namespace TaxiMaxim.WF
             this.flowLayoutPanel2.Size = new System.Drawing.Size(30, 76);
             this.flowLayoutPanel2.TabIndex = 8;
             // 
-            // button11
-            // 
-            this.button11.BackgroundImage = global::TaxiMaxim.WF.Properties.Resources.free_icon_info_1828752;
-            this.button11.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button11.Location = new System.Drawing.Point(3, 3);
-            this.button11.Name = "button11";
-            this.button11.Size = new System.Drawing.Size(25, 29);
-            this.button11.TabIndex = 0;
-            this.button11.UseVisualStyleBackColor = true;
-            // 
-            // button12
-            // 
-            this.button12.BackgroundImage = global::TaxiMaxim.WF.Properties.Resources.free_icon_info_1828752;
-            this.button12.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button12.Location = new System.Drawing.Point(3, 38);
-            this.button12.Name = "button12";
-            this.button12.Size = new System.Drawing.Size(25, 30);
-            this.button12.TabIndex = 1;
-            this.button12.UseVisualStyleBackColor = true;
-            // 
             // AutoPark
             // 
             this.AutoPark.Controls.Add(this.tableTest);
@@ -627,16 +417,6 @@ namespace TaxiMaxim.WF
             this.statusStrip1.TabIndex = 7;
             this.statusStrip1.Text = "statusStrip1";
             // 
-            // toolStripSplitButton1
-            // 
-            this.toolStripSplitButton1.BackColor = System.Drawing.SystemColors.Menu;
-            this.toolStripSplitButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripSplitButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripSplitButton1.Image")));
-            this.toolStripSplitButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripSplitButton1.Name = "toolStripSplitButton1";
-            this.toolStripSplitButton1.Size = new System.Drawing.Size(78, 17);
-            this.toolStripSplitButton1.Text = "База данных:";
-            // 
             // dataBaseCheck_SLabel
             // 
             this.dataBaseCheck_SLabel.BackColor = System.Drawing.SystemColors.Control;
@@ -689,6 +469,227 @@ namespace TaxiMaxim.WF
             this.buttonOrderTaxi.Size = new System.Drawing.Size(91, 22);
             this.buttonOrderTaxi.Text = "Заказать такси";
             this.buttonOrderTaxi.Click += new System.EventHandler(this.buttonOrderTaxi_Click);
+            // 
+            // toolStripSplitButton1
+            // 
+            this.toolStripSplitButton1.BackColor = System.Drawing.SystemColors.Menu;
+            this.toolStripSplitButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripSplitButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripSplitButton1.Image")));
+            this.toolStripSplitButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripSplitButton1.Name = "toolStripSplitButton1";
+            this.toolStripSplitButton1.Size = new System.Drawing.Size(78, 15);
+            this.toolStripSplitButton1.Text = "База данных:";
+            // 
+            // oBtn_Apply
+            // 
+            this.oBtn_Apply.BackgroundImage = global::TaxiMaxim.WF.Properties.Resources.approved;
+            this.oBtn_Apply.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.oBtn_Apply.Location = new System.Drawing.Point(3, 3);
+            this.oBtn_Apply.Name = "oBtn_Apply";
+            this.oBtn_Apply.Size = new System.Drawing.Size(38, 40);
+            this.oBtn_Apply.TabIndex = 6;
+            this.oBtn_Apply.UseVisualStyleBackColor = true;
+            this.oBtn_Apply.Click += new System.EventHandler(this.oBtn_Apply_Click);
+            // 
+            // oBtn_Cancel
+            // 
+            this.oBtn_Cancel.BackgroundImage = global::TaxiMaxim.WF.Properties.Resources.close;
+            this.oBtn_Cancel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.oBtn_Cancel.Location = new System.Drawing.Point(47, 3);
+            this.oBtn_Cancel.Name = "oBtn_Cancel";
+            this.oBtn_Cancel.Size = new System.Drawing.Size(38, 40);
+            this.oBtn_Cancel.TabIndex = 6;
+            this.oBtn_Cancel.UseVisualStyleBackColor = true;
+            this.oBtn_Cancel.Click += new System.EventHandler(this.oBtn_Cancel_Click);
+            // 
+            // dBtn_Apply
+            // 
+            this.dBtn_Apply.BackgroundImage = global::TaxiMaxim.WF.Properties.Resources.approved;
+            this.dBtn_Apply.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.dBtn_Apply.Location = new System.Drawing.Point(3, 3);
+            this.dBtn_Apply.Name = "dBtn_Apply";
+            this.dBtn_Apply.Size = new System.Drawing.Size(38, 40);
+            this.dBtn_Apply.TabIndex = 6;
+            this.dBtn_Apply.UseVisualStyleBackColor = true;
+            this.dBtn_Apply.Click += new System.EventHandler(this.button19_Click);
+            // 
+            // dBtn_Cancel
+            // 
+            this.dBtn_Cancel.BackgroundImage = global::TaxiMaxim.WF.Properties.Resources.close;
+            this.dBtn_Cancel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.dBtn_Cancel.Location = new System.Drawing.Point(47, 3);
+            this.dBtn_Cancel.Name = "dBtn_Cancel";
+            this.dBtn_Cancel.Size = new System.Drawing.Size(38, 40);
+            this.dBtn_Cancel.TabIndex = 6;
+            this.dBtn_Cancel.UseVisualStyleBackColor = true;
+            this.dBtn_Cancel.Click += new System.EventHandler(this.button20_Click);
+            // 
+            // oBtn_Add
+            // 
+            this.oBtn_Add.BackgroundImage = global::TaxiMaxim.WF.Properties.Resources.free_icon_plus_1828819;
+            this.oBtn_Add.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.oBtn_Add.Location = new System.Drawing.Point(3, 3);
+            this.oBtn_Add.Name = "oBtn_Add";
+            this.oBtn_Add.Size = new System.Drawing.Size(38, 40);
+            this.oBtn_Add.TabIndex = 0;
+            this.oBtn_Add.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.oBtn_Add.UseVisualStyleBackColor = true;
+            this.oBtn_Add.Click += new System.EventHandler(this.oBtn_Click);
+            // 
+            // oBtnRemove
+            // 
+            this.oBtnRemove.BackgroundImage = global::TaxiMaxim.WF.Properties.Resources.free_icon_minus_1828779;
+            this.oBtnRemove.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.oBtnRemove.Location = new System.Drawing.Point(47, 3);
+            this.oBtnRemove.Name = "oBtnRemove";
+            this.oBtnRemove.Size = new System.Drawing.Size(38, 40);
+            this.oBtnRemove.TabIndex = 1;
+            this.oBtnRemove.UseVisualStyleBackColor = true;
+            // 
+            // oBtn_Refresh
+            // 
+            this.oBtn_Refresh.BackgroundImage = global::TaxiMaxim.WF.Properties.Resources.free_icon_reload_1828841;
+            this.oBtn_Refresh.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.oBtn_Refresh.Location = new System.Drawing.Point(91, 3);
+            this.oBtn_Refresh.Name = "oBtn_Refresh";
+            this.oBtn_Refresh.Size = new System.Drawing.Size(38, 40);
+            this.oBtn_Refresh.TabIndex = 2;
+            this.oBtn_Refresh.UseVisualStyleBackColor = true;
+            this.oBtn_Refresh.Click += new System.EventHandler(this.oBtn_Refresh_Click);
+            // 
+            // oBtn_Find
+            // 
+            this.oBtn_Find.BackgroundImage = global::TaxiMaxim.WF.Properties.Resources.free_icon_search_1828855;
+            this.oBtn_Find.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.oBtn_Find.Location = new System.Drawing.Point(135, 3);
+            this.oBtn_Find.Name = "oBtn_Find";
+            this.oBtn_Find.Size = new System.Drawing.Size(38, 40);
+            this.oBtn_Find.TabIndex = 3;
+            this.oBtn_Find.UseVisualStyleBackColor = true;
+            // 
+            // oBtn_Sorting
+            // 
+            this.oBtn_Sorting.BackgroundImage = global::TaxiMaxim.WF.Properties.Resources.free_icon_filter_1828699;
+            this.oBtn_Sorting.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.oBtn_Sorting.Location = new System.Drawing.Point(179, 3);
+            this.oBtn_Sorting.Name = "oBtn_Sorting";
+            this.oBtn_Sorting.Size = new System.Drawing.Size(38, 40);
+            this.oBtn_Sorting.TabIndex = 4;
+            this.oBtn_Sorting.UseVisualStyleBackColor = true;
+            // 
+            // oBtn_Edit
+            // 
+            this.oBtn_Edit.BackgroundImage = global::TaxiMaxim.WF.Properties.Resources.pencil;
+            this.oBtn_Edit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.oBtn_Edit.Location = new System.Drawing.Point(223, 3);
+            this.oBtn_Edit.Name = "oBtn_Edit";
+            this.oBtn_Edit.Size = new System.Drawing.Size(38, 40);
+            this.oBtn_Edit.TabIndex = 5;
+            this.oBtn_Edit.UseVisualStyleBackColor = true;
+            // 
+            // oBtn_Insert
+            // 
+            this.oBtn_Insert.BackgroundImage = global::TaxiMaxim.WF.Properties.Resources.free_icon_clipboard_1828661;
+            this.oBtn_Insert.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.oBtn_Insert.Location = new System.Drawing.Point(267, 3);
+            this.oBtn_Insert.Name = "oBtn_Insert";
+            this.oBtn_Insert.Size = new System.Drawing.Size(38, 40);
+            this.oBtn_Insert.TabIndex = 6;
+            this.oBtn_Insert.UseVisualStyleBackColor = true;
+            // 
+            // dBtn_Add
+            // 
+            this.dBtn_Add.BackgroundImage = global::TaxiMaxim.WF.Properties.Resources.free_icon_plus_1828819;
+            this.dBtn_Add.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.dBtn_Add.Location = new System.Drawing.Point(3, 3);
+            this.dBtn_Add.Name = "dBtn_Add";
+            this.dBtn_Add.Size = new System.Drawing.Size(38, 40);
+            this.dBtn_Add.TabIndex = 0;
+            this.dBtn_Add.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.dBtn_Add.UseVisualStyleBackColor = true;
+            this.dBtn_Add.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // dBtn_Remove
+            // 
+            this.dBtn_Remove.BackgroundImage = global::TaxiMaxim.WF.Properties.Resources.free_icon_minus_1828779;
+            this.dBtn_Remove.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.dBtn_Remove.Location = new System.Drawing.Point(47, 3);
+            this.dBtn_Remove.Name = "dBtn_Remove";
+            this.dBtn_Remove.Size = new System.Drawing.Size(38, 40);
+            this.dBtn_Remove.TabIndex = 1;
+            this.dBtn_Remove.UseVisualStyleBackColor = true;
+            // 
+            // dBtn_Refresh
+            // 
+            this.dBtn_Refresh.BackgroundImage = global::TaxiMaxim.WF.Properties.Resources.free_icon_reload_1828841;
+            this.dBtn_Refresh.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.dBtn_Refresh.Location = new System.Drawing.Point(91, 3);
+            this.dBtn_Refresh.Name = "dBtn_Refresh";
+            this.dBtn_Refresh.Size = new System.Drawing.Size(38, 40);
+            this.dBtn_Refresh.TabIndex = 2;
+            this.dBtn_Refresh.UseVisualStyleBackColor = true;
+            this.dBtn_Refresh.Click += new System.EventHandler(this.dBtn_Refresh_Click);
+            // 
+            // dBtn_Find
+            // 
+            this.dBtn_Find.BackgroundImage = global::TaxiMaxim.WF.Properties.Resources.free_icon_search_1828855;
+            this.dBtn_Find.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.dBtn_Find.Location = new System.Drawing.Point(135, 3);
+            this.dBtn_Find.Name = "dBtn_Find";
+            this.dBtn_Find.Size = new System.Drawing.Size(38, 40);
+            this.dBtn_Find.TabIndex = 3;
+            this.dBtn_Find.UseVisualStyleBackColor = true;
+            // 
+            // dBtn_Sorting
+            // 
+            this.dBtn_Sorting.BackgroundImage = global::TaxiMaxim.WF.Properties.Resources.free_icon_filter_1828699;
+            this.dBtn_Sorting.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.dBtn_Sorting.Location = new System.Drawing.Point(179, 3);
+            this.dBtn_Sorting.Name = "dBtn_Sorting";
+            this.dBtn_Sorting.Size = new System.Drawing.Size(38, 40);
+            this.dBtn_Sorting.TabIndex = 4;
+            this.dBtn_Sorting.UseVisualStyleBackColor = true;
+            // 
+            // dBtn_Edit
+            // 
+            this.dBtn_Edit.BackgroundImage = global::TaxiMaxim.WF.Properties.Resources.pencil;
+            this.dBtn_Edit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.dBtn_Edit.Location = new System.Drawing.Point(223, 3);
+            this.dBtn_Edit.Name = "dBtn_Edit";
+            this.dBtn_Edit.Size = new System.Drawing.Size(38, 40);
+            this.dBtn_Edit.TabIndex = 5;
+            this.dBtn_Edit.UseVisualStyleBackColor = true;
+            this.dBtn_Edit.Click += new System.EventHandler(this.btn_editmode);
+            // 
+            // dBtn_Insert
+            // 
+            this.dBtn_Insert.BackgroundImage = global::TaxiMaxim.WF.Properties.Resources.free_icon_clipboard_1828661;
+            this.dBtn_Insert.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.dBtn_Insert.Location = new System.Drawing.Point(267, 3);
+            this.dBtn_Insert.Name = "dBtn_Insert";
+            this.dBtn_Insert.Size = new System.Drawing.Size(38, 40);
+            this.dBtn_Insert.TabIndex = 6;
+            this.dBtn_Insert.UseVisualStyleBackColor = true;
+            // 
+            // button11
+            // 
+            this.button11.BackgroundImage = global::TaxiMaxim.WF.Properties.Resources.free_icon_info_1828752;
+            this.button11.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button11.Location = new System.Drawing.Point(3, 3);
+            this.button11.Name = "button11";
+            this.button11.Size = new System.Drawing.Size(25, 29);
+            this.button11.TabIndex = 0;
+            this.button11.UseVisualStyleBackColor = true;
+            // 
+            // button12
+            // 
+            this.button12.BackgroundImage = global::TaxiMaxim.WF.Properties.Resources.free_icon_info_1828752;
+            this.button12.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button12.Location = new System.Drawing.Point(3, 38);
+            this.button12.Name = "button12";
+            this.button12.Size = new System.Drawing.Size(25, 30);
+            this.button12.TabIndex = 1;
+            this.button12.UseVisualStyleBackColor = true;
             // 
             // MainMenu
             // 
