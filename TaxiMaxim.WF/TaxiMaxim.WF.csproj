@@ -61,6 +61,12 @@
     <Compile Include="InputForms\AddOrder.Designer.cs">
       <DependentUpon>AddOrder.cs</DependentUpon>
     </Compile>
+    <Compile Include="InputForms\DeleteOne.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InputForms\DeleteOne.Designer.cs">
+      <DependentUpon>DeleteOne.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainMenu.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -80,6 +86,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="InputForms\AddOrder.resx">
       <DependentUpon>AddOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InputForms\DeleteOne.resx">
+      <DependentUpon>DeleteOne.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainMenu.resx">
       <DependentUpon>MainMenu.cs</DependentUpon>

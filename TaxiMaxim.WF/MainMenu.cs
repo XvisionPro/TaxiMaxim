@@ -414,5 +414,31 @@ namespace TaxiMaxim.WF
                 Cancel -= DiscardChanges;
             }
         }
+
+        private async void dBtn_Remove_Click(object sender, EventArgs e)
+        {
+            bool create = false;
+
+            foreach (Form form in Application.OpenForms)
+            {
+                if (form.Name.ToString() == "DeleteOne")
+                {
+                    //this.Hide();
+                    form.Visible = true;
+                    create = true;
+                    break;
+                }
+            }
+            if (create == false)
+            {
+                DeleteOne createC = new DeleteOne(Drivers , db);
+                //this.Hide();
+                createC.Show();
+
+                await GetTaskFromEvent(createC, "FormClosed");
+                loadGridDrivers();
+
+            }
+        }
     }
 }
