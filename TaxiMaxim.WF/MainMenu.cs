@@ -17,7 +17,7 @@ namespace TaxiMaxim.WF
 {
     public partial class MainMenu : Form
     {
-        DataBase db = new DataBase("DESKTOP-VPOMAI1\\SQL44", "TaxiMaximalnaya");
+        DataBase db = new DataBase("DUBOV_ILYA\\SQLEXPRESS", "TaxiMaximalnaya");
         
         SqlCommandBuilder scb;
         DataTable dt;
@@ -65,15 +65,8 @@ namespace TaxiMaxim.WF
                 dt = new DataTable();
                 sda.Fill(dt);
                 dGV_Orders.DataSource = dt;
-                SqlDataAdapter adapter = new SqlDataAdapter();
-                SqlCommand command = new SqlCommand("SELECT ORDER_PHONE_NUMBER, ORDER_ADRESS_START, ORDER_ADRESS_FINISH, ORDER_PRICE, ORDER_DATE, ORDER_PHONE_TYPE, DRIVER_ID FROM ORDERS", db.getConnection());
-                DataTable table = new DataTable();
-                adapter.SelectCommand = command;
-                adapter.Fill(table);
-
-                dGV_Orders.DataSource = table;
-
             }
+            Orders = FillOrders();
         }
         private void loadGridDrivers()
         {
@@ -431,12 +424,114 @@ namespace TaxiMaxim.WF
             }
             if (create == false)
             {
-                DeleteOne createC = new DeleteOne(Drivers , db);
+                Driver[] arrDriver = Drivers.ToArray();
+                int[] data = new int[Drivers.Count];
+                for (int i = 0; i < Drivers.Count; i++)
+                {
+                    data[i] = arrDriver[i].Id;
+                }
+                DeleteOne createC = new DeleteOne(data, db, "DRIVER", "DRIVER_ID");
                 //this.Hide();
                 createC.Show();
 
                 await GetTaskFromEvent(createC, "FormClosed");
                 loadGridDrivers();
+                createC.Dispose();
+
+            }
+        }
+
+        private async void oBtnRemove_Click(object sender, EventArgs e)
+        {
+            bool create = false;
+
+            foreach (Form form in Application.OpenForms)
+            {
+                if (form.Name.ToString() == "DeleteOne")
+                {
+                    //this.Hide();
+                    form.Visible = true;
+                    create = true;
+                    break;
+                }
+            }
+            if (create == false)
+            {
+                Order[] arrOrders = Orders.ToArray();
+                int[] data = new int[Orders.Count];
+                for (int i = 0; i < Orders.Count; i++)
+                {
+                    data[i] = arrOrders[i].Id;
+                }
+                DeleteOne createC = new DeleteOne(data, db, "ORDERS", "ORDER_ID");
+                //this.Hide();
+                createC.Show();
+
+                await GetTaskFromEvent(createC, "FormClosed");
+                loadGridOrders();
+                createC.Dispose();
+
+            }
+        }
+
+        private async void dBtn_Find_Click(object sender, EventArgs e)
+        {
+            bool create = false;
+
+            foreach (Form form in Application.OpenForms)
+            {
+                if (form.Name.ToString() == "Find")
+                {
+                    //this.Hide();
+                    form.Visible = true;
+                    create = true;
+                    break;
+                }
+            }
+            if (create == false)
+            {
+                string[] data = new string[dGV_drivers.Columns.Count];
+                for (int i = 0; i < data.Length; i++)
+                {
+                    data[i] = dGV_drivers.Columns[i].HeaderText;
+                }
+                Find createC = new Find(data, db, "DRIVER");
+                //this.Hide();
+                createC.Show();
+
+                await GetTaskFromEvent(createC, "FormClosed");
+                createC.Dispose();
+
+            }
+        }
+
+        private async void oBtn_Find_Click(object sender, EventArgs e)
+        {
+            bool create = false;
+
+            foreach (Form form in Application.OpenForms)
+            {
+                if (form.Name.ToString() == "Find")
+                {
+                    //this.Hide();
+                    form.Visible = true;
+                    create = true;
+                    break;
+                }
+            }
+            if (create == false)
+            {
+                string[] data = new string[dGV_Orders.Columns.Count];
+                for (int i = 0; i < data.Length; i++)
+                {
+                    data[i] = dGV_Orders.Columns[i].HeaderText;
+                }
+                Find createC = new Find(data, db, "ORDERS");
+                //this.Hide();
+                createC.Show();
+
+                await GetTaskFromEvent(createC, "FormClosed");
+                createC.Dispose();
 
             }
         }

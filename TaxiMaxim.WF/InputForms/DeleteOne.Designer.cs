@@ -72,8 +72,9 @@ namespace TaxiMaxim.WF.InputForms
             this.btnApply.Name = "btnApply";
             this.btnApply.Size = new System.Drawing.Size(75, 23);
             this.btnApply.TabIndex = 8;
-            this.btnApply.Text = "Создать";
+            this.btnApply.Text = "Удалить";
             this.btnApply.UseVisualStyleBackColor = true;
+            this.btnApply.Click += new System.EventHandler(this.btnApply_Click);
             // 
             // btnDiscard
             // 
@@ -83,6 +84,7 @@ namespace TaxiMaxim.WF.InputForms
             this.btnDiscard.TabIndex = 9;
             this.btnDiscard.Text = "Отмена";
             this.btnDiscard.UseVisualStyleBackColor = true;
+            this.btnDiscard.Click += new System.EventHandler(this.btnDiscard_Click);
             // 
             // DeleteOne
             // 
@@ -94,6 +96,7 @@ namespace TaxiMaxim.WF.InputForms
             this.Controls.Add(this.labelName);
             this.Name = "DeleteOne";
             this.Text = "DeleteOne";
+            this.Load += new System.EventHandler(this.DeleteOne_Load);
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
