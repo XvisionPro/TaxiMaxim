@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.SqlTypes;
 
 namespace TaxiMaxim.BL.Model
 {
@@ -12,7 +13,7 @@ namespace TaxiMaxim.BL.Model
         public string PhoneNumber { get; set; }
         public string AdressStart { get; set; }
         public string AdressFinish { get; set; }
-        public int Price { get; set; }
+        public decimal Price { get; set; }
         public DateTime Date { get; set; }
         public bool? PhoneType { get; set; }
         public int? Driver_Id { get; set; }

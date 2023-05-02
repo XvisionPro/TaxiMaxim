@@ -21,6 +21,8 @@ namespace TaxiMaxim.WF
         
         SqlCommandBuilder scb;
         DataTable dt;
+        HashSet<int> ChangedRowsDrivers = new HashSet<int>();
+        HashSet<int> ChangedRowsOrders = new HashSet<int>();
 
         // Tests
         List<Order> Orders = new List<Order>();
@@ -201,7 +203,8 @@ namespace TaxiMaxim.WF
         }
 
         private void btn_editmode(object sender, EventArgs e)
-        {
+        { 
+
             DataTable dt = this.dGV_drivers.DataSource as DataTable;
             fLP_driversIO.Visible = true;
             dGV_drivers.ClearSelection(); //снять выделение всех выбранных ячеек
@@ -219,10 +222,21 @@ namespace TaxiMaxim.WF
                 dGV_drivers.ClearSelection();
                 dGV_drivers.ReadOnly = true;
                 fLP_driversIO.Visible = false;
-                SqlCommand command = new SqlCommand("UPDATE * FROM DRIVER", db.getConnection());
-                //TODO: Дописать запрос с передачей изменённых данных
-                // Надо сделать так, чтобы не обновлять всю таблицу, а только те строки, которые мы затронули.
+                foreach (var item in ChangedRowsDrivers)
+                {
+                    Driver temp = new Driver();
+                    temp.Id = (int)dGV_drivers[0, item].Value;
+                    temp.Name = (string)dGV_drivers[1, item].Value;
+                    temp.Pass = (string)dGV_drivers[2, item].Value;
+                    temp.Phone = (string)dGV_drivers[3, item].Value;
+                    SqlCommand command = new SqlCommand($"UPDATE DRIVER SET DRIVER_NAME=\'{temp.Name}\', DRIVER_PASSPORT=\'{temp.Pass}\', DRIVER_TELEPHONE=\'{temp.Phone}\' WHERE DRIVER_ID={temp.Id}", db.getConnection());
+                    db.openConnection();
+                    int count = command.ExecuteNonQuery();
+                    db.closeConnection();
+                }
+                ChangedRowsDrivers.Clear();
                 EnableInFlow(fLP_driversTools);
+                loadGridDrivers();
                 Apply -= ApplyChanges;
             }
             
@@ -239,8 +253,7 @@ namespace TaxiMaxim.WF
             }
 
         }
-
-        
+  
         private void DisableInFlow(FlowLayoutPanel fLP)//Делает неактивными все кнопки в Flow
         {
             foreach (var tb in fLP.Controls.OfType<Button>())
@@ -268,21 +281,7 @@ namespace TaxiMaxim.WF
 
         private void dGV_drivers_CurrentCellChanged(object sender, DataGridViewCellEventArgs e)
         {
-            switch (dGV_drivers.CurrentCell?.ColumnIndex)
-            {
-                case 0:
-                    break;
-                case 1:
-                    if (string.IsNullOrWhiteSpace(dGV_drivers.CurrentCell.Value.ToString()))
-                    {
-                        //TODO: Сделать восстановление на прежнее место, пока не будет норм
-                        MessageBox.Show("Поле не может быть пустым или содержать только символы пробела");
-                        dGV_drivers.BeginEdit(true);
-                    }
-                    break;
-                default:
-                    break;
-            }
+            ChangedRowsDrivers.Add(e.RowIndex);
         }
 
         private void SendSQLRequest(SqlCommand command)
@@ -388,9 +387,32 @@ namespace TaxiMaxim.WF
                 dGV_Orders.ClearSelection();
                 dGV_Orders.ReadOnly = true;
                 fLP_OrdersIO.Visible = false;
-                SqlCommand command = new SqlCommand("UPDATE * FROM DRIVER", db.getConnection());
-                //TODO: Дописать запрос с передачей изменённых данных
-                // Надо сделать так, чтобы не обновлять всю таблицу, а только те строки, которые мы затронули.
+                foreach (var item in ChangedRowsOrders)
+                {
+                    Order temp = new Order();
+                    temp.Id = (int)dGV_Orders[0, item].Value;
+                    temp.PhoneNumber = (string)dGV_Orders[1, item].Value;
+                    temp.AdressStart = (string)dGV_Orders[2, item].Value;
+                    temp.AdressFinish = (string)dGV_Orders[3, item].Value;
+                    temp.Price = Math.Round((decimal)dGV_Orders[4, item].Value,0);
+                    temp.Date = (DateTime)dGV_Orders[5, item].Value;
+                    temp.PhoneType = (bool?)dGV_Orders[6, item].Value;
+                    temp.Driver_Id = (int)dGV_Orders[7, item].Value;
+                    SqlCommand command = new SqlCommand($"UPDATE ORDERS SET " +
+                        $"ORDER_PHONE_NUMBER=\'{temp.PhoneNumber}\'," +
+                        $"ORDER_ADRESS_START=\'{temp.AdressStart}\'," +
+                        $"ORDER_ADRESS_FINISH=\'{temp.AdressFinish}\'," +
+                        $"ORDER_PRICE=\'{temp.Price}\'," +
+                        $"ORDER_DATE=\'{temp.Date}\'," +
+                        $"ORDER_PHONE_TYPE=\'{temp.PhoneType.GetHashCode()}\'," +
+                        $"DRIVER_ID=\'{temp.Driver_Id}\'" +
+                        $"WHERE ORDER_ID={temp.Id}", db.getConnection());
+                    db.openConnection();
+                    int count = command.ExecuteNonQuery();
+                    db.closeConnection();
+                }
+                ChangedRowsOrders.Clear();
+                loadGridOrders();
                 EnableInFlow(fLP_OrdersTools);
                 Apply -= ApplyChanges;
             }
@@ -534,6 +556,11 @@ namespace TaxiMaxim.WF
                 createC.Dispose();
 
             }
+        }
+
+        private void dGV_Orders_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            ChangedRowsOrders.Add(e.RowIndex);
         }
     }
 }

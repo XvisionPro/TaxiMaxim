@@ -329,6 +329,7 @@ namespace TaxiMaxim.WF
             this.dGV_Orders.Size = new System.Drawing.Size(702, 486);
             this.dGV_Orders.TabIndex = 0;
             this.dGV_Orders.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            this.dGV_Orders.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dGV_Orders_CellEndEdit);
             // 
             // flowLayoutPanel2
             // 
