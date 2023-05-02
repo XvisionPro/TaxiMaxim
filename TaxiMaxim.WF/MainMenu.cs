@@ -24,9 +24,12 @@ namespace TaxiMaxim.WF
         HashSet<int> ChangedRowsDrivers = new HashSet<int>();
         HashSet<int> ChangedRowsOrders = new HashSet<int>();
 
-        // Tests
+        // Lists
         List<Order> Orders = new List<Order>();
         List<Driver> Drivers = new List<Driver>();
+        List<Vehicle> Vehicles = new List<Vehicle>();
+        List<Schedule> Schedules = new List<Schedule>();
+
         // Events
         event ButtonHandler Apply;
         event ButtonHandler Cancel;
@@ -53,6 +56,8 @@ namespace TaxiMaxim.WF
             }
             Orders = FillOrders();
             loadGridDrivers();
+            loadGridVehicles();
+            loadGridSchedules();
             dGV_Orders.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             //dataGridView2.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
@@ -83,6 +88,32 @@ namespace TaxiMaxim.WF
             db.closeConnection();
             dGV_drivers.DataSource = table;
             
+        }
+        private void loadGridVehicles()
+        {
+            db.openConnection();
+            SqlDataAdapter adapter = new SqlDataAdapter();
+            SqlCommand command = new SqlCommand("SELECT * FROM VEHICLE", db.getConnection());
+            SqlDataReader oReader = command.ExecuteReader();
+            Vehicles = FillVehicles(oReader);
+            DataTable table = new DataTable();
+            adapter.SelectCommand = command;
+            adapter.Fill(table);
+            db.closeConnection();
+            dGV_Vehicle.DataSource = table;
+        }
+        private void loadGridSchedules()
+        {
+            db.openConnection();
+            SqlDataAdapter adapter = new SqlDataAdapter();
+            SqlCommand command = new SqlCommand("SELECT * FROM SCHEDULE", db.getConnection());
+            SqlDataReader oReader = command.ExecuteReader();
+            Schedules = FillSchedules(oReader);
+            DataTable table = new DataTable();
+            adapter.SelectCommand = command;
+            adapter.Fill(table);
+            db.closeConnection();
+            dGV_Schedule.DataSource = table;
         }
         private List<Order> FillOrders()
         {
@@ -128,6 +159,43 @@ namespace TaxiMaxim.WF
                 }
             }
             return matchingDriver;
+        }
+        private List<Vehicle> FillVehicles(SqlDataReader oCmd)
+        {
+            List<Vehicle> matchingVehicle = new List<Vehicle>();
+            using (SqlDataReader oReader = oCmd)
+            {
+                while (oReader.Read())
+                {
+                    Vehicle mVehicle = new Vehicle();
+                    mVehicle.Id = Convert.ToInt32(oReader["VEHICLE_ID"]);
+                    mVehicle.Number = oReader["VEHICLE_NUMBER"].ToString();
+                    mVehicle.Brand = oReader["VEHICLE_BRAND"].ToString();
+                    mVehicle.Model = oReader["VEHICLE_MODEL"].ToString();
+                    mVehicle.Color = oReader["VEHICLE_COLOR"].ToString();
+                    mVehicle.DriverID = Convert.ToInt32(oReader["DRIVER_ID"]);
+                    matchingVehicle.Add(mVehicle);
+                }
+            }
+            return matchingVehicle;
+        }
+        private List<Schedule> FillSchedules(SqlDataReader oCmd)
+        {
+            List<Schedule> matchingSchedule = new List<Schedule>();
+            using (SqlDataReader oReader = oCmd)
+            {
+                while (oReader.Read())
+                {
+                    Schedule mSchedule = new Schedule();
+                    mSchedule.Id = Convert.ToInt32(oReader["SCHEDULE_ID"]);
+                    mSchedule.TimeStart = Convert.ToDateTime(oReader["SCHEDULE_DATE_START"]);
+                    mSchedule.TimeEnd = Convert.ToDateTime(oReader["SCHEDULE_DATE_FINISH"]);
+                    mSchedule.isWorking = (bool)oReader["SCHEDULE_GO_WORK"];
+                    mSchedule.Driver_Id = Convert.ToInt32(oReader["DRIVER_ID"]);
+                    matchingSchedule.Add(mSchedule);
+                }
+            }
+            return matchingSchedule;
         }
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -561,6 +629,83 @@ namespace TaxiMaxim.WF
         private void dGV_Orders_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             ChangedRowsOrders.Add(e.RowIndex);
+        }
+
+        private async void dBtn_Sorting_Click(object sender, EventArgs e)
+        {
+            bool create = false;
+
+            foreach (Form form in Application.OpenForms)
+            {
+                if (form.Name.ToString() == "Sorting")
+                {
+                    //this.Hide();
+                    form.Visible = true;
+                    create = true;
+                    break;
+                }
+            }
+            if (create == false)
+            {
+                string[] data = new string[dGV_drivers.Columns.Count];
+                for (int i = 0; i < data.Length; i++)
+                {
+                    data[i] = dGV_drivers.Columns[i].HeaderText;
+                }
+                Sorting createC = new Sorting(db, data,"DRIVER");
+                //this.Hide();
+                createC.Show();
+
+                await GetTaskFromEvent(createC, "FormClosed");
+                createC.Dispose();
+
+            }
+        }
+
+        private async void oBtn_Sorting_Click(object sender, EventArgs e)
+        {
+            bool create = false;
+
+            foreach (Form form in Application.OpenForms)
+            {
+                if (form.Name.ToString() == "Sorting")
+                {
+                    //this.Hide();
+                    form.Visible = true;
+                    create = true;
+                    break;
+                }
+            }
+            if (create == false)
+            {
+                string[] data = new string[dGV_Orders.Columns.Count];
+                for (int i = 0; i < data.Length; i++)
+                {
+                    data[i] = dGV_Orders.Columns[i].HeaderText;
+                }
+                Sorting createC = new Sorting(db, data, "ORDERS");
+                //this.Hide();
+                createC.Show();
+
+                await GetTaskFromEvent(createC, "FormClosed");
+                createC.Dispose();
+
+            }
+        }
+
+        private void flowLayoutPanel3_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void flowLayoutPanel5_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

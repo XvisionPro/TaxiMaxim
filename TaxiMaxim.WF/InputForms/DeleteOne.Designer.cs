@@ -94,6 +94,7 @@ namespace TaxiMaxim.WF.InputForms
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.labelName);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "DeleteOne";
             this.Text = "DeleteOne";
             this.Load += new System.EventHandler(this.DeleteOne_Load);

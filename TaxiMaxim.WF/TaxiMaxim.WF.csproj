@@ -73,6 +73,12 @@
     <Compile Include="InputForms\Find.Designer.cs">
       <DependentUpon>Find.cs</DependentUpon>
     </Compile>
+    <Compile Include="InputForms\Sorting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InputForms\Sorting.Designer.cs">
+      <DependentUpon>Sorting.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainMenu.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -104,6 +110,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="InputForms\Find.resx">
       <DependentUpon>Find.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InputForms\Sorting.resx">
+      <DependentUpon>Sorting.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainMenu.resx">
       <DependentUpon>MainMenu.cs</DependentUpon>

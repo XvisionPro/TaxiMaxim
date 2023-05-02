@@ -44,15 +44,9 @@ namespace TaxiMaxim.WF
             this.dGV_drivers = new System.Windows.Forms.DataGridView();
             this.fLP_OrdersTools = new System.Windows.Forms.FlowLayoutPanel();
             this.fLP_driversTools = new System.Windows.Forms.FlowLayoutPanel();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.textBox_activeDrivers = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox_activeOrders = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.dGV_Orders = new System.Windows.Forms.DataGridView();
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.AutoPark = new System.Windows.Forms.TabPage();
-            this.tableTest = new System.Windows.Forms.TableLayoutPanel();
             this.HouseBooking = new System.Windows.Forms.TabPage();
             this.panel2 = new System.Windows.Forms.Panel();
             this.button21 = new System.Windows.Forms.Button();
@@ -75,16 +69,39 @@ namespace TaxiMaxim.WF
             this.oBtn_Find = new System.Windows.Forms.Button();
             this.oBtn_Sorting = new System.Windows.Forms.Button();
             this.oBtn_Edit = new System.Windows.Forms.Button();
-            this.oBtn_Insert = new System.Windows.Forms.Button();
             this.dBtn_Add = new System.Windows.Forms.Button();
             this.dBtn_Remove = new System.Windows.Forms.Button();
             this.dBtn_Refresh = new System.Windows.Forms.Button();
             this.dBtn_Find = new System.Windows.Forms.Button();
             this.dBtn_Sorting = new System.Windows.Forms.Button();
             this.dBtn_Edit = new System.Windows.Forms.Button();
-            this.dBtn_Insert = new System.Windows.Forms.Button();
             this.button11 = new System.Windows.Forms.Button();
             this.button12 = new System.Windows.Forms.Button();
+            this.fLP_ScheduleIO = new System.Windows.Forms.FlowLayoutPanel();
+            this.sBtn_Apply = new System.Windows.Forms.Button();
+            this.sBtn_Cancel = new System.Windows.Forms.Button();
+            this.fLP_VehicleIO = new System.Windows.Forms.FlowLayoutPanel();
+            this.vBtn_Apply = new System.Windows.Forms.Button();
+            this.vBtn_Cancel = new System.Windows.Forms.Button();
+            this.labelSchedule = new System.Windows.Forms.Label();
+            this.labelVehicle = new System.Windows.Forms.Label();
+            this.fLP_ScheduleTools = new System.Windows.Forms.FlowLayoutPanel();
+            this.sBtn_Add = new System.Windows.Forms.Button();
+            this.sBtn_Remove = new System.Windows.Forms.Button();
+            this.sBtn_Refresh = new System.Windows.Forms.Button();
+            this.sBtn_Find = new System.Windows.Forms.Button();
+            this.sBtn_Sort = new System.Windows.Forms.Button();
+            this.sBtn_Edit = new System.Windows.Forms.Button();
+            this.fLP_VehicleTools = new System.Windows.Forms.FlowLayoutPanel();
+            this.vBtn_Add = new System.Windows.Forms.Button();
+            this.vBtn_Delete = new System.Windows.Forms.Button();
+            this.vBtn_Refresh = new System.Windows.Forms.Button();
+            this.vBtn_Find = new System.Windows.Forms.Button();
+            this.vBtn_Sort = new System.Windows.Forms.Button();
+            this.vBtn_Edit = new System.Windows.Forms.Button();
+            this.dGV_Vehicle = new System.Windows.Forms.DataGridView();
+            this.dGV_Schedule = new System.Windows.Forms.DataGridView();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.tabControl1.SuspendLayout();
             this.Manager.SuspendLayout();
             this.fLP_OrdersIO.SuspendLayout();
@@ -92,7 +109,6 @@ namespace TaxiMaxim.WF
             ((System.ComponentModel.ISupportInitialize)(this.dGV_drivers)).BeginInit();
             this.fLP_OrdersTools.SuspendLayout();
             this.fLP_driversTools.SuspendLayout();
-            this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dGV_Orders)).BeginInit();
             this.flowLayoutPanel2.SuspendLayout();
             this.AutoPark.SuspendLayout();
@@ -101,6 +117,13 @@ namespace TaxiMaxim.WF
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
             this.statusStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
+            this.fLP_ScheduleIO.SuspendLayout();
+            this.fLP_VehicleIO.SuspendLayout();
+            this.fLP_ScheduleTools.SuspendLayout();
+            this.fLP_VehicleTools.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dGV_Vehicle)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dGV_Schedule)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // button1
@@ -161,7 +184,6 @@ namespace TaxiMaxim.WF
             this.Manager.Controls.Add(this.dGV_drivers);
             this.Manager.Controls.Add(this.fLP_OrdersTools);
             this.Manager.Controls.Add(this.fLP_driversTools);
-            this.Manager.Controls.Add(this.panel1);
             this.Manager.Controls.Add(this.dGV_Orders);
             this.Manager.Controls.Add(this.flowLayoutPanel2);
             this.Manager.Location = new System.Drawing.Point(4, 25);
@@ -177,7 +199,7 @@ namespace TaxiMaxim.WF
             // 
             this.fLP_OrdersIO.Controls.Add(this.oBtn_Apply);
             this.fLP_OrdersIO.Controls.Add(this.oBtn_Cancel);
-            this.fLP_OrdersIO.Location = new System.Drawing.Point(890, 115);
+            this.fLP_OrdersIO.Location = new System.Drawing.Point(890, 39);
             this.fLP_OrdersIO.Name = "fLP_OrdersIO";
             this.fLP_OrdersIO.Size = new System.Drawing.Size(131, 46);
             this.fLP_OrdersIO.TabIndex = 10;
@@ -187,7 +209,7 @@ namespace TaxiMaxim.WF
             // 
             this.fLP_driversIO.Controls.Add(this.dBtn_Apply);
             this.fLP_driversIO.Controls.Add(this.dBtn_Cancel);
-            this.fLP_driversIO.Location = new System.Drawing.Point(365, 118);
+            this.fLP_driversIO.Location = new System.Drawing.Point(364, 39);
             this.fLP_driversIO.Name = "fLP_driversIO";
             this.fLP_driversIO.Size = new System.Drawing.Size(131, 46);
             this.fLP_driversIO.TabIndex = 10;
@@ -197,7 +219,7 @@ namespace TaxiMaxim.WF
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Arial", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label2.Location = new System.Drawing.Point(550, 90);
+            this.label2.Location = new System.Drawing.Point(550, 14);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(85, 25);
             this.label2.TabIndex = 9;
@@ -207,7 +229,7 @@ namespace TaxiMaxim.WF
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Arial", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(29, 90);
+            this.label1.Location = new System.Drawing.Point(28, 11);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(111, 25);
             this.label1.TabIndex = 9;
@@ -219,11 +241,11 @@ namespace TaxiMaxim.WF
             | System.Windows.Forms.AnchorStyles.Left)));
             this.dGV_drivers.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
             this.dGV_drivers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dGV_drivers.Location = new System.Drawing.Point(11, 170);
+            this.dGV_drivers.Location = new System.Drawing.Point(11, 102);
             this.dGV_drivers.Name = "dGV_drivers";
             this.dGV_drivers.ReadOnly = true;
             this.dGV_drivers.RowHeadersWidth = 51;
-            this.dGV_drivers.Size = new System.Drawing.Size(485, 486);
+            this.dGV_drivers.Size = new System.Drawing.Size(485, 554);
             this.dGV_drivers.TabIndex = 3;
             this.dGV_drivers.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dGV_drivers_CurrentCellChanged);
             // 
@@ -235,8 +257,7 @@ namespace TaxiMaxim.WF
             this.fLP_OrdersTools.Controls.Add(this.oBtn_Find);
             this.fLP_OrdersTools.Controls.Add(this.oBtn_Sorting);
             this.fLP_OrdersTools.Controls.Add(this.oBtn_Edit);
-            this.fLP_OrdersTools.Controls.Add(this.oBtn_Insert);
-            this.fLP_OrdersTools.Location = new System.Drawing.Point(536, 115);
+            this.fLP_OrdersTools.Location = new System.Drawing.Point(536, 39);
             this.fLP_OrdersTools.Name = "fLP_OrdersTools";
             this.fLP_OrdersTools.Size = new System.Drawing.Size(347, 46);
             this.fLP_OrdersTools.TabIndex = 2;
@@ -249,69 +270,10 @@ namespace TaxiMaxim.WF
             this.fLP_driversTools.Controls.Add(this.dBtn_Find);
             this.fLP_driversTools.Controls.Add(this.dBtn_Sorting);
             this.fLP_driversTools.Controls.Add(this.dBtn_Edit);
-            this.fLP_driversTools.Controls.Add(this.dBtn_Insert);
-            this.fLP_driversTools.Location = new System.Drawing.Point(11, 118);
+            this.fLP_driversTools.Location = new System.Drawing.Point(10, 39);
             this.fLP_driversTools.Name = "fLP_driversTools";
             this.fLP_driversTools.Size = new System.Drawing.Size(347, 46);
             this.fLP_driversTools.TabIndex = 2;
-            // 
-            // panel1
-            // 
-            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel1.Controls.Add(this.textBox_activeDrivers);
-            this.panel1.Controls.Add(this.textBox4);
-            this.panel1.Controls.Add(this.textBox_activeOrders);
-            this.panel1.Controls.Add(this.textBox1);
-            this.panel1.Location = new System.Drawing.Point(536, 6);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(702, 74);
-            this.panel1.TabIndex = 1;
-            // 
-            // textBox_activeDrivers
-            // 
-            this.textBox_activeDrivers.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox_activeDrivers.Font = new System.Drawing.Font("Arial", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBox_activeDrivers.Location = new System.Drawing.Point(532, 38);
-            this.textBox_activeDrivers.Name = "textBox_activeDrivers";
-            this.textBox_activeDrivers.Size = new System.Drawing.Size(170, 32);
-            this.textBox_activeDrivers.TabIndex = 3;
-            this.textBox_activeDrivers.Text = "NULL";
-            this.textBox_activeDrivers.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
-            // 
-            // textBox4
-            // 
-            this.textBox4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox4.Font = new System.Drawing.Font("Arial", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBox4.Location = new System.Drawing.Point(0, 38);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.ReadOnly = true;
-            this.textBox4.Size = new System.Drawing.Size(533, 32);
-            this.textBox4.TabIndex = 2;
-            this.textBox4.Text = "Количество активных водителей";
-            this.textBox4.TextChanged += new System.EventHandler(this.textBox4_TextChanged);
-            // 
-            // textBox_activeOrders
-            // 
-            this.textBox_activeOrders.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox_activeOrders.Font = new System.Drawing.Font("Arial", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBox_activeOrders.Location = new System.Drawing.Point(532, 0);
-            this.textBox_activeOrders.Name = "textBox_activeOrders";
-            this.textBox_activeOrders.Size = new System.Drawing.Size(170, 32);
-            this.textBox_activeOrders.TabIndex = 1;
-            this.textBox_activeOrders.Text = "NULL";
-            // 
-            // textBox1
-            // 
-            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox1.Enabled = false;
-            this.textBox1.Font = new System.Drawing.Font("Arial", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBox1.Location = new System.Drawing.Point(0, 0);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(533, 32);
-            this.textBox1.TabIndex = 0;
-            this.textBox1.Text = "Количество активных заказов:";
             // 
             // dGV_Orders
             // 
@@ -321,12 +283,12 @@ namespace TaxiMaxim.WF
             this.dGV_Orders.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
             this.dGV_Orders.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
             this.dGV_Orders.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dGV_Orders.Location = new System.Drawing.Point(536, 170);
+            this.dGV_Orders.Location = new System.Drawing.Point(536, 102);
             this.dGV_Orders.Name = "dGV_Orders";
             this.dGV_Orders.ReadOnly = true;
             this.dGV_Orders.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.dGV_Orders.RowHeadersWidth = 51;
-            this.dGV_Orders.Size = new System.Drawing.Size(702, 486);
+            this.dGV_Orders.Size = new System.Drawing.Size(702, 554);
             this.dGV_Orders.TabIndex = 0;
             this.dGV_Orders.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             this.dGV_Orders.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dGV_Orders_CellEndEdit);
@@ -342,7 +304,8 @@ namespace TaxiMaxim.WF
             // 
             // AutoPark
             // 
-            this.AutoPark.Controls.Add(this.tableTest);
+            this.AutoPark.Controls.Add(this.dGV_Schedule);
+            this.AutoPark.Controls.Add(this.panel1);
             this.AutoPark.Location = new System.Drawing.Point(4, 25);
             this.AutoPark.Name = "AutoPark";
             this.AutoPark.Padding = new System.Windows.Forms.Padding(3);
@@ -350,19 +313,6 @@ namespace TaxiMaxim.WF
             this.AutoPark.TabIndex = 1;
             this.AutoPark.Text = "Автопарк";
             this.AutoPark.UseVisualStyleBackColor = true;
-            // 
-            // tableTest
-            // 
-            this.tableTest.ColumnCount = 2;
-            this.tableTest.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableTest.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableTest.Location = new System.Drawing.Point(185, 102);
-            this.tableTest.Name = "tableTest";
-            this.tableTest.RowCount = 2;
-            this.tableTest.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableTest.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableTest.Size = new System.Drawing.Size(388, 234);
-            this.tableTest.TabIndex = 0;
             // 
             // HouseBooking
             // 
@@ -579,6 +529,7 @@ namespace TaxiMaxim.WF
             this.oBtn_Sorting.Size = new System.Drawing.Size(38, 40);
             this.oBtn_Sorting.TabIndex = 4;
             this.oBtn_Sorting.UseVisualStyleBackColor = true;
+            this.oBtn_Sorting.Click += new System.EventHandler(this.oBtn_Sorting_Click);
             // 
             // oBtn_Edit
             // 
@@ -590,16 +541,6 @@ namespace TaxiMaxim.WF
             this.oBtn_Edit.TabIndex = 5;
             this.oBtn_Edit.UseVisualStyleBackColor = true;
             this.oBtn_Edit.Click += new System.EventHandler(this.oBtn_Edit_Click);
-            // 
-            // oBtn_Insert
-            // 
-            this.oBtn_Insert.BackgroundImage = global::TaxiMaxim.WF.Properties.Resources.free_icon_clipboard_1828661;
-            this.oBtn_Insert.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.oBtn_Insert.Location = new System.Drawing.Point(267, 3);
-            this.oBtn_Insert.Name = "oBtn_Insert";
-            this.oBtn_Insert.Size = new System.Drawing.Size(38, 40);
-            this.oBtn_Insert.TabIndex = 6;
-            this.oBtn_Insert.UseVisualStyleBackColor = true;
             // 
             // dBtn_Add
             // 
@@ -655,6 +596,7 @@ namespace TaxiMaxim.WF
             this.dBtn_Sorting.Size = new System.Drawing.Size(38, 40);
             this.dBtn_Sorting.TabIndex = 4;
             this.dBtn_Sorting.UseVisualStyleBackColor = true;
+            this.dBtn_Sorting.Click += new System.EventHandler(this.dBtn_Sorting_Click);
             // 
             // dBtn_Edit
             // 
@@ -666,16 +608,6 @@ namespace TaxiMaxim.WF
             this.dBtn_Edit.TabIndex = 5;
             this.dBtn_Edit.UseVisualStyleBackColor = true;
             this.dBtn_Edit.Click += new System.EventHandler(this.btn_editmode);
-            // 
-            // dBtn_Insert
-            // 
-            this.dBtn_Insert.BackgroundImage = global::TaxiMaxim.WF.Properties.Resources.free_icon_clipboard_1828661;
-            this.dBtn_Insert.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.dBtn_Insert.Location = new System.Drawing.Point(267, 3);
-            this.dBtn_Insert.Name = "dBtn_Insert";
-            this.dBtn_Insert.Size = new System.Drawing.Size(38, 40);
-            this.dBtn_Insert.TabIndex = 6;
-            this.dBtn_Insert.UseVisualStyleBackColor = true;
             // 
             // button11
             // 
@@ -696,6 +628,289 @@ namespace TaxiMaxim.WF
             this.button12.Size = new System.Drawing.Size(25, 30);
             this.button12.TabIndex = 1;
             this.button12.UseVisualStyleBackColor = true;
+            // 
+            // fLP_ScheduleIO
+            // 
+            this.fLP_ScheduleIO.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.fLP_ScheduleIO.Controls.Add(this.sBtn_Apply);
+            this.fLP_ScheduleIO.Controls.Add(this.sBtn_Cancel);
+            this.fLP_ScheduleIO.Location = new System.Drawing.Point(988, 33);
+            this.fLP_ScheduleIO.Name = "fLP_ScheduleIO";
+            this.fLP_ScheduleIO.Size = new System.Drawing.Size(131, 46);
+            this.fLP_ScheduleIO.TabIndex = 15;
+            this.fLP_ScheduleIO.Visible = false;
+            // 
+            // sBtn_Apply
+            // 
+            this.sBtn_Apply.BackgroundImage = global::TaxiMaxim.WF.Properties.Resources.approved;
+            this.sBtn_Apply.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.sBtn_Apply.Location = new System.Drawing.Point(3, 3);
+            this.sBtn_Apply.Name = "sBtn_Apply";
+            this.sBtn_Apply.Size = new System.Drawing.Size(38, 40);
+            this.sBtn_Apply.TabIndex = 6;
+            this.sBtn_Apply.UseVisualStyleBackColor = true;
+            // 
+            // sBtn_Cancel
+            // 
+            this.sBtn_Cancel.BackgroundImage = global::TaxiMaxim.WF.Properties.Resources.close;
+            this.sBtn_Cancel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.sBtn_Cancel.Location = new System.Drawing.Point(47, 3);
+            this.sBtn_Cancel.Name = "sBtn_Cancel";
+            this.sBtn_Cancel.Size = new System.Drawing.Size(38, 40);
+            this.sBtn_Cancel.TabIndex = 6;
+            this.sBtn_Cancel.UseVisualStyleBackColor = true;
+            // 
+            // fLP_VehicleIO
+            // 
+            this.fLP_VehicleIO.Controls.Add(this.vBtn_Apply);
+            this.fLP_VehicleIO.Controls.Add(this.vBtn_Cancel);
+            this.fLP_VehicleIO.Location = new System.Drawing.Point(370, 36);
+            this.fLP_VehicleIO.Name = "fLP_VehicleIO";
+            this.fLP_VehicleIO.Size = new System.Drawing.Size(131, 46);
+            this.fLP_VehicleIO.TabIndex = 16;
+            this.fLP_VehicleIO.Visible = false;
+            this.fLP_VehicleIO.Paint += new System.Windows.Forms.PaintEventHandler(this.flowLayoutPanel3_Paint);
+            // 
+            // vBtn_Apply
+            // 
+            this.vBtn_Apply.BackgroundImage = global::TaxiMaxim.WF.Properties.Resources.approved;
+            this.vBtn_Apply.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.vBtn_Apply.Location = new System.Drawing.Point(3, 3);
+            this.vBtn_Apply.Name = "vBtn_Apply";
+            this.vBtn_Apply.Size = new System.Drawing.Size(38, 40);
+            this.vBtn_Apply.TabIndex = 6;
+            this.vBtn_Apply.UseVisualStyleBackColor = true;
+            // 
+            // vBtn_Cancel
+            // 
+            this.vBtn_Cancel.BackgroundImage = global::TaxiMaxim.WF.Properties.Resources.close;
+            this.vBtn_Cancel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.vBtn_Cancel.Location = new System.Drawing.Point(47, 3);
+            this.vBtn_Cancel.Name = "vBtn_Cancel";
+            this.vBtn_Cancel.Size = new System.Drawing.Size(38, 40);
+            this.vBtn_Cancel.TabIndex = 6;
+            this.vBtn_Cancel.UseVisualStyleBackColor = true;
+            // 
+            // labelSchedule
+            // 
+            this.labelSchedule.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelSchedule.AutoSize = true;
+            this.labelSchedule.Font = new System.Drawing.Font("Arial", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelSchedule.Location = new System.Drawing.Point(648, 8);
+            this.labelSchedule.Name = "labelSchedule";
+            this.labelSchedule.Size = new System.Drawing.Size(131, 25);
+            this.labelSchedule.TabIndex = 13;
+            this.labelSchedule.Text = "Расписание";
+            // 
+            // labelVehicle
+            // 
+            this.labelVehicle.AutoSize = true;
+            this.labelVehicle.Font = new System.Drawing.Font("Arial", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelVehicle.Location = new System.Drawing.Point(34, 8);
+            this.labelVehicle.Name = "labelVehicle";
+            this.labelVehicle.Size = new System.Drawing.Size(100, 25);
+            this.labelVehicle.TabIndex = 14;
+            this.labelVehicle.Text = "Машины";
+            this.labelVehicle.Click += new System.EventHandler(this.label4_Click);
+            // 
+            // fLP_ScheduleTools
+            // 
+            this.fLP_ScheduleTools.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.fLP_ScheduleTools.Controls.Add(this.sBtn_Add);
+            this.fLP_ScheduleTools.Controls.Add(this.sBtn_Remove);
+            this.fLP_ScheduleTools.Controls.Add(this.sBtn_Refresh);
+            this.fLP_ScheduleTools.Controls.Add(this.sBtn_Find);
+            this.fLP_ScheduleTools.Controls.Add(this.sBtn_Sort);
+            this.fLP_ScheduleTools.Controls.Add(this.sBtn_Edit);
+            this.fLP_ScheduleTools.Location = new System.Drawing.Point(634, 33);
+            this.fLP_ScheduleTools.Name = "fLP_ScheduleTools";
+            this.fLP_ScheduleTools.Size = new System.Drawing.Size(347, 46);
+            this.fLP_ScheduleTools.TabIndex = 11;
+            // 
+            // sBtn_Add
+            // 
+            this.sBtn_Add.BackgroundImage = global::TaxiMaxim.WF.Properties.Resources.free_icon_plus_1828819;
+            this.sBtn_Add.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.sBtn_Add.Location = new System.Drawing.Point(3, 3);
+            this.sBtn_Add.Name = "sBtn_Add";
+            this.sBtn_Add.Size = new System.Drawing.Size(38, 40);
+            this.sBtn_Add.TabIndex = 0;
+            this.sBtn_Add.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.sBtn_Add.UseVisualStyleBackColor = true;
+            // 
+            // sBtn_Remove
+            // 
+            this.sBtn_Remove.BackgroundImage = global::TaxiMaxim.WF.Properties.Resources.free_icon_minus_1828779;
+            this.sBtn_Remove.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.sBtn_Remove.Location = new System.Drawing.Point(47, 3);
+            this.sBtn_Remove.Name = "sBtn_Remove";
+            this.sBtn_Remove.Size = new System.Drawing.Size(38, 40);
+            this.sBtn_Remove.TabIndex = 1;
+            this.sBtn_Remove.UseVisualStyleBackColor = true;
+            // 
+            // sBtn_Refresh
+            // 
+            this.sBtn_Refresh.BackgroundImage = global::TaxiMaxim.WF.Properties.Resources.free_icon_reload_1828841;
+            this.sBtn_Refresh.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.sBtn_Refresh.Location = new System.Drawing.Point(91, 3);
+            this.sBtn_Refresh.Name = "sBtn_Refresh";
+            this.sBtn_Refresh.Size = new System.Drawing.Size(38, 40);
+            this.sBtn_Refresh.TabIndex = 2;
+            this.sBtn_Refresh.UseVisualStyleBackColor = true;
+            // 
+            // sBtn_Find
+            // 
+            this.sBtn_Find.BackgroundImage = global::TaxiMaxim.WF.Properties.Resources.free_icon_search_1828855;
+            this.sBtn_Find.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.sBtn_Find.Location = new System.Drawing.Point(135, 3);
+            this.sBtn_Find.Name = "sBtn_Find";
+            this.sBtn_Find.Size = new System.Drawing.Size(38, 40);
+            this.sBtn_Find.TabIndex = 3;
+            this.sBtn_Find.UseVisualStyleBackColor = true;
+            // 
+            // sBtn_Sort
+            // 
+            this.sBtn_Sort.BackgroundImage = global::TaxiMaxim.WF.Properties.Resources.free_icon_filter_1828699;
+            this.sBtn_Sort.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.sBtn_Sort.Location = new System.Drawing.Point(179, 3);
+            this.sBtn_Sort.Name = "sBtn_Sort";
+            this.sBtn_Sort.Size = new System.Drawing.Size(38, 40);
+            this.sBtn_Sort.TabIndex = 4;
+            this.sBtn_Sort.UseVisualStyleBackColor = true;
+            // 
+            // sBtn_Edit
+            // 
+            this.sBtn_Edit.BackgroundImage = global::TaxiMaxim.WF.Properties.Resources.pencil;
+            this.sBtn_Edit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.sBtn_Edit.Location = new System.Drawing.Point(223, 3);
+            this.sBtn_Edit.Name = "sBtn_Edit";
+            this.sBtn_Edit.Size = new System.Drawing.Size(38, 40);
+            this.sBtn_Edit.TabIndex = 5;
+            this.sBtn_Edit.UseVisualStyleBackColor = true;
+            // 
+            // fLP_VehicleTools
+            // 
+            this.fLP_VehicleTools.Controls.Add(this.vBtn_Add);
+            this.fLP_VehicleTools.Controls.Add(this.vBtn_Delete);
+            this.fLP_VehicleTools.Controls.Add(this.vBtn_Refresh);
+            this.fLP_VehicleTools.Controls.Add(this.vBtn_Find);
+            this.fLP_VehicleTools.Controls.Add(this.vBtn_Sort);
+            this.fLP_VehicleTools.Controls.Add(this.vBtn_Edit);
+            this.fLP_VehicleTools.Location = new System.Drawing.Point(16, 36);
+            this.fLP_VehicleTools.Name = "fLP_VehicleTools";
+            this.fLP_VehicleTools.Size = new System.Drawing.Size(347, 46);
+            this.fLP_VehicleTools.TabIndex = 12;
+            this.fLP_VehicleTools.Paint += new System.Windows.Forms.PaintEventHandler(this.flowLayoutPanel5_Paint);
+            // 
+            // vBtn_Add
+            // 
+            this.vBtn_Add.BackgroundImage = global::TaxiMaxim.WF.Properties.Resources.free_icon_plus_1828819;
+            this.vBtn_Add.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.vBtn_Add.Location = new System.Drawing.Point(3, 3);
+            this.vBtn_Add.Name = "vBtn_Add";
+            this.vBtn_Add.Size = new System.Drawing.Size(38, 40);
+            this.vBtn_Add.TabIndex = 0;
+            this.vBtn_Add.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.vBtn_Add.UseVisualStyleBackColor = true;
+            // 
+            // vBtn_Delete
+            // 
+            this.vBtn_Delete.BackgroundImage = global::TaxiMaxim.WF.Properties.Resources.free_icon_minus_1828779;
+            this.vBtn_Delete.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.vBtn_Delete.Location = new System.Drawing.Point(47, 3);
+            this.vBtn_Delete.Name = "vBtn_Delete";
+            this.vBtn_Delete.Size = new System.Drawing.Size(38, 40);
+            this.vBtn_Delete.TabIndex = 1;
+            this.vBtn_Delete.UseVisualStyleBackColor = true;
+            // 
+            // vBtn_Refresh
+            // 
+            this.vBtn_Refresh.BackgroundImage = global::TaxiMaxim.WF.Properties.Resources.free_icon_reload_1828841;
+            this.vBtn_Refresh.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.vBtn_Refresh.Location = new System.Drawing.Point(91, 3);
+            this.vBtn_Refresh.Name = "vBtn_Refresh";
+            this.vBtn_Refresh.Size = new System.Drawing.Size(38, 40);
+            this.vBtn_Refresh.TabIndex = 2;
+            this.vBtn_Refresh.UseVisualStyleBackColor = true;
+            // 
+            // vBtn_Find
+            // 
+            this.vBtn_Find.BackgroundImage = global::TaxiMaxim.WF.Properties.Resources.free_icon_search_1828855;
+            this.vBtn_Find.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.vBtn_Find.Location = new System.Drawing.Point(135, 3);
+            this.vBtn_Find.Name = "vBtn_Find";
+            this.vBtn_Find.Size = new System.Drawing.Size(38, 40);
+            this.vBtn_Find.TabIndex = 3;
+            this.vBtn_Find.UseVisualStyleBackColor = true;
+            // 
+            // vBtn_Sort
+            // 
+            this.vBtn_Sort.BackgroundImage = global::TaxiMaxim.WF.Properties.Resources.free_icon_filter_1828699;
+            this.vBtn_Sort.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.vBtn_Sort.Location = new System.Drawing.Point(179, 3);
+            this.vBtn_Sort.Name = "vBtn_Sort";
+            this.vBtn_Sort.Size = new System.Drawing.Size(38, 40);
+            this.vBtn_Sort.TabIndex = 4;
+            this.vBtn_Sort.UseVisualStyleBackColor = true;
+            // 
+            // vBtn_Edit
+            // 
+            this.vBtn_Edit.BackgroundImage = global::TaxiMaxim.WF.Properties.Resources.pencil;
+            this.vBtn_Edit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.vBtn_Edit.Location = new System.Drawing.Point(223, 3);
+            this.vBtn_Edit.Name = "vBtn_Edit";
+            this.vBtn_Edit.Size = new System.Drawing.Size(38, 40);
+            this.vBtn_Edit.TabIndex = 5;
+            this.vBtn_Edit.UseVisualStyleBackColor = true;
+            // 
+            // dGV_Vehicle
+            // 
+            this.dGV_Vehicle.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dGV_Vehicle.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
+            this.dGV_Vehicle.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dGV_Vehicle.Location = new System.Drawing.Point(19, 96);
+            this.dGV_Vehicle.Name = "dGV_Vehicle";
+            this.dGV_Vehicle.ReadOnly = true;
+            this.dGV_Vehicle.RowHeadersWidth = 51;
+            this.dGV_Vehicle.Size = new System.Drawing.Size(595, 554);
+            this.dGV_Vehicle.TabIndex = 18;
+            // 
+            // dGV_Schedule
+            // 
+            this.dGV_Schedule.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dGV_Schedule.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
+            this.dGV_Schedule.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            this.dGV_Schedule.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dGV_Schedule.Location = new System.Drawing.Point(633, 102);
+            this.dGV_Schedule.Name = "dGV_Schedule";
+            this.dGV_Schedule.ReadOnly = true;
+            this.dGV_Schedule.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.dGV_Schedule.RowHeadersWidth = 51;
+            this.dGV_Schedule.Size = new System.Drawing.Size(610, 554);
+            this.dGV_Schedule.TabIndex = 17;
+            // 
+            // panel1
+            // 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.Controls.Add(this.dGV_Vehicle);
+            this.panel1.Controls.Add(this.fLP_VehicleTools);
+            this.panel1.Controls.Add(this.fLP_ScheduleTools);
+            this.panel1.Controls.Add(this.labelVehicle);
+            this.panel1.Controls.Add(this.fLP_ScheduleIO);
+            this.panel1.Controls.Add(this.labelSchedule);
+            this.panel1.Controls.Add(this.fLP_VehicleIO);
+            this.panel1.Location = new System.Drawing.Point(0, 6);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1256, 673);
+            this.panel1.TabIndex = 19;
             // 
             // MainMenu
             // 
@@ -722,8 +937,6 @@ namespace TaxiMaxim.WF
             ((System.ComponentModel.ISupportInitialize)(this.dGV_drivers)).EndInit();
             this.fLP_OrdersTools.ResumeLayout(false);
             this.fLP_driversTools.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dGV_Orders)).EndInit();
             this.flowLayoutPanel2.ResumeLayout(false);
             this.AutoPark.ResumeLayout(false);
@@ -734,6 +947,14 @@ namespace TaxiMaxim.WF
             this.statusStrip1.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
+            this.fLP_ScheduleIO.ResumeLayout(false);
+            this.fLP_VehicleIO.ResumeLayout(false);
+            this.fLP_ScheduleTools.ResumeLayout(false);
+            this.fLP_VehicleTools.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dGV_Vehicle)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dGV_Schedule)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -756,12 +977,7 @@ namespace TaxiMaxim.WF
         private System.Windows.Forms.ToolStripMenuItem чтотоToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem выходToolStripMenuItem;
         private System.Windows.Forms.ToolStripButton buttonOrderTaxi;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.TextBox textBox_activeOrders;
-        private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.ToolStripStatusLabel dataBaseCheck_SLabel;
-        private System.Windows.Forms.TextBox textBox_activeDrivers;
-        private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.FlowLayoutPanel fLP_driversTools;
         private System.Windows.Forms.Button dBtn_Add;
         private System.Windows.Forms.Button dBtn_Remove;
@@ -769,7 +985,6 @@ namespace TaxiMaxim.WF
         private System.Windows.Forms.Button dBtn_Find;
         private System.Windows.Forms.Button dBtn_Sorting;
         private System.Windows.Forms.Button dBtn_Edit;
-        private System.Windows.Forms.Button dBtn_Insert;
         private System.Windows.Forms.DataGridView dGV_drivers;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
         private System.Windows.Forms.Button button11;
@@ -780,7 +995,6 @@ namespace TaxiMaxim.WF
         private System.Windows.Forms.Button button21;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TableLayoutPanel tableTest;
         private System.Windows.Forms.FlowLayoutPanel fLP_driversIO;
         private System.Windows.Forms.Button dBtn_Apply;
         private System.Windows.Forms.Button dBtn_Cancel;
@@ -794,7 +1008,31 @@ namespace TaxiMaxim.WF
         private System.Windows.Forms.Button oBtn_Find;
         private System.Windows.Forms.Button oBtn_Sorting;
         private System.Windows.Forms.Button oBtn_Edit;
-        private System.Windows.Forms.Button oBtn_Insert;
+        private System.Windows.Forms.DataGridView dGV_Vehicle;
+        private System.Windows.Forms.DataGridView dGV_Schedule;
+        private System.Windows.Forms.FlowLayoutPanel fLP_ScheduleIO;
+        private System.Windows.Forms.Button sBtn_Apply;
+        private System.Windows.Forms.Button sBtn_Cancel;
+        private System.Windows.Forms.FlowLayoutPanel fLP_VehicleIO;
+        private System.Windows.Forms.Button vBtn_Apply;
+        private System.Windows.Forms.Button vBtn_Cancel;
+        private System.Windows.Forms.Label labelSchedule;
+        private System.Windows.Forms.Label labelVehicle;
+        private System.Windows.Forms.FlowLayoutPanel fLP_ScheduleTools;
+        private System.Windows.Forms.Button sBtn_Add;
+        private System.Windows.Forms.Button sBtn_Remove;
+        private System.Windows.Forms.Button sBtn_Refresh;
+        private System.Windows.Forms.Button sBtn_Find;
+        private System.Windows.Forms.Button sBtn_Sort;
+        private System.Windows.Forms.Button sBtn_Edit;
+        private System.Windows.Forms.FlowLayoutPanel fLP_VehicleTools;
+        private System.Windows.Forms.Button vBtn_Add;
+        private System.Windows.Forms.Button vBtn_Delete;
+        private System.Windows.Forms.Button vBtn_Refresh;
+        private System.Windows.Forms.Button vBtn_Find;
+        private System.Windows.Forms.Button vBtn_Sort;
+        private System.Windows.Forms.Button vBtn_Edit;
+        private System.Windows.Forms.Panel panel1;
     }
 }
 

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TaxiMaxim.BL.Model
 {
-    class Schedule
+    public class Schedule
     {
         public int Id { get; set; }
         public DateTime TimeStart { get; set; }
