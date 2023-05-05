@@ -49,6 +49,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="InputForms\AddDirectory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InputForms\AddDirectory.Designer.cs">
+      <DependentUpon>AddDirectory.cs</DependentUpon>
+    </Compile>
     <Compile Include="InputForms\AddDriver.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -111,6 +117,9 @@
     <Compile Include="ShowDataGridView.Designer.cs">
       <DependentUpon>ShowDataGridView.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="InputForms\AddDirectory.resx">
+      <DependentUpon>AddDirectory.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="InputForms\AddDriver.resx">
       <DependentUpon>AddDriver.cs</DependentUpon>
     </EmbeddedResource>

@@ -8,10 +8,10 @@ namespace TaxiMaxim.BL.Model
 {
     public class Directory
     {
-        public Guid Id { get; set; }
+        public int Id { get; set; }
         public string Phone { get; set; }
         public string Adress { get; set; }
-        public int Order_Id { get; set; }
+        public int? Order_Id { get; set; }
 
     }
 }
