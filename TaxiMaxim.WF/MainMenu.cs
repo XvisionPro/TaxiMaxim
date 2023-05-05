@@ -9,7 +9,6 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using TaxiMaxim.BL.Model;
 using System.Data.SqlClient;
-using TaxiMaxim.BL.Controller;
 using TaxiMaxim.WF.InputForms;
 using System.Reflection;
 
@@ -630,10 +629,111 @@ namespace TaxiMaxim.WF
         }
 
         //Vehicles
+        private async void vBtn_Add_Click(object sender, EventArgs e)
+        {
+            bool create = false;
+
+            foreach (Form form in Application.OpenForms)
+            {
+                if (form.Name.ToString() == "AddVehicle")
+                {
+                    //this.Hide();
+                    form.Visible = true;
+                    create = true;
+                    break;
+                }
+            }
+            if (create == false)
+            {
+                AddVehicle createC = new AddVehicle(Drivers, db);
+                //this.Hide();
+                createC.Show();
+
+                await GetTaskFromEvent(createC, "FormClosed");
+                loadGridVehicles();
+
+            }
+        }
+        private async void vBtn_Delete_Click(object sender, EventArgs e)
+        {
+            bool create = false;
+
+            foreach (Form form in Application.OpenForms)
+            {
+                if (form.Name.ToString() == "DeleteOne")
+                {
+                    //this.Hide();
+                    form.Visible = true;
+                    create = true;
+                    break;
+                }
+            }
+            if (create == false)
+            {
+                Vehicle[] arr = Vehicles.ToArray();
+                int[] data = new int[Vehicles.Count];
+                for (int i = 0; i < Vehicles.Count; i++)
+                {
+                    data[i] = arr[i].Id;
+                }
+                DeleteOne createC = new DeleteOne(data, db, "VEHICLE", "VEHICLE_ID");
+                //this.Hide();
+                createC.Show();
+
+                await GetTaskFromEvent(createC, "FormClosed");
+                loadGridVehicles();
+                createC.Dispose();
+            }
+        }
         private void vBtn_Refresh_Click(object sender, EventArgs e)
         {
             loadGridVehicles();
         }
+        private void vBtn_Find_Click(object sender, EventArgs e)
+        {
 
+        }
+        private void vBtn_Sort_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void vBtn_Edit_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void vBtn_Apply_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void vBtn_Cancel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private async void sBtn_Add_Click(object sender, EventArgs e)
+        {
+            bool create = false;
+
+            foreach (Form form in Application.OpenForms)
+            {
+                if (form.Name.ToString() == "AddSchedule")
+                {
+                    //this.Hide();
+                    form.Visible = true;
+                    create = true;
+                    break;
+                }
+            }
+            if (create == false)
+            {
+                AddSchedule createC = new AddSchedule(Drivers, db);
+                //this.Hide();
+                createC.Show();
+
+                await GetTaskFromEvent(createC, "FormClosed");
+                loadGridSchedules();
+
+            }
+        }
     }
 }

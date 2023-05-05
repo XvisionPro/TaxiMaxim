@@ -284,7 +284,7 @@ namespace TaxiMaxim.WF.InputForms
             this.checkBoxDriver.Name = "checkBoxDriver";
             this.checkBoxDriver.Size = new System.Drawing.Size(57, 17);
             this.checkBoxDriver.TabIndex = 7;
-            this.checkBoxDriver.Text = "Нкито";
+            this.checkBoxDriver.Text = "Никто";
             this.checkBoxDriver.UseVisualStyleBackColor = true;
             this.checkBoxDriver.CheckedChanged += new System.EventHandler(this.checkBoxDriver_CheckedChanged);
             // 

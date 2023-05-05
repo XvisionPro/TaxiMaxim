@@ -61,6 +61,18 @@
     <Compile Include="InputForms\AddOrder.Designer.cs">
       <DependentUpon>AddOrder.cs</DependentUpon>
     </Compile>
+    <Compile Include="InputForms\AddSchedule.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InputForms\AddSchedule.Designer.cs">
+      <DependentUpon>AddSchedule.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InputForms\AddVehicle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InputForms\AddVehicle.Designer.cs">
+      <DependentUpon>AddVehicle.cs</DependentUpon>
+    </Compile>
     <Compile Include="InputForms\DeleteOne.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -104,6 +116,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="InputForms\AddOrder.resx">
       <DependentUpon>AddOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InputForms\AddSchedule.resx">
+      <DependentUpon>AddSchedule.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InputForms\AddVehicle.resx">
+      <DependentUpon>AddVehicle.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="InputForms\DeleteOne.resx">
       <DependentUpon>DeleteOne.cs</DependentUpon>
