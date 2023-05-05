@@ -66,7 +66,14 @@ namespace TaxiMaxim.WF.InputForms
             dbCurr.openConnection();
             SqlDataAdapter sda = new SqlDataAdapter($"SELECT * FROM {this.table} WHERE {comboBoxWhere.SelectedItem}=\'{textBoxFind.Text}\'", dbCurr.getConnection());
             DataTable dt = new DataTable();
-            sda.Fill(dt);
+            try
+            {
+                sda.Fill(dt);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Ошибка!");
+            }
             dbCurr.closeConnection();
 
             bool create = false;

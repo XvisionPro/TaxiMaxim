@@ -21,6 +21,8 @@ namespace TaxiMaxim.WF
         DataTable dt;
         HashSet<int> ChangedRowsDrivers = new HashSet<int>();
         HashSet<int> ChangedRowsOrders = new HashSet<int>();
+        HashSet<int> ChangedRowsVehicles = new HashSet<int>();
+        HashSet<int> ChangedRowsSchedules = new HashSet<int>();
 
         // Lists
         List<Order> Orders = new List<Order>();
@@ -244,6 +246,57 @@ namespace TaxiMaxim.WF
             einfo.AddEventHandler(o, deleg); //присоединяем обработчик события
             return tcs.Task;
         }  //Для асинхронной функции ожидания закрытия формы
+        private void btn_editmode(object sender, EventArgs e)
+        {
+
+            DataTable dt = this.dGV_drivers.DataSource as DataTable;
+            fLP_driversIO.Visible = true;
+            dGV_drivers.ClearSelection(); //снять выделение всех выбранных ячеек
+            int index = 0; // индекс последней строки
+            dGV_drivers.Rows[index].Selected = true; // выделить нужную строку
+            dGV_drivers.FirstDisplayedScrollingRowIndex = index; // фокус в нужную строку
+            dGV_drivers.AllowUserToAddRows = false;
+            dGV_drivers.ReadOnly = false;
+            dGV_drivers.Columns[0].ReadOnly = true;
+            DisableInFlow(fLP_driversTools);
+
+            Apply += ApplyChanges;
+            void ApplyChanges()
+            {
+                dGV_drivers.ClearSelection();
+                dGV_drivers.ReadOnly = true;
+                fLP_driversIO.Visible = false;
+                foreach (var item in ChangedRowsDrivers)
+                {
+                    Driver temp = new Driver();
+                    temp.Id = (int)dGV_drivers[0, item].Value;
+                    temp.Name = (string)dGV_drivers[1, item].Value;
+                    temp.Pass = (string)dGV_drivers[2, item].Value;
+                    temp.Phone = (string)dGV_drivers[3, item].Value;
+                    SqlCommand command = new SqlCommand($"UPDATE DRIVER SET DRIVER_NAME=\'{temp.Name}\', DRIVER_PASSPORT=\'{temp.Pass}\', DRIVER_TELEPHONE=\'{temp.Phone}\' WHERE DRIVER_ID={temp.Id}", db.getConnection());
+                    db.openConnection();
+                    int count = command.ExecuteNonQuery();
+                    db.closeConnection();
+                }
+                ChangedRowsDrivers.Clear();
+                EnableInFlow(fLP_driversTools);
+                loadGridDrivers();
+                Apply -= ApplyChanges;
+            }
+
+            Cancel += DiscardChanges;
+            void DiscardChanges()
+            {
+                dt.RejectChanges();
+                dGV_drivers.CancelEdit();
+                dGV_drivers.ClearSelection();
+                dGV_drivers.ReadOnly = true;
+                fLP_driversIO.Visible = false;
+                EnableInFlow(fLP_driversTools);
+                Cancel -= DiscardChanges;
+            }
+
+        }//Редактирование в таблице Drivers
 
         //Driver toolbar buttons
         private async void dBtn_Add_Click(object sender, EventArgs e)
@@ -368,57 +421,6 @@ namespace TaxiMaxim.WF
 
             }
         }
-        private void btn_editmode(object sender, EventArgs e)
-        { 
-
-            DataTable dt = this.dGV_drivers.DataSource as DataTable;
-            fLP_driversIO.Visible = true;
-            dGV_drivers.ClearSelection(); //снять выделение всех выбранных ячеек
-            int index = 0; // индекс последней строки
-            dGV_drivers.Rows[index].Selected = true; // выделить нужную строку
-            dGV_drivers.FirstDisplayedScrollingRowIndex = index; // фокус в нужную строку
-            dGV_drivers.AllowUserToAddRows = false;
-            dGV_drivers.ReadOnly = false;
-            dGV_drivers.Columns[0].ReadOnly = true;
-            DisableInFlow(fLP_driversTools);
-
-            Apply += ApplyChanges;
-            void ApplyChanges()
-            {
-                dGV_drivers.ClearSelection();
-                dGV_drivers.ReadOnly = true;
-                fLP_driversIO.Visible = false;
-                foreach (var item in ChangedRowsDrivers)
-                {
-                    Driver temp = new Driver();
-                    temp.Id = (int)dGV_drivers[0, item].Value;
-                    temp.Name = (string)dGV_drivers[1, item].Value;
-                    temp.Pass = (string)dGV_drivers[2, item].Value;
-                    temp.Phone = (string)dGV_drivers[3, item].Value;
-                    SqlCommand command = new SqlCommand($"UPDATE DRIVER SET DRIVER_NAME=\'{temp.Name}\', DRIVER_PASSPORT=\'{temp.Pass}\', DRIVER_TELEPHONE=\'{temp.Phone}\' WHERE DRIVER_ID={temp.Id}", db.getConnection());
-                    db.openConnection();
-                    int count = command.ExecuteNonQuery();
-                    db.closeConnection();
-                }
-                ChangedRowsDrivers.Clear();
-                EnableInFlow(fLP_driversTools);
-                loadGridDrivers();
-                Apply -= ApplyChanges;
-            }
-            
-            Cancel += DiscardChanges;
-            void DiscardChanges()
-            {
-                dt.RejectChanges();
-                dGV_drivers.CancelEdit();
-                dGV_drivers.ClearSelection();
-                dGV_drivers.ReadOnly = true;
-                fLP_driversIO.Visible = false;
-                EnableInFlow(fLP_driversTools);
-                Cancel -= DiscardChanges;
-            }
-
-        }//Редактирование в таблице Drivers
         private void dGV_drivers_CurrentCellChanged(object sender, DataGridViewCellEventArgs e)
         {
             ChangedRowsDrivers.Add(e.RowIndex);
@@ -628,7 +630,7 @@ namespace TaxiMaxim.WF
             ChangedRowsOrders.Add(e.RowIndex);
         }
 
-        //Vehicles
+        //Vehicles toolbar buttons
         private async void vBtn_Add_Click(object sender, EventArgs e)
         {
             bool create = false;
@@ -689,27 +691,137 @@ namespace TaxiMaxim.WF
         {
             loadGridVehicles();
         }
-        private void vBtn_Find_Click(object sender, EventArgs e)
+        private async void vBtn_Find_Click(object sender, EventArgs e)
         {
+            bool create = false;
 
+            foreach (Form form in Application.OpenForms)
+            {
+                if (form.Name.ToString() == "Find")
+                {
+                    //this.Hide();
+                    form.Visible = true;
+                    create = true;
+                    break;
+                }
+            }
+            if (create == false)
+            {
+                string[] data = new string[dGV_Vehicle.Columns.Count];
+                for (int i = 0; i < data.Length; i++)
+                {
+                    data[i] = dGV_Vehicle.Columns[i].HeaderText;
+                }
+                Find createC = new Find(data, db, "VEHICLE");
+                //this.Hide();
+                createC.Show();
+
+                await GetTaskFromEvent(createC, "FormClosed");
+                createC.Dispose();
+
+            }
         }
-        private void vBtn_Sort_Click(object sender, EventArgs e)
+        private async void vBtn_Sort_Click(object sender, EventArgs e)
         {
+            bool create = false;
 
+            foreach (Form form in Application.OpenForms)
+            {
+                if (form.Name.ToString() == "Sorting")
+                {
+                    //this.Hide();
+                    form.Visible = true;
+                    create = true;
+                    break;
+                }
+            }
+            if (create == false)
+            {
+                string[] data = new string[dGV_Vehicle.Columns.Count];
+                for (int i = 0; i < data.Length; i++)
+                {
+                    data[i] = dGV_Vehicle.Columns[i].HeaderText;
+                }
+                Sorting createC = new Sorting(db, data, "VEHICLE");
+                //this.Hide();
+                createC.Show();
+
+                await GetTaskFromEvent(createC, "FormClosed");
+                createC.Dispose();
+
+            }
         }
         private void vBtn_Edit_Click(object sender, EventArgs e)
         {
+            DataTable dt = this.dGV_Vehicle.DataSource as DataTable;
+            fLP_VehicleIO.Visible = true;
+            dGV_Vehicle.ClearSelection(); //снять выделение всех выбранных ячеек
+            int index = 0; // индекс последней строки
+            dGV_Vehicle.Rows[index].Selected = true; // выделить нужную строку
+            dGV_Vehicle.FirstDisplayedScrollingRowIndex = index; // фокус в нужную строку
+            dGV_Vehicle.AllowUserToAddRows = false;
+            dGV_Vehicle.ReadOnly = false;
+            dGV_Vehicle.Columns[0].ReadOnly = true;
+            DisableInFlow(fLP_VehicleTools);
 
+            Apply += ApplyChanges;
+            void ApplyChanges()
+            {
+                dGV_Vehicle.ClearSelection();
+                dGV_Vehicle.ReadOnly = true;
+                fLP_VehicleIO.Visible = false;
+                foreach (var item in ChangedRowsVehicles)
+                {
+                    Vehicle temp = new Vehicle();
+                    temp.Id = (int)dGV_Vehicle[0, item].Value;
+                    temp.Number = (string)dGV_Vehicle[1, item].Value;
+                    temp.Brand = (string)dGV_Vehicle[2, item].Value;
+                    temp.Model = (string)dGV_Vehicle[3, item].Value;
+                    temp.Color = (string)dGV_Vehicle[4, item].Value;
+                    temp.DriverID = (int)dGV_Vehicle[5, item].Value;
+                    SqlCommand command = new SqlCommand($"UPDATE VEHICLE SET " +
+                        $"VEHICLE_NUMBER=\'{temp.Number}\'," +
+                        $"VEHICLE_BRAND=\'{temp.Brand}\'," +
+                        $"VEHICLE_MODEL=\'{temp.Model}\'," +
+                        $"VEHICLE_COLOR=\'{temp.Color}\'," +
+                        $"DRIVER_ID=\'{temp.DriverID}\'" +
+                        $"WHERE VEHICLE_ID={temp.Id}", db.getConnection());
+                    db.openConnection();
+                    int count = command.ExecuteNonQuery();
+                    db.closeConnection();
+                }
+                ChangedRowsVehicles.Clear();
+                loadGridVehicles();
+                EnableInFlow(fLP_VehicleTools);
+                Apply -= ApplyChanges;
+            }
+
+            Cancel += DiscardChanges;
+            void DiscardChanges()
+            {
+                dt.RejectChanges();
+                dGV_Vehicle.CancelEdit();
+                dGV_Vehicle.ClearSelection();
+                dGV_Vehicle.ReadOnly = true;
+                fLP_VehicleIO.Visible = false;
+                EnableInFlow(fLP_VehicleTools);
+                Cancel -= DiscardChanges;
+            }
         }
         private void vBtn_Apply_Click(object sender, EventArgs e)
         {
-
+            Apply?.Invoke();
         }
         private void vBtn_Cancel_Click(object sender, EventArgs e)
         {
-
+            Cancel?.Invoke();
+        }
+        private void dGV_Vehicle_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            ChangedRowsVehicles.Add(e.RowIndex);
         }
 
+        //Schedules toolbar buttons
         private async void sBtn_Add_Click(object sender, EventArgs e)
         {
             bool create = false;
@@ -735,5 +847,181 @@ namespace TaxiMaxim.WF
 
             }
         }
+        private async void sBtn_Remove_Click(object sender, EventArgs e)
+        {
+            bool create = false;
+
+            foreach (Form form in Application.OpenForms)
+            {
+                if (form.Name.ToString() == "DeleteOne")
+                {
+                    //this.Hide();
+                    form.Visible = true;
+                    create = true;
+                    break;
+                }
+            }
+            if (create == false)
+            {
+                Schedule[] arr = Schedules.ToArray();
+                int[] data = new int[Schedules.Count];
+                for (int i = 0; i < Schedules.Count; i++)
+                {
+                    data[i] = arr[i].Id;
+                }
+                DeleteOne createC = new DeleteOne(data, db, "SCHEDULE", "SCHEDULE_ID");
+                //this.Hide();
+                createC.Show();
+
+                await GetTaskFromEvent(createC, "FormClosed");
+                loadGridSchedules();
+                createC.Dispose();
+            }
+        }
+        private void sBtn_Refresh_Click(object sender, EventArgs e)
+        {
+            loadGridSchedules();
+        }
+        private async void sBtn_Find_Click(object sender, EventArgs e)
+        {
+            bool create = false;
+
+            foreach (Form form in Application.OpenForms)
+            {
+                if (form.Name.ToString() == "Find")
+                {
+                    //this.Hide();
+                    form.Visible = true;
+                    create = true;
+                    break;
+                }
+            }
+            if (create == false)
+            {
+                string[] data = new string[dGV_Schedule.Columns.Count];
+                for (int i = 0; i < data.Length; i++)
+                {
+                    data[i] = dGV_Schedule.Columns[i].HeaderText;
+                }
+                Find createC = new Find(data, db, "SCHEDULE");
+                //this.Hide();
+                createC.Show();
+
+                await GetTaskFromEvent(createC, "FormClosed");
+                createC.Dispose();
+
+            }
+        }
+        private async void sBtn_Sort_Click(object sender, EventArgs e)
+        {
+            bool create = false;
+
+            foreach (Form form in Application.OpenForms)
+            {
+                if (form.Name.ToString() == "Sorting")
+                {
+                    //this.Hide();
+                    form.Visible = true;
+                    create = true;
+                    break;
+                }
+            }
+            if (create == false)
+            {
+                string[] data = new string[dGV_Schedule.Columns.Count];
+                for (int i = 0; i < data.Length; i++)
+                {
+                    data[i] = dGV_Schedule.Columns[i].HeaderText;
+                }
+                Sorting createC = new Sorting(db, data, "SCHEDULE");
+                //this.Hide();
+                createC.Show();
+
+                await GetTaskFromEvent(createC, "FormClosed");
+                createC.Dispose();
+
+            }
+        }
+        private void sBtn_Apply_Click(object sender, EventArgs e)
+        {
+            Apply?.Invoke();
+        }
+        private void sBtn_Cancel_Click(object sender, EventArgs e)
+        {
+            Cancel?.Invoke();
+        }
+        private void dGV_Schedule_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            if(string.IsNullOrEmpty(dGV_Schedule[e.ColumnIndex,e.RowIndex].Value.ToString()) )
+            {
+
+            }
+                ChangedRowsSchedules.Add(e.RowIndex);
+        }
+        private void sBtn_Edit_Click(object sender, EventArgs e)
+        {
+            DataTable dt = this.dGV_Schedule.DataSource as DataTable;
+            fLP_ScheduleIO.Visible = true;
+            dGV_Schedule.ClearSelection(); //снять выделение всех выбранных ячеек
+            int index = 0; // индекс последней строки
+            dGV_Schedule.Rows[index].Selected = true; // выделить нужную строку
+            dGV_Schedule.FirstDisplayedScrollingRowIndex = index; // фокус в нужную строку
+            dGV_Schedule.AllowUserToAddRows = false;
+            dGV_Schedule.ReadOnly = false;
+            dGV_Schedule.Columns[0].ReadOnly = true;
+            DisableInFlow(fLP_ScheduleTools);
+
+            Apply += ApplyChanges;
+            void ApplyChanges()
+            {
+                dGV_Schedule.ClearSelection();
+                dGV_Schedule.ReadOnly = true;
+                fLP_ScheduleIO.Visible = false;
+                foreach (var item in ChangedRowsSchedules)
+                {
+                    Schedule temp = new Schedule();
+                    temp.Id = (int)dGV_Schedule[0, item].Value;
+                    temp.TimeStart = (DateTime)dGV_Schedule[1, item].Value;
+                    temp.TimeEnd = (DateTime)dGV_Schedule[2, item].Value;
+                    temp.isWorking = (bool)dGV_Schedule[3, item].Value;
+                    temp.Driver_Id = (int)dGV_Schedule[4, item].Value;
+                    SqlCommand command = new SqlCommand($"UPDATE Schedule SET " +
+                        $"SCHEDULE_DATE_START=\'{temp.TimeStart}\'," +
+                        $"SCHEDULE_DATE_FINISH=\'{temp.TimeEnd}\'," +
+                        $"SCHEDULE_GO_WORK=\'{temp.isWorking.GetHashCode()}\'," +
+                        $"DRIVER_ID=\'{temp.Driver_Id}\'" +
+                        $"WHERE SCHEDULE_ID={temp.Id}", db.getConnection());
+                    db.openConnection();
+                    int count = command.ExecuteNonQuery();
+                    db.closeConnection();
+                }
+                ChangedRowsSchedules.Clear();
+                loadGridSchedules();
+                EnableInFlow(fLP_ScheduleTools);
+                Apply -= ApplyChanges;
+            }
+
+            Cancel += DiscardChanges;
+            void DiscardChanges()
+            {
+                dt.RejectChanges();
+                dGV_Schedule.CancelEdit();
+                dGV_Schedule.ClearSelection();
+                dGV_Schedule.ReadOnly = true;
+                fLP_ScheduleIO.Visible = false;
+                EnableInFlow(fLP_ScheduleTools);
+                Cancel -= DiscardChanges;
+            }
+        }
+        private void dGV_Schedule_DataError(object sender, DataGridViewDataErrorEventArgs e)
+        {
+            MessageBox.Show(e.Exception.ToString());
+            MessageBox.Show($"Введенны некорректные данные, исправьте значение изменённого элемента {e.RowIndex} строки");
+            e.Cancel = true;
+            e.ThrowException = false;
+        }
     }
 }
+
+
+//TODO:Добавить штуку, чтоб возвращало ошибку при невозможной связи. К примеру Driver_ID не существует
