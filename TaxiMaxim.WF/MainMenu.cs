@@ -17,9 +17,8 @@ namespace TaxiMaxim.WF
 {
     public partial class MainMenu : Form
     {
-        DataBase db = new DataBase("DUBOV_ILYA\\SQLEXPRESS", "TaxiMaximalnaya");
+        DataBase db = new DataBase("DESKTOP-VPOMAI1\\SQL44", "TaxiMaximalnaya");
         
-        SqlCommandBuilder scb;
         DataTable dt;
         HashSet<int> ChangedRowsDrivers = new HashSet<int>();
         HashSet<int> ChangedRowsOrders = new HashSet<int>();
@@ -35,7 +34,6 @@ namespace TaxiMaxim.WF
         event ButtonHandler Cancel;
         // Handlers 
         delegate void ButtonHandler();
-        //
         
 
         public MainMenu()
@@ -59,10 +57,14 @@ namespace TaxiMaxim.WF
             loadGridVehicles();
             loadGridSchedules();
             dGV_Orders.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dGV_drivers.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dGV_Schedule.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dGV_Vehicle.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             //dataGridView2.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
 
         }
+        //Обновление всех таблиц во вью
         private void loadGridOrders()
         {
             using (SqlConnection con = new SqlConnection(db.getConnection().ConnectionString))
@@ -115,6 +117,8 @@ namespace TaxiMaxim.WF
             db.closeConnection();
             dGV_Schedule.DataSource = table;
         }
+
+        //Вытягивание данных из БД
         private List<Order> FillOrders()
         {
             List<Order> matchingOrder = new List<Order>();
@@ -197,53 +201,53 @@ namespace TaxiMaxim.WF
             }
             return matchingSchedule;
         }
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        //Вспомогательные функции
+        private void DisableInFlow(FlowLayoutPanel fLP)//Делает неактивными все кнопки в Flow
         {
-           // MessageBox.Show("Activate");
-           
+            foreach (var tb in fLP.Controls.OfType<Button>())
+            {
+                tb.Enabled = false;
+            }
         }
-        private void button1_Click(object sender, EventArgs e)
+        private void EnableInFlow(FlowLayoutPanel fLP)//Делает кативными все кнопки в flow
         {
-            //scb = new SqlCommandBuilder(sda);
-            //sda.Update(dt);
+            foreach (var tb in fLP.Controls.OfType<Button>())
+            {
+                tb.Enabled = true;
+            }
+        }
+        public static Task<object> GetTaskFromEvent(object o, string evt)
+        {
+            if (o == null || evt == null) throw new ArgumentNullException("Arguments cannot be null");
 
-        }
-        private void button2_Click(object sender, EventArgs e)
-        {
-            OrderMenu form2 = new OrderMenu();
-            form2.Show();
-        }
-        private void toolStripComboBox1_Click(object sender, EventArgs e)
-        {
+            EventInfo einfo = o.GetType().GetEvent(evt);
+            if (einfo == null)
+            {
+                throw new ArgumentException(String.Format("*{0}* has no *{1}* event", o, evt));
+            }
 
-        }
-        private void выходToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
-        }
-        private void tabPage1_Click(object sender, EventArgs e)
-        {
+            TaskCompletionSource<object> tcs = new TaskCompletionSource<object>();
+            MethodInfo mi = null;
+            Delegate deleg = null;
+            EventHandler handler = null;
 
-        }
-        private void textBox4_TextChanged(object sender, EventArgs e)
-        {
+            //код обработчика события
+            handler = (s, e) =>
+            {
+                mi = handler.Method;
+                deleg = Delegate.CreateDelegate(einfo.EventHandlerType, handler.Target, mi);
+                einfo.RemoveEventHandler(s, deleg); //отцепляем обработчик события
+                tcs.TrySetResult(null); //сигнализируем о наступлении события
+            };
 
-        }
-        private void textBox3_TextChanged(object sender, EventArgs e)
-        {
+            mi = handler.Method;
+            deleg = Delegate.CreateDelegate(einfo.EventHandlerType, handler.Target, mi); //получаем делегат нужного типа
+            einfo.AddEventHandler(o, deleg); //присоединяем обработчик события
+            return tcs.Task;
+        }  //Для асинхронной функции ожидания закрытия формы
 
-        }
-        private void buttonOrderTaxi_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dataGridView3_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private async void button3_Click(object sender, EventArgs e)
+        //Driver toolbar buttons
+        private async void dBtn_Add_Click(object sender, EventArgs e)
         {
             bool create = false;
 
@@ -269,7 +273,102 @@ namespace TaxiMaxim.WF
             }
 
         }
+        private async void dBtn_Remove_Click(object sender, EventArgs e)
+        {
+            bool create = false;
 
+            foreach (Form form in Application.OpenForms)
+            {
+                if (form.Name.ToString() == "DeleteOne")
+                {
+                    //this.Hide();
+                    form.Visible = true;
+                    create = true;
+                    break;
+                }
+            }
+            if (create == false)
+            {
+                Driver[] arrDriver = Drivers.ToArray();
+                int[] data = new int[Drivers.Count];
+                for (int i = 0; i < Drivers.Count; i++)
+                {
+                    data[i] = arrDriver[i].Id;
+                }
+                DeleteOne createC = new DeleteOne(data, db, "DRIVER", "DRIVER_ID");
+                //this.Hide();
+                createC.Show();
+
+                await GetTaskFromEvent(createC, "FormClosed");
+                loadGridDrivers();
+                createC.Dispose();
+
+            }
+        }
+        private void dBtn_Refresh_Click(object sender, EventArgs e)
+        {
+            loadGridDrivers();
+        }
+        private async void dBtn_Find_Click(object sender, EventArgs e)
+        {
+            bool create = false;
+
+            foreach (Form form in Application.OpenForms)
+            {
+                if (form.Name.ToString() == "Find")
+                {
+                    //this.Hide();
+                    form.Visible = true;
+                    create = true;
+                    break;
+                }
+            }
+            if (create == false)
+            {
+                string[] data = new string[dGV_drivers.Columns.Count];
+                for (int i = 0; i < data.Length; i++)
+                {
+                    data[i] = dGV_drivers.Columns[i].HeaderText;
+                }
+                Find createC = new Find(data, db, "DRIVER");
+                //this.Hide();
+                createC.Show();
+
+                await GetTaskFromEvent(createC, "FormClosed");
+                createC.Dispose();
+
+            }
+        }
+        private async void dBtn_Sorting_Click(object sender, EventArgs e)
+        {
+            bool create = false;
+
+            foreach (Form form in Application.OpenForms)
+            {
+                if (form.Name.ToString() == "Sorting")
+                {
+                    //this.Hide();
+                    form.Visible = true;
+                    create = true;
+                    break;
+                }
+            }
+            if (create == false)
+            {
+                string[] data = new string[dGV_drivers.Columns.Count];
+                for (int i = 0; i < data.Length; i++)
+                {
+                    data[i] = dGV_drivers.Columns[i].HeaderText;
+                }
+                Sorting createC = new Sorting(db, data, "DRIVER");
+                //this.Hide();
+                createC.Show();
+
+                await GetTaskFromEvent(createC, "FormClosed");
+                createC.Dispose();
+
+            }
+        }
         private void btn_editmode(object sender, EventArgs e)
         { 
 
@@ -320,82 +419,22 @@ namespace TaxiMaxim.WF
                 Cancel -= DiscardChanges;
             }
 
-        }
-  
-        private void DisableInFlow(FlowLayoutPanel fLP)//Делает неактивными все кнопки в Flow
-        {
-            foreach (var tb in fLP.Controls.OfType<Button>())
-            {
-                tb.Enabled = false;
-            }
-        }
-        private void EnableInFlow(FlowLayoutPanel fLP)//Делает кативными все кнопки в flow
-        {
-            foreach (var tb in fLP.Controls.OfType<Button>())
-            {
-                tb.Enabled = true;
-            }
-        }
-
-        private void button19_Click(object sender, EventArgs e)
-        {
-            Apply?.Invoke();
-        }
-
-        private void button20_Click(object sender, EventArgs e)
-        {
-            Cancel?.Invoke();
-        }
-
+        }//Редактирование в таблице Drivers
         private void dGV_drivers_CurrentCellChanged(object sender, DataGridViewCellEventArgs e)
         {
             ChangedRowsDrivers.Add(e.RowIndex);
-        }
-
-        private void SendSQLRequest(SqlCommand command)
+        }//Считывание изменённых строк
+        private void button19_Click(object sender, EventArgs e)
         {
-            int count = command.ExecuteNonQuery();
-            MessageBox.Show("Успешно! Затронуто строк: {0}", count.ToString());
-            //TODO: Доделать функцию отправки запроса
-            // Сделать универсальную функцию для отправки команд
-        }
-
-        public static Task<object> GetTaskFromEvent(object o, string evt)
+            Apply?.Invoke();
+        }//Кнопка Галочка
+        private void button20_Click(object sender, EventArgs e)
         {
-            if (o == null || evt == null) throw new ArgumentNullException("Arguments cannot be null");
+            Cancel?.Invoke();
+        }//Кнопка Крестик
 
-            EventInfo einfo = o.GetType().GetEvent(evt);
-            if (einfo == null)
-            {
-                throw new ArgumentException(String.Format("*{0}* has no *{1}* event", o, evt));
-            }
-
-            TaskCompletionSource<object> tcs = new TaskCompletionSource<object>();
-            MethodInfo mi = null;
-            Delegate deleg = null;
-            EventHandler handler = null;
-
-            //код обработчика события
-            handler = (s, e) =>
-            {
-                mi = handler.Method;
-                deleg = Delegate.CreateDelegate(einfo.EventHandlerType, handler.Target, mi);
-                einfo.RemoveEventHandler(s, deleg); //отцепляем обработчик события
-                tcs.TrySetResult(null); //сигнализируем о наступлении события
-            };
-
-            mi = handler.Method;
-            deleg = Delegate.CreateDelegate(einfo.EventHandlerType, handler.Target, mi); //получаем делегат нужного типа
-            einfo.AddEventHandler(o, deleg); //присоединяем обработчик события
-            return tcs.Task;
-        }
-
-        private void dBtn_Refresh_Click(object sender, EventArgs e)
-        {
-            loadGridDrivers();
-        }
-
-        private async void oBtn_Click(object sender, EventArgs e)
+        //Orders toolbar buttons
+        private async void oBtn_Add_Click(object sender, EventArgs e)
         {
             bool create = false;
 
@@ -420,22 +459,102 @@ namespace TaxiMaxim.WF
 
             }
         }
+        private async void oBtnRemove_Click(object sender, EventArgs e)
+        {
+            bool create = false;
 
+            foreach (Form form in Application.OpenForms)
+            {
+                if (form.Name.ToString() == "DeleteOne")
+                {
+                    //this.Hide();
+                    form.Visible = true;
+                    create = true;
+                    break;
+                }
+            }
+            if (create == false)
+            {
+                Order[] arrOrders = Orders.ToArray();
+                int[] data = new int[Orders.Count];
+                for (int i = 0; i < Orders.Count; i++)
+                {
+                    data[i] = arrOrders[i].Id;
+                }
+                DeleteOne createC = new DeleteOne(data, db, "ORDERS", "ORDER_ID");
+                //this.Hide();
+                createC.Show();
+
+                await GetTaskFromEvent(createC, "FormClosed");
+                loadGridOrders();
+                createC.Dispose();
+
+            }
+        }
         private void oBtn_Refresh_Click(object sender, EventArgs e)
         {
             loadGridOrders();
         }
-
-        private void oBtn_Apply_Click(object sender, EventArgs e)
+        private async void oBtn_Find_Click(object sender, EventArgs e)
         {
-            Apply?.Invoke();
-        }
+            bool create = false;
 
-        private void oBtn_Cancel_Click(object sender, EventArgs e)
+            foreach (Form form in Application.OpenForms)
+            {
+                if (form.Name.ToString() == "Find")
+                {
+                    //this.Hide();
+                    form.Visible = true;
+                    create = true;
+                    break;
+                }
+            }
+            if (create == false)
+            {
+                string[] data = new string[dGV_Orders.Columns.Count];
+                for (int i = 0; i < data.Length; i++)
+                {
+                    data[i] = dGV_Orders.Columns[i].HeaderText;
+                }
+                Find createC = new Find(data, db, "ORDERS");
+                //this.Hide();
+                createC.Show();
+
+                await GetTaskFromEvent(createC, "FormClosed");
+                createC.Dispose();
+
+            }
+        }
+        private async void oBtn_Sorting_Click(object sender, EventArgs e)
         {
-            Cancel?.Invoke();
-        }
+            bool create = false;
 
+            foreach (Form form in Application.OpenForms)
+            {
+                if (form.Name.ToString() == "Sorting")
+                {
+                    //this.Hide();
+                    form.Visible = true;
+                    create = true;
+                    break;
+                }
+            }
+            if (create == false)
+            {
+                string[] data = new string[dGV_Orders.Columns.Count];
+                for (int i = 0; i < data.Length; i++)
+                {
+                    data[i] = dGV_Orders.Columns[i].HeaderText;
+                }
+                Sorting createC = new Sorting(db, data, "ORDERS");
+                //this.Hide();
+                createC.Show();
+
+                await GetTaskFromEvent(createC, "FormClosed");
+                createC.Dispose();
+
+            }
+        }
         private void oBtn_Edit_Click(object sender, EventArgs e)
         {
             DataTable dt = this.dGV_Orders.DataSource as DataTable;
@@ -462,7 +581,7 @@ namespace TaxiMaxim.WF
                     temp.PhoneNumber = (string)dGV_Orders[1, item].Value;
                     temp.AdressStart = (string)dGV_Orders[2, item].Value;
                     temp.AdressFinish = (string)dGV_Orders[3, item].Value;
-                    temp.Price = Math.Round((decimal)dGV_Orders[4, item].Value,0);
+                    temp.Price = Math.Round((decimal)dGV_Orders[4, item].Value, 0);
                     temp.Date = (DateTime)dGV_Orders[5, item].Value;
                     temp.PhoneType = (bool?)dGV_Orders[6, item].Value;
                     temp.Driver_Id = (int)dGV_Orders[7, item].Value;
@@ -497,215 +616,24 @@ namespace TaxiMaxim.WF
                 Cancel -= DiscardChanges;
             }
         }
-
-        private async void dBtn_Remove_Click(object sender, EventArgs e)
+        private void oBtn_Apply_Click(object sender, EventArgs e)
         {
-            bool create = false;
-
-            foreach (Form form in Application.OpenForms)
-            {
-                if (form.Name.ToString() == "DeleteOne")
-                {
-                    //this.Hide();
-                    form.Visible = true;
-                    create = true;
-                    break;
-                }
-            }
-            if (create == false)
-            {
-                Driver[] arrDriver = Drivers.ToArray();
-                int[] data = new int[Drivers.Count];
-                for (int i = 0; i < Drivers.Count; i++)
-                {
-                    data[i] = arrDriver[i].Id;
-                }
-                DeleteOne createC = new DeleteOne(data, db, "DRIVER", "DRIVER_ID");
-                //this.Hide();
-                createC.Show();
-
-                await GetTaskFromEvent(createC, "FormClosed");
-                loadGridDrivers();
-                createC.Dispose();
-
-            }
+            Apply?.Invoke();
         }
-
-        private async void oBtnRemove_Click(object sender, EventArgs e)
+        private void oBtn_Cancel_Click(object sender, EventArgs e)
         {
-            bool create = false;
-
-            foreach (Form form in Application.OpenForms)
-            {
-                if (form.Name.ToString() == "DeleteOne")
-                {
-                    //this.Hide();
-                    form.Visible = true;
-                    create = true;
-                    break;
-                }
-            }
-            if (create == false)
-            {
-                Order[] arrOrders = Orders.ToArray();
-                int[] data = new int[Orders.Count];
-                for (int i = 0; i < Orders.Count; i++)
-                {
-                    data[i] = arrOrders[i].Id;
-                }
-                DeleteOne createC = new DeleteOne(data, db, "ORDERS", "ORDER_ID");
-                //this.Hide();
-                createC.Show();
-
-                await GetTaskFromEvent(createC, "FormClosed");
-                loadGridOrders();
-                createC.Dispose();
-
-            }
+            Cancel?.Invoke();
         }
-
-        private async void dBtn_Find_Click(object sender, EventArgs e)
-        {
-            bool create = false;
-
-            foreach (Form form in Application.OpenForms)
-            {
-                if (form.Name.ToString() == "Find")
-                {
-                    //this.Hide();
-                    form.Visible = true;
-                    create = true;
-                    break;
-                }
-            }
-            if (create == false)
-            {
-                string[] data = new string[dGV_drivers.Columns.Count];
-                for (int i = 0; i < data.Length; i++)
-                {
-                    data[i] = dGV_drivers.Columns[i].HeaderText;
-                }
-                Find createC = new Find(data, db, "DRIVER");
-                //this.Hide();
-                createC.Show();
-
-                await GetTaskFromEvent(createC, "FormClosed");
-                createC.Dispose();
-
-            }
-        }
-
-        private async void oBtn_Find_Click(object sender, EventArgs e)
-        {
-            bool create = false;
-
-            foreach (Form form in Application.OpenForms)
-            {
-                if (form.Name.ToString() == "Find")
-                {
-                    //this.Hide();
-                    form.Visible = true;
-                    create = true;
-                    break;
-                }
-            }
-            if (create == false)
-            {
-                string[] data = new string[dGV_Orders.Columns.Count];
-                for (int i = 0; i < data.Length; i++)
-                {
-                    data[i] = dGV_Orders.Columns[i].HeaderText;
-                }
-                Find createC = new Find(data, db, "ORDERS");
-                //this.Hide();
-                createC.Show();
-
-                await GetTaskFromEvent(createC, "FormClosed");
-                createC.Dispose();
-
-            }
-        }
-
-        private void dGV_Orders_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        private void dGV_Orders_CellEndEdit(object sender, DataGridViewCellEventArgs e)//Считывание изменённых строк
         {
             ChangedRowsOrders.Add(e.RowIndex);
         }
 
-        private async void dBtn_Sorting_Click(object sender, EventArgs e)
+        //Vehicles
+        private void vBtn_Refresh_Click(object sender, EventArgs e)
         {
-            bool create = false;
-
-            foreach (Form form in Application.OpenForms)
-            {
-                if (form.Name.ToString() == "Sorting")
-                {
-                    //this.Hide();
-                    form.Visible = true;
-                    create = true;
-                    break;
-                }
-            }
-            if (create == false)
-            {
-                string[] data = new string[dGV_drivers.Columns.Count];
-                for (int i = 0; i < data.Length; i++)
-                {
-                    data[i] = dGV_drivers.Columns[i].HeaderText;
-                }
-                Sorting createC = new Sorting(db, data,"DRIVER");
-                //this.Hide();
-                createC.Show();
-
-                await GetTaskFromEvent(createC, "FormClosed");
-                createC.Dispose();
-
-            }
+            loadGridVehicles();
         }
 
-        private async void oBtn_Sorting_Click(object sender, EventArgs e)
-        {
-            bool create = false;
-
-            foreach (Form form in Application.OpenForms)
-            {
-                if (form.Name.ToString() == "Sorting")
-                {
-                    //this.Hide();
-                    form.Visible = true;
-                    create = true;
-                    break;
-                }
-            }
-            if (create == false)
-            {
-                string[] data = new string[dGV_Orders.Columns.Count];
-                for (int i = 0; i < data.Length; i++)
-                {
-                    data[i] = dGV_Orders.Columns[i].HeaderText;
-                }
-                Sorting createC = new Sorting(db, data, "ORDERS");
-                //this.Hide();
-                createC.Show();
-
-                await GetTaskFromEvent(createC, "FormClosed");
-                createC.Dispose();
-
-            }
-        }
-
-        private void flowLayoutPanel3_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void flowLayoutPanel5_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void label4_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }
