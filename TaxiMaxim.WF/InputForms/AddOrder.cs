@@ -16,10 +16,13 @@ namespace TaxiMaxim.WF.InputForms
     {
         DataBase dbCurr;
         List<Driver> drivers;
-        public AddOrder(List<Driver> request, DataBase db)
+        List<Directory> directory;
+        bool isDirectories = false;
+        public AddOrder(List<Driver> request, List<Directory> directory, DataBase db)
         {
             dbCurr = db;
             drivers = request;
+            this.directory = directory;
             InitializeComponent();
             foreach (var item in drivers)
             {
@@ -47,7 +50,7 @@ namespace TaxiMaxim.WF.InputForms
             if (textBoxPhone.Text.Length == 0)
                 AddError(labelErrorPhone, "Поле не может быть пустым");
             if (textBoxPhone.Text.Length != 11)
-                AddError(labelErrorPhone, "Поле должно содержать 10 символов");
+                AddError(labelErrorPhone, "Поле должно содержать 11 символов");
             long result;
             if (!long.TryParse(textBoxPhone.Text, out result))
             {
@@ -106,14 +109,15 @@ namespace TaxiMaxim.WF.InputForms
             order.AdressStart = textBoxAdressStart.Text;
             order.AdressFinish = textBoxAdressEnd.Text;
             order.Date = dateTimePicker1.Value;
-            order.PhoneType = checkBoxDriver.Checked;
+            order.PhoneType = isDirectories;
             if (order.PhoneType == false)
                 order.Driver_Id = GetDriverId();
             else
                 order.Driver_Id = null;
+            string driverid = checkBoxDriver.Checked ? "NULL" : order.Driver_Id.ToString();
             order.Price = Convert.ToInt32(textBoxPrice.Text);
 
-            SqlCommand command = new SqlCommand($"INSERT INTO ORDERS VALUES (\'{order.PhoneNumber}\', \'{order.AdressStart}\', \'{order.AdressFinish}\', {order.Price}, \'{order.Date}\', {order.PhoneType.GetHashCode()}, {order.Driver_Id})", dbCurr.getConnection());
+            SqlCommand command = new SqlCommand($"INSERT INTO ORDERS VALUES (\'{order.PhoneNumber}\', \'{order.AdressStart}\', \'{order.AdressFinish}\', {order.Price}, \'{order.Date}\', {order.PhoneType.GetHashCode()}, {driverid})", dbCurr.getConnection());
             dbCurr.openConnection();
             int count = command.ExecuteNonQuery();
             dbCurr.closeConnection();
@@ -130,7 +134,16 @@ namespace TaxiMaxim.WF.InputForms
 
         private void button1_Click(object sender, EventArgs e)
         {
-            //TODO: Сделать проверку по таблице с адресами и заполнением данных в случае успеха
+            foreach (var item in directory)
+            {
+                if(textBoxPhone.Text == item.Phone)
+                {
+                    textBoxAdressStart.Text = item.Adress;
+                    textBoxAdressStart.Refresh();
+                    isDirectories = true;
+                    break;
+                }
+            }
         }
 
         private int GetDriverId()

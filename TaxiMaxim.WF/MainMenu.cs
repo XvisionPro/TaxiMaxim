@@ -229,7 +229,7 @@ namespace TaxiMaxim.WF
                     Directory mDirectory = new Directory();
                     mDirectory.Id = Convert.ToInt32(oReader["DIRECTORY_ID"]);
                     mDirectory.Adress = oReader["DIRECTORY_ADRESS"].ToString();
-                    mDirectory.Phone = oReader["DIRECTORY_ADRESS"].ToString();
+                    mDirectory.Phone = oReader["DIRECTORY_TELEPHONE"].ToString();
                     if(oReader["ORDER_ID"] is DBNull)
                     {
                         mDirectory.Order_Id = null;
@@ -489,7 +489,7 @@ namespace TaxiMaxim.WF
             }
             if (create == false)
             {
-                AddOrder createC = new AddOrder(Drivers, db);
+                AddOrder createC = new AddOrder(Drivers, Directories, db);
                 //this.Hide();
                 createC.Show();
 
@@ -1059,9 +1059,30 @@ namespace TaxiMaxim.WF
             e.ThrowException = false;
         }
 
-        private void drBtn_Add_Click(object sender, EventArgs e)
+        private async void drBtn_Add_Click(object sender, EventArgs e)
         {
+            bool create = false;
 
+            foreach (Form form in Application.OpenForms)
+            {
+                if (form.Name.ToString() == "AddDirectory")
+                {
+                    //this.Hide();
+                    form.Visible = true;
+                    create = true;
+                    break;
+                }
+            }
+            if (create == false)
+            {
+                AddDirectory createC = new AddDirectory(Orders, db);
+                //this.Hide();
+                createC.Show();
+
+                await GetTaskFromEvent(createC, "FormClosed");
+                loadGridDirectory();
+
+            }
         }
 
         private async void drBtn_Delete_Click(object sender, EventArgs e)
@@ -1174,6 +1195,7 @@ namespace TaxiMaxim.WF
             dGV_Directory.AllowUserToAddRows = false;
             dGV_Directory.ReadOnly = false;
             dGV_Directory.Columns[0].ReadOnly = true;
+            dGV_Directory.Columns[3].ReadOnly = true;
             DisableInFlow(fLP_DirectoryTools);
 
             Apply += ApplyChanges;

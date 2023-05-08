@@ -40,7 +40,6 @@ namespace TaxiMaxim.WF.InputForms
             this.labelPhone = new System.Windows.Forms.Label();
             this.checkBoxDriver = new System.Windows.Forms.CheckBox();
             this.comboBoxDrivers = new System.Windows.Forms.ComboBox();
-            this.labelErrorDriver = new System.Windows.Forms.Label();
             this.labelDriver = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -63,6 +62,7 @@ namespace TaxiMaxim.WF.InputForms
             this.btnApply.TabIndex = 8;
             this.btnApply.Text = "Создать";
             this.btnApply.UseVisualStyleBackColor = true;
+            this.btnApply.Click += new System.EventHandler(this.btnApply_Click);
             // 
             // btnDiscard
             // 
@@ -72,6 +72,7 @@ namespace TaxiMaxim.WF.InputForms
             this.btnDiscard.TabIndex = 9;
             this.btnDiscard.Text = "Отмена";
             this.btnDiscard.UseVisualStyleBackColor = true;
+            this.btnDiscard.Click += new System.EventHandler(this.btnDiscard_Click);
             // 
             // labelErrorAStart
             // 
@@ -92,6 +93,7 @@ namespace TaxiMaxim.WF.InputForms
             this.textBoxAdressStart.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBoxAdressStart.Size = new System.Drawing.Size(219, 50);
             this.textBoxAdressStart.TabIndex = 6;
+            this.textBoxAdressStart.TextChanged += new System.EventHandler(this.textBoxAdressStart_TextChanged);
             // 
             // labelAdressStart
             // 
@@ -99,9 +101,9 @@ namespace TaxiMaxim.WF.InputForms
             this.labelAdressStart.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.labelAdressStart.Location = new System.Drawing.Point(27, 76);
             this.labelAdressStart.Name = "labelAdressStart";
-            this.labelAdressStart.Size = new System.Drawing.Size(126, 17);
+            this.labelAdressStart.Size = new System.Drawing.Size(122, 17);
             this.labelAdressStart.TabIndex = 7;
-            this.labelAdressStart.Text = "Начальный адрес";
+            this.labelAdressStart.Text = "Домашний адрес";
             // 
             // labelErrorPhone
             // 
@@ -120,6 +122,7 @@ namespace TaxiMaxim.WF.InputForms
             this.textBoxPhone.Name = "textBoxPhone";
             this.textBoxPhone.Size = new System.Drawing.Size(128, 20);
             this.textBoxPhone.TabIndex = 9;
+            this.textBoxPhone.TextChanged += new System.EventHandler(this.textBoxPhone_TextChanged);
             // 
             // labelPhone
             // 
@@ -127,9 +130,9 @@ namespace TaxiMaxim.WF.InputForms
             this.labelPhone.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.labelPhone.Location = new System.Drawing.Point(27, 29);
             this.labelPhone.Name = "labelPhone";
-            this.labelPhone.Size = new System.Drawing.Size(193, 17);
+            this.labelPhone.Size = new System.Drawing.Size(121, 17);
             this.labelPhone.TabIndex = 10;
-            this.labelPhone.Text = "Номер телефона заказчика";
+            this.labelPhone.Text = "Номер телефона";
             // 
             // checkBoxDriver
             // 
@@ -148,17 +151,7 @@ namespace TaxiMaxim.WF.InputForms
             this.comboBoxDrivers.Name = "comboBoxDrivers";
             this.comboBoxDrivers.Size = new System.Drawing.Size(164, 21);
             this.comboBoxDrivers.TabIndex = 14;
-            // 
-            // labelErrorDriver
-            // 
-            this.labelErrorDriver.AutoSize = true;
-            this.labelErrorDriver.ForeColor = System.Drawing.Color.Red;
-            this.labelErrorDriver.Location = new System.Drawing.Point(27, 165);
-            this.labelErrorDriver.Name = "labelErrorDriver";
-            this.labelErrorDriver.Size = new System.Drawing.Size(79, 13);
-            this.labelErrorDriver.TabIndex = 13;
-            this.labelErrorDriver.Text = "labelErrorName";
-            this.labelErrorDriver.Visible = false;
+            this.comboBoxDrivers.SelectedIndexChanged += new System.EventHandler(this.comboBoxDrivers_SelectedIndexChanged);
             // 
             // labelDriver
             // 
@@ -177,7 +170,6 @@ namespace TaxiMaxim.WF.InputForms
             this.ClientSize = new System.Drawing.Size(495, 245);
             this.Controls.Add(this.checkBoxDriver);
             this.Controls.Add(this.comboBoxDrivers);
-            this.Controls.Add(this.labelErrorDriver);
             this.Controls.Add(this.labelDriver);
             this.Controls.Add(this.labelErrorPhone);
             this.Controls.Add(this.textBoxPhone);
@@ -207,7 +199,6 @@ namespace TaxiMaxim.WF.InputForms
         private System.Windows.Forms.Label labelPhone;
         private System.Windows.Forms.CheckBox checkBoxDriver;
         private System.Windows.Forms.ComboBox comboBoxDrivers;
-        private System.Windows.Forms.Label labelErrorDriver;
         private System.Windows.Forms.Label labelDriver;
     }
 }
